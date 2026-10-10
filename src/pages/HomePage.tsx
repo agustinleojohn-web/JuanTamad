@@ -46,6 +46,7 @@ import {
   LayoutGrid,
   Type,
   Compass,
+  FileIcon,
 } from 'lucide-react';
 
 interface ToolItem {
@@ -585,470 +586,623 @@ const ALL_TOOLS: ToolItem[] = [
   },
 ];
 
+
 export const HomePage: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const faqs = [
     {
       q: 'Are my files uploaded to any server or cloud?',
-      a: 'Never. JuanTamad executes 100% inside your web browser. File processing runs using WebAssembly, HTML5 Canvas, and client-side JavaScript. Your confidential photos and documents never leave your physical device.',
+      a: 'JuanTamad processes supported files directly in your browser. Your files stay on your device during local processing.',
     },
     {
-      q: 'Is JuanTamad really free with no usage limits?',
-      a: 'Yes. There are no subscriptions, credits, daily quotas, watermarks, or sign-up walls. Since computation happens on your computer rather than our servers, it costs us nothing to process unlimited files for you.',
+      q: 'Is JuanTamad free to use?',
+      a: 'JuanTamad is designed to provide free browser-based tools without requiring an account or subscription.',
     },
     {
-      q: 'How does JuanTamad compare to Google Chrome Labs’ Squoosh?',
-      a: 'Squoosh pioneered interactive in-browser image optimization. JuanTamad brings that same Squoosh-inspired live before-and-after slider experience to images, and expands the local-first philosophy to PDFs, Word docs, spreadsheets, and batch jobs.',
+      q: 'What can I do with JuanTamad?',
+      a: 'You can compress, convert, resize, crop, and edit images, convert documents, and manage PDF files using the available tools.',
     },
     {
       q: 'Can I use JuanTamad offline?',
-      a: 'Yes! Once loaded in your browser cache, the application scripts run locally without requiring constant internet access.',
+      a: 'Some functionality may work after the required application assets have been cached. Availability depends on the tool and whether its dependencies are already available locally.',
     },
     {
-      q: 'What are the limitations of client-side DOCX and Excel parsing?',
-      a: 'We parse headings, paragraphs, lists, bold/italic text, and tables locally. However, highly proprietary Microsoft Word layouts (floating shapes, complex macros, SmartArt) or Excel macros cannot be processed without commercial office engines, which we transparently disclose.',
+      q: 'Are there limitations to document conversion?',
+      a: 'Yes. Complex document layouts, embedded objects, macros, and proprietary formatting may not be reproduced exactly by browser-based conversion tools.',
+    },
+  ];
+
+  const imageTools = ALL_TOOLS.filter((tool) => tool.category === 'image');
+  const documentTools = ALL_TOOLS.filter(
+    (tool) => tool.category === 'document',
+  );
+  const pdfTools = ALL_TOOLS.filter((tool) => tool.category === 'pdf');
+
+  const featuredTools = [
+    imageTools.find((tool) => tool.id === 'compress'),
+    imageTools.find((tool) => tool.id === 'convert'),
+    imageTools.find((tool) => tool.id === 'resize'),
+    ALL_TOOLS.find((tool) => tool.id === 'remove-bg'),
+    ALL_TOOLS.find((tool) => tool.id === 'image-to-pdf'),
+    ALL_TOOLS.find((tool) => tool.id === 'merge-pdf'),
+  ].filter((tool): tool is ToolItem => Boolean(tool));
+
+  const toolGroups = [
+    {
+      title: 'Image tools',
+      description: 'Optimize, convert, edit, and prepare your images.',
+      icon: Image,
+      path: '/image-tools',
+      tools: imageTools.slice(0, 6),
+      count: imageTools.length,
+    },
+    {
+      title: 'Document converters',
+      description: 'Turn common documents and data files into PDFs.',
+      icon: FileText,
+      path: '/document-tools',
+      tools: documentTools.slice(0, 3),
+      count: documentTools.length,
+    },
+    {
+      title: 'PDF toolkit',
+      description: 'Organize, optimize, sign, and manage PDF documents.',
+      icon: Files,
+      path: '/pdf-tools',
+      tools: pdfTools.slice(0, 6),
+      count: pdfTools.length,
     },
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
-      {/* Hero Section - Full Screen Height */}
-      <section className="relative overflow-hidden min-h-[100vh] h-screen flex items-center px-4 sm:px-6 lg:px-8">
-        {/* Subtle background glow with var(--accent-text) accent */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[360px] bg-[var(--accent-text)]/5 blur-3xl rounded-full -z-10 pointer-events-none" />
+    <div className="overflow-hidden pb-16">
+      {/* HERO */}
+      <section className="relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-[var(--accent)]/[0.07] via-transparent to-transparent"
+        />
 
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
-        
-
-          {/* Left Mascot Hero Card */}
-          <div className="lg:col-span-5 flex justify-center hidden lg:block">
-            <div className="relative group w-full">
-              <div className="relative overflow-hidden p-3">
-                <div className="relative overflow-hidden  flex items-center justify-center">
-                  <img
-                    src="/Mascot-full.webp"
-                    alt="Juan Tamad Mascot - JUAN click away"
-                    className="w-full h-full object-contain scale-80 group-hover:scale-85 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-            {/* Right Text Column */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="uppercase inline-flex items-center space-x-2 py-1.5 rounded-full text-xs font-bold text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]  animate-fade-in">
-             
-              <span>Image tools . File conversion . Zero hassle.</span>
+        <div className="mx-auto grid min-h-[600px] w-full max-w-7xl items-center gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[660px] lg:grid-cols-2 lg:gap-12 lg:px-10">
+          {/* Hero copy */}
+          <div className="order-1 flex flex-col items-center text-center lg:items-start lg:text-left">
+            <div className="mb-6 inline-flex items-center px-3.5 py-2 text-xs font-bold text-[var(--accent-text)]">
+              
+              YOUR ALL-IN-ONE FILE TOOLKIT
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black text-[#09090B] dark:text-white tracking-tight leading-[1.08]">
-              Your Files.{' '}<br></br>
-              <span className="text-[var(--accent-text)] dark:text-[var(--accent-text)]">
-                JUAN click away.
+            <h1 className="max-w-2xl text-balance text-4xl font-black leading-[1.06] tracking-[-0.045em] text-[#09090B] dark:text-white min-[420px]:text-5xl sm:text-6xl lg:text-7xl">
+              Your files.
+              <br />
+              <span className="text-[var(--accent-text)]">
+                Juan click away.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
-              Relax like Juan Tamad! Batch optimize images with <strong className="text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold">Image Compressor</strong>, convert documents, and manipulate PDFs effortlessly with zero uploads and zero setup.
+            <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg sm:leading-8">
+              Compress images, convert files, and manage PDFs without the
+              unnecessary hassle. Simple tools, right in your browser.
             </p>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="mt-8 flex w-full max-w-md flex-col gap-3 min-[480px]:flex-row lg:max-w-none">
               <Link
                 to="/image-tools/compress"
-                className="px-6 py-4 rounded-2xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-xl shadow-[var(--accent-text)]/25 flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]"
+                className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--accent)]/20 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-text)] focus-visible:ring-offset-2"
               >
-                <Sliders className="w-4 h-4" />
-                <span>Optimize Image</span>
+                <Sliders className="h-4 w-4" />
+                Compress an image
+                <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
-              <Link
-                to="/pdf-tools"
-                className="px-6 py-4 rounded-2xl font-bold text-sm bg-white dark:bg-[#09090B] text-[#27272A] dark:text-slate-200 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] shadow-sm flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]"
-              >
-                <Files className="w-4 h-4 text-[var(--accent-text)]" />
-                <span>Explore PDF Toolkit</span>
-              </Link>
-            </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 pt-1">
-              <div className="flex items-center space-x-1.5">
-                <ShieldCheck className="w-4 h-4 text-[var(--accent-text)]" />
-                <span>100% On-Device Processing</span>
-              </div>
-              <div className="flex items-center space-x-1.5">
-                <Zap className="w-4 h-4 text-[var(--accent-text)]" />
-                <span>Image Compressor</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tool Discovery Section (Grouped with View All Links) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div>
-          <span className="text-xs font-bold text-[var(--accent-text)] uppercase tracking-wider block mb-1">
-            Toolkit Directory
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
-            Instant Client-Side Tools
-          </h2>
-        </div>
-
-        <div className="space-y-16">
-          {/* 1. Image Studio Group */}
-          <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] pb-4">
-              <div>
-                <h3 className="text-xl font-black text-[#09090B] dark:text-white flex items-center space-x-2">
-                  <Sliders className="w-5 h-5 text-[var(--accent-text)]" />
-                  <span>Image Studio</span>
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Compress, resize, upscale, and convert images locally.
-                </p>
-              </div>
               <Link
                 to="/image-tools"
-                className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:underline flex items-center space-x-1"
+                className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 transition hover:border-[var(--accent)] hover:bg-slate-50 dark:border-[#303036] dark:bg-[#111113] dark:text-white dark:hover:bg-[#19191d]"
               >
-                <span>View all ({ALL_TOOLS.filter((t) => t.category === 'image').length})</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                Explore all tools
+                <ArrowRightLeft className="h-4 w-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {ALL_TOOLS.filter((t) => t.category === 'image')
-                .slice(0, 6)
-                .map((tool) => {
-                  const Icon = tool.icon;
-                  return (
-                    <Link
-                      key={tool.id}
-                      to={tool.path}
-                      className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] dark:hover:border-[var(--accent-text)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between mb-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
-                            <Icon className="w-5 h-5" />
-                          </div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
-                            {tool.badge}
-                          </span>
-                        </div>
-                        <h4 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">
-                          {tool.title}
-                        </h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed line-clamp-2">
-                          {tool.description}
-                        </p>
-                      </div>
-                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A]/80 flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
-                        <span>Open Tool</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </Link>
-                  );
-                })}
+
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs font-medium text-slate-500 dark:text-slate-400 lg:justify-start">
+              <span className="inline-flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-[var(--accent-text)]" />
+                Browser-based processing
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <Lock className="h-4 w-4 text-[var(--accent-text)]" />
+                No account required
+              </span>
             </div>
           </div>
 
-          {/* 2. Document Converters Group */}
-          <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] pb-4">
-              <div>
-                <h3 className="text-xl font-black text-[#09090B] dark:text-white flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-[var(--accent-text)]" />
-                  <span>Document Converters</span>
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Convert DOCX, XLSX, CSV, TXT, and HTML files to clean PDF.
-                </p>
-              </div>
-              <Link
-                to="/document-tools"
-                className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:underline flex items-center space-x-1"
-              >
-                <span>View all ({ALL_TOOLS.filter((t) => t.category === 'document').length})</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {ALL_TOOLS.filter((t) => t.category === 'document')
-                .slice(0, 6)
-                .map((tool) => {
-                  const Icon = tool.icon;
-                  return (
-                    <Link
-                      key={tool.id}
-                      to={tool.path}
-                      className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] dark:hover:border-[var(--accent-text)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between mb-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
-                            <Icon className="w-5 h-5" />
-                          </div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
-                            {tool.badge}
-                          </span>
-                        </div>
-                        <h4 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">
-                          {tool.title}
-                        </h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed line-clamp-2">
-                          {tool.description}
-                        </p>
-                      </div>
-                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A]/80 flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
-                        <span>Open Tool</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </Link>
-                  );
-                })}
-            </div>
-          </div>
-
-          {/* 3. PDF Toolkit Group */}
-          <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] pb-4">
-              <div>
-                <h3 className="text-xl font-black text-[#09090B] dark:text-white flex items-center space-x-2">
-                  <Files className="w-5 h-5 text-[var(--accent-text)]" />
-                  <span>PDF Toolkit</span>
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Merge, split, sign, redact, compress, and organize PDF documents.
-                </p>
-              </div>
-              <Link
-                to="/pdf-tools"
-                className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:underline flex items-center space-x-1"
-              >
-                <span>View all ({ALL_TOOLS.filter((t) => t.category === 'pdf').length})</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {ALL_TOOLS.filter((t) => t.category === 'pdf')
-                .slice(0, 6)
-                .map((tool) => {
-                  const Icon = tool.icon;
-                  return (
-                    <Link
-                      key={tool.id}
-                      to={tool.path}
-                      className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] dark:hover:border-[var(--accent-text)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between mb-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
-                            <Icon className="w-5 h-5" />
-                          </div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
-                            {tool.badge}
-                          </span>
-                        </div>
-                        <h4 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">
-                          {tool.title}
-                        </h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed line-clamp-2">
-                          {tool.description}
-                        </p>
-                      </div>
-                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A]/80 flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
-                        <span>Open Tool</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </Link>
-                  );
-                })}
+          {/* Mascot: preserve 384 × 339 ratio */}
+          <div className="order-2 flex min-w-0 items-center justify-center lg:order-2">
+            <div className="relative w-[190px] max-w-full sm:w-[240px] lg:w-[min(100%,340px)]">
+              <div
+                aria-hidden="true"
+                className="absolute inset-[12%] -z-10 rounded-full bg-[var(--accent)]/[0.09] blur-3xl"
+              />
+              <img
+                src="/hero-wave.gif"
+                alt="JuanTamad mascot waving hello"
+                width={384}
+                height={339}
+                className="block h-auto w-full object-contain"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mascot Featured CTA Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[var(--accent-text)] to-[var(--accent-hover)] text-white p-8 sm:p-12 shadow-xl shadow-[var(--accent-text)]/20">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-6 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur border border-white/30">
-                <span>Powered by: DisHenyo Digital Solutions</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-snug">
-                Experience the New Image Compressor &amp; Batch Converter
-              </h2>
-              <p className="text-sm sm:text-base text-rose-100 max-w-xl leading-relaxed">
-                Tune MozJPEG, WebP, AVIF, and color quantization with real-time split view, then batch convert all your images in one swift click. Zero uploads, zero waiting.
-              </p>
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/image-tools/compress"
-                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-white text-[var(--accent-text)] hover:bg-rose-50 shadow-lg transition-transform hover:scale-105 flex items-center space-x-2"
-                >
-                  <Sliders className="w-4 h-4" />
-                  <span>Open Image Compressor</span>
-                </Link>
-                <Link
-                  to="/pdf-tools"
-                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-black/25 hover:bg-black/35 text-white border border-white/20 transition-all flex items-center space-x-2"
-                >
-                  <Files className="w-4 h-4" />
-                  <span>PDF Toolkit</span>
-                </Link>
-              </div>
-            </div>
+      {/* QUICK VALUE STRIP */}
+      <section className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid grid-cols-1 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white dark:divide-[#29292f] dark:border-[#29292f] dark:bg-[#101012] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {[
+            {
+              icon: Zap,
+              title: 'Quick workflows',
+              text: 'Straightforward tools for everyday file tasks.',
+            },
+            {
+              icon: ShieldCheck,
+              title: 'Privacy-minded',
+              text: 'Local processing for supported operations.',
+            },
+            {
+              icon: Layers,
+              title: 'One toolkit',
+              text: 'Image, document, and PDF utilities together.',
+            },
+          ].map((item) => {
+            const Icon = item.icon;
 
-            <div className="md:col-span-6 flex justify-center">
-              <div className="relative w-full h-auto overflow-hidden">
-                <img
-                  src="/CTA-optimized.webp"
-                  alt="Juan Tamad Mascot"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
+            return (
+              <div key={item.title} className="flex items-start gap-3.5 p-5 sm:p-6">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--accent)]/[0.09] text-[var(--accent-text)]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h2 className="text-sm font-extrabold text-[#09090B] dark:text-white">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                    {item.text}
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-slate-50 dark:bg-[#09090B]/60 border border-slate-200 dark:border-[#27272A] p-8 sm:p-12">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] uppercase tracking-wider block mb-1">
-              Seamless Workflow
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white">
-              How Local Processing Works
+      {/* POPULAR TOOLS */}
+      <section className="mx-auto mt-20 w-full max-w-7xl px-5 sm:mt-28 sm:px-8 lg:px-10">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--accent-text)]">
+              Start here
+            </p>
+            <h2 className="mt-2 text-3xl font-black tracking-tight text-[#09090B] dark:text-white sm:text-4xl">
+              Get things done.
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-              Three simple steps with guaranteed client-side data sovereignty.
+            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base">
+              Jump straight into a tool. No need to browse the entire toolkit
+              first.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[var(--accent-text)]/20">
-                1
+          <Link
+            to="/image-tools"
+            className="inline-flex items-center gap-2 self-start text-sm font-bold text-[var(--accent-text)] transition hover:gap-3 sm:self-auto"
+          >
+            Browse tools
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredTools.map((tool) => {
+            const Icon = tool.icon;
+
+            return (
+              <Link
+                key={tool.id}
+                to={tool.path}
+                className="group flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-[var(--accent)]/50 hover:shadow-xl hover:shadow-slate-900/[0.04] dark:border-[#29292f] dark:bg-[#101012] dark:hover:shadow-black/20 sm:p-6"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--accent)]/[0.09] text-[var(--accent-text)] transition group-hover:scale-105">
+                    <Icon className="h-5 w-5" />
+                  </div>
+
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-600 dark:bg-[#242428] dark:text-slate-300">
+                    {tool.badge}
+                  </span>
+                </div>
+
+                <h3 className="mt-5 text-base font-extrabold text-[#09090B] transition-colors group-hover:text-[var(--accent-text)] dark:text-white">
+                  {tool.title}
+                </h3>
+
+                <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
+                  {tool.description}
+                </p>
+
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-bold text-[var(--accent-text)] dark:border-[#29292f]">
+                  Open tool
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* TOOL DIRECTORY */}
+      <section className="mx-auto mt-24 w-full max-w-7xl px-5 sm:mt-32 sm:px-8 lg:px-10">
+        <div className="max-w-2xl">
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--accent-text)]">
+            The toolkit
+          </p>
+          <h2 className="mt-2 text-3xl font-black tracking-tight text-[#09090B] dark:text-white sm:text-4xl">
+            Everything in its place.
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base">
+            Find the right utility for your next image, document, or PDF task.
+          </p>
+        </div>
+
+        <div className="mt-10 space-y-12">
+          {toolGroups.map((group) => {
+            const GroupIcon = group.icon;
+
+            return (
+              <div key={group.title}>
+                <div className="mb-5 flex flex-col gap-3 border-b border-slate-200 pb-5 dark:border-[#29292f] sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--accent)]/[0.09] text-[var(--accent-text)]">
+                      <GroupIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-extrabold text-[#09090B] dark:text-white">
+                        {group.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                        {group.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <Link
+                    to={group.path}
+                    className="inline-flex items-center gap-1.5 self-start text-xs font-bold text-[var(--accent-text)] hover:gap-2.5 sm:self-center"
+                  >
+                    View all {group.count}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.tools.map((tool) => {
+                    const Icon = tool.icon;
+
+                    return (
+                      <Link
+                        key={tool.id}
+                        to={tool.path}
+                        className="group flex min-w-0 items-start gap-3.5 rounded-xl border border-slate-200/80 bg-white p-4 transition hover:border-[var(--accent)]/50 hover:bg-slate-50 dark:border-[#29292f] dark:bg-[#101012] dark:hover:bg-[#171719]"
+                      >
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]/[0.08] text-[var(--accent-text)]">
+                          <Icon className="h-4 w-4" />
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-sm font-bold text-[#09090B] group-hover:text-[var(--accent-text)] dark:text-white">
+                            {tool.title}
+                          </h4>
+                          <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                            {tool.description}
+                          </p>
+                        </div>
+
+                        <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-[var(--accent-text)]" />
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
-              <h3 className="font-bold text-base text-[#09090B] dark:text-white">
-                Drop Your Files
-              </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
-                Drag any image, PDF, or document straight into your browser. Your browser reads the local binary bytes into memory.
+            );
+          })}
+        </div>
+      </section>
+
+      {/* FEATURE CTA */}
+      <section className="mx-auto mt-24 w-full max-w-7xl px-5 sm:mt-32 sm:px-8 lg:px-10">
+        <div className="relative isolate overflow-hidden rounded-3xl bg-[var(--accent)] text-white">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 -top-28 -z-10 h-80 w-80 rounded-full bg-white/10 blur-3xl"
+          />
+
+          <div className="grid items-center gap-4 p-6 sm:p-9 md:grid-cols-2 md:gap-6 md:p-12 lg:p-14">
+            <div className="relative z-10 py-3 md:py-6">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/90 sm:text-xs">
+                <Sparkles className="h-3.5 w-3.5" />
+                Made for your workflow
+              </span>
+
+              <h2 className="mt-5 max-w-xl text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+                Better images.
+                <br />
+                Less waiting.
+              </h2>
+
+              <p className="mt-4 max-w-lg text-sm leading-6 text-white/85 sm:text-base sm:leading-7">
+                Fine-tune image quality, compare the results, and convert
+                multiple files in one workflow.
+              </p>
+
+              <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row">
+                <Link
+                  to="/image-tools/compress"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-extrabold text-[var(--accent-text)] shadow-lg transition hover:-translate-y-0.5 hover:bg-white/95"
+                >
+                  <Sliders className="h-4 w-4" />
+                  Try image compressor
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  to="/image-tools/convert"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/30 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+                >
+                  Batch convert
+                </Link>
+              </div>
+
+              <p className="mt-5 text-xs text-white/70">
+                Powered by DisHenyo Digital Solutions
               </p>
             </div>
 
-            <div className="flex flex-col items-center text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[var(--accent-text)]/20">
-                2
-              </div>
-              <h3 className="font-bold text-base text-[#09090B] dark:text-white">
-                Inspect &amp; Tune
-              </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
-                Fine-tune compression with real-time before/after sliders, reorder PDF pages, or format spreadsheets instantly.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[var(--accent-text)]/20">
-                3
-              </div>
-              <h3 className="font-bold text-base text-[#09090B] dark:text-white">
-                Download Instantly
-              </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
-                Save your optimized images or compiled PDFs directly to your downloads folder. Download individual files or all as a ZIP.
-              </p>
+            {/* 1536 × 1024 asset: preserve its native 3:2 ratio */}
+            <div className="relative mx-auto w-full max-w-[520px] md:max-w-none">
+              <img
+                src="/CTA-optimized.webp"
+                alt="JuanTamad image optimization illustration"
+                width={1536}
+                height={1024}
+                className="block h-auto w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Supported Formats Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] uppercase tracking-wider block mb-1">
-            Format Compatibility
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white">
-            Supported Formats &amp; Standards
-          </h2>
+      {/* HOW IT WORKS */}
+      
+<section className="mx-auto mt-24 w-full max-w-7xl px-5 sm:mt-32 sm:px-8 lg:px-10">
+  <div className="relative overflow-hidden rounded-3xl ">
+    {/* Subtle decorative accents */}
+   
+
+    {/* Section heading */}
+    <div className="relative mx-auto max-w-2xl text-center">
+      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--accent-text)]">
+        Simple by design
+      </p>
+
+      <h2 className="mt-3 text-3xl font-black tracking-tight text-[#09090B] dark:text-white sm:text-4xl lg:text-5xl">
+        From file to <span className="text-[var(--accent-text)]">finished.</span>
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base">
+        Three simple steps to get your files ready, right in your browser.
+      </p>
+    </div>
+
+    {/* Workflow steps */}
+    <div className="relative mt-12 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6 lg:mt-14">
+      {[
+        {
+          number: '01',
+          image: '/step1-optimized.webp',
+          alt: 'JuanTamad using a laptop to get started',
+          title: 'Choose your files',
+          text: 'Pick a tool and select the images or documents you want to work with.',
+          accent: 'from-sky-500/10 to-transparent',
+        },
+        {
+          number: '02',
+          image: '/step2-optimized.webp',
+          alt: 'JuanTamad adjusting image settings',
+          title: 'Make adjustments',
+          text: 'Fine-tune the available settings and preview your output before processing.',
+          accent: 'from-[var(--accent)]/10 to-transparent',
+        },
+        {
+          number: '03',
+          image: '/step3-optimized.webp',
+          alt: 'JuanTamad celebrating a completed file',
+          title: 'Save your result',
+          text: 'Download your finished file or batch results when the tool supports it.',
+          accent: 'from-emerald-500/10 to-transparent',
+        },
+      ].map((step) => (
+        <article
+          key={step.number}
+          className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white/80 p-5 transition duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-xl hover:shadow-slate-900/[0.04] dark:border-[#29292f] dark:bg-[#151518]/80 dark:hover:shadow-black/20 sm:p-6 lg:p-7"
+        >
+          {/* Mascot illustration area */}
+          <div className={`relative flex h-56 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b ${step.accent} sm:h-64 lg:h-60`}>
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)]/[0.07] blur-2xl transition-transform duration-500 group-hover:scale-125"
+            />
+
+            <img
+              src={step.image}
+              alt={step.alt}
+              width={512}
+              height={512}
+              loading="lazy"
+              decoding="async"
+              className="relative z-10 h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+            />
+
+           
+          </div>
+
+          {/* Step details */}
+          <div className="flex flex-1 flex-col pt-6 text-center">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[var(--accent-text)]">
+              Step {step.number}
+            </p>
+
+            <h3 className="mt-2 text-xl font-extrabold tracking-tight text-[#09090B] dark:text-white sm:text-2xl">
+              {step.title}
+            </h3>
+
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-slate-500 dark:text-slate-400">
+              {step.text}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* Privacy note */}
+    <div className="relative mt-8 flex items-center justify-center gap-2 text-center text-xs text-slate-500 dark:text-slate-400 sm:mt-10 sm:text-sm">
+      <ShieldCheck className="h-4 w-4 shrink-0 text-[var(--accent-text)]" />
+      <span>Simple tools. Straightforward workflow. No unnecessary steps.</span>
+    </div>
+  </div>
+</section>
+
+
+      {/* FORMATS */}
+      <section className="mx-auto mt-24 w-full max-w-7xl px-5 sm:mt-32 sm:px-8 lg:px-10">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--accent-text)]">
+              Compatibility
+            </p>
+            <h2 className="mt-2 text-3xl font-black tracking-tight text-[#09090B] dark:text-white sm:text-4xl">
+              Files of many formats.
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-500 dark:text-slate-400">
+              Available formats vary by tool and browser support.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 text-center">
+        <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {[
-            { ext: 'WebP', desc: 'Modern high compression' },
-            { ext: 'JPEG', desc: 'Universal photographic format' },
-            { ext: 'PNG', desc: 'Lossless transparency' },
-            { ext: 'AVIF', desc: 'Next-gen browser encoding' },
-            { ext: 'PDF', desc: 'Portable Document Format' },
-            { ext: 'DOCX', desc: 'Microsoft Word 2007+' },
-            { ext: 'XLSX', desc: 'Microsoft Excel sheets' },
-            { ext: 'CSV', desc: 'Comma-separated values' },
-            { ext: 'TXT', desc: 'Plain text documents' },
-            { ext: 'HTML', desc: 'Sanitized web documents' },
-            { ext: 'ZIP', desc: 'Bulk batch packaging' },
-            { ext: 'GIF / BMP', desc: 'Raster decoding' },
-          ].map((fmt) => (
+            { ext: 'WebP', desc: 'Web images' },
+            { ext: 'JPEG', desc: 'Photographs' },
+            { ext: 'PNG', desc: 'Transparency' },
+            { ext: 'AVIF', desc: 'Modern images' },
+            { ext: 'PDF', desc: 'Documents' },
+            { ext: 'DOCX', desc: 'Word files' },
+            { ext: 'XLSX', desc: 'Spreadsheets' },
+            { ext: 'CSV', desc: 'Tabular data' },
+            { ext: 'TXT', desc: 'Plain text' },
+            { ext: 'HTML', desc: 'Web documents' },
+            { ext: 'GIF', desc: 'Animated images' },
+            { ext: 'ZIP', desc: 'Batch downloads' },
+          ].map((format) => (
             <div
-              key={fmt.ext}
-              className="p-3 rounded-xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] flex flex-col items-center justify-center hover:border-[var(--accent-text)] transition-colors"
+              key={format.ext}
+              className="rounded-xl border border-slate-200 bg-white p-4 transition hover:border-[var(--accent)]/50 dark:border-[#29292f] dark:bg-[#101012]"
             >
-              <span className="font-extrabold text-sm text-[#09090B] dark:text-white">
-                {fmt.ext}
-              </span>
-              <span className="text-[10px] text-slate-400 mt-0.5">{fmt.desc}</span>
+              <p className="text-base font-black text-[#09090B] dark:text-white">
+                {format.ext}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                {format.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      {/* FAQ */}
+      <section className="mx-auto mt-24 w-full max-w-4xl px-5 sm:mt-32 sm:px-8">
         <div className="text-center">
-          <span className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] uppercase tracking-wider block mb-1">
-            Questions &amp; Answers
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white">
-            Frequently Asked Questions
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--accent-text)]">
+            Good to know
+          </p>
+          <h2 className="mt-2 text-3xl font-black tracking-tight text-[#09090B] dark:text-white sm:text-4xl">
+            Frequently asked questions
           </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500 dark:text-slate-400">
+            A few details about using JuanTamad and its browser-based tools.
+          </p>
         </div>
 
-        <div className="space-y-3 pt-2">
-          {faqs.map((faq, idx) => {
-            const isOpen = openFaq === idx;
+        <div className="mt-8 space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaq === index;
+            const answerId = `homepage-faq-${index}`;
+
             return (
               <div
-                key={idx}
-                className="rounded-2xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] overflow-hidden"
+                key={faq.q}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-[#29292f] dark:bg-[#101012]"
               >
                 <button
-                  onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left font-bold text-sm sm:text-base text-[#09090B] dark:text-white flex items-center justify-between transition-colors hover:text-[var(--accent-text)]"
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between gap-4 p-5 text-left text-sm font-bold text-[#09090B] transition hover:text-[var(--accent-text)] dark:text-white sm:p-6 sm:text-base"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
+                    className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${
                       isOpen ? 'rotate-180 text-[var(--accent-text)]' : ''
                     }`}
                   />
                 </button>
+
                 {isOpen && (
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-[#27272A]/60 pt-3">
+                  <div
+                    id={answerId}
+                    className="border-t border-slate-100 px-5 pb-5 pt-4 text-sm leading-6 text-slate-600 dark:border-[#29292f] dark:text-slate-400 sm:px-6 sm:pb-6"
+                  >
                     {faq.a}
                   </div>
                 )}
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="mx-auto mt-20 w-full max-w-7xl px-5 sm:mt-28 sm:px-8 lg:px-10">
+        <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-slate-200 bg-white p-6 dark:border-[#29292f] dark:bg-[#101012] sm:flex-row sm:items-center sm:p-8">
+          <div>
+            <h2 className="text-xl font-black tracking-tight text-[#09090B] dark:text-white sm:text-2xl">
+              Ready to make file work easier?
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
+              Pick a tool and get started in just a few clicks.
+            </p>
+          </div>
+
+          <Link
+            to="/image-tools"
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:opacity-90"
+          >
+            Explore the toolkit
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
     </div>
