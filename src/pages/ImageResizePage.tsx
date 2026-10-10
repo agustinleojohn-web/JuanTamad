@@ -198,11 +198,11 @@ export const ImageResizePage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+          <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
             <Maximize2 className="w-3.5 h-3.5" />
             <span>Precise Dimension Scaling</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
             Image Resizer
           </h1>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -215,7 +215,7 @@ export const ImageResizePage: React.FC = () => {
             <button
               onClick={resizeAll}
               disabled={isProcessing}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>Resize All ({files.length})</span>
@@ -223,7 +223,7 @@ export const ImageResizePage: React.FC = () => {
             <button
               onClick={downloadAllZip}
               disabled={!files.some((f) => f.resultBlob)}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <Archive className="w-4 h-4" />
               <span>Download ZIP</span>
@@ -255,10 +255,10 @@ export const ImageResizePage: React.FC = () => {
           {/* Left: Preview & File Queue */}
           <div className="lg:col-span-8 space-y-6">
             {selected && (
-              <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#27272A]">
                   <div className="truncate">
-                    <span className="font-semibold text-slate-900 dark:text-white text-sm truncate block">
+                    <span className="font-semibold text-[#09090B] dark:text-white text-sm truncate block">
                       {selected.file.name}
                     </span>
                     <span className="text-xs text-slate-500">
@@ -270,7 +270,7 @@ export const ImageResizePage: React.FC = () => {
                   {selected.status === 'done' && selected.resultBlob && (
                     <button
                       onClick={() => downloadItem(selected)}
-                      className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm flex items-center space-x-1"
+                      className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm flex items-center space-x-1"
                     >
                       <Download className="w-3.5 h-3.5" />
                       <span>Download</span>
@@ -279,7 +279,7 @@ export const ImageResizePage: React.FC = () => {
                 </div>
 
                 {/* Preview Image */}
-                <div className="relative h-72 sm:h-96 rounded-xl bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center p-4 overflow-hidden">
+                <div className="relative h-72 sm:h-96 rounded-xl bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] bg-slate-100 dark:bg-[#000000] border border-slate-200 dark:border-[#27272A] flex items-center justify-center p-4 overflow-hidden">
                   <img
                     src={selected.previewUrl}
                     alt="Preview"
@@ -302,7 +302,7 @@ export const ImageResizePage: React.FC = () => {
             )}
 
             {/* Queue */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-4 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-2">
               <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2">
                 Files Queue ({files.length})
               </span>
@@ -313,12 +313,12 @@ export const ImageResizePage: React.FC = () => {
                     onClick={() => setSelectedIndex(idx)}
                     className={`cursor-pointer p-2.5 rounded-xl border flex items-center justify-between text-xs transition-all ${
                       idx === selectedIndex
-                        ? 'border-[#730000]/50 bg-[#730000]/10/50 dark:bg-[#580000]/30'
-                        : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                        ? 'border-[var(--accent-text)]/50 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)]'
+                        : 'border-slate-200 dark:border-[#27272A] hover:bg-slate-50 dark:hover:bg-[#27272A]/50'
                     }`}
                   >
                     <div className="truncate mr-2">
-                      <p className="font-medium text-slate-800 dark:text-slate-200 truncate">
+                      <p className="font-medium text-[#27272A] dark:text-slate-200 truncate">
                         {item.file.name}
                       </p>
                       <span className="text-[10px] text-slate-400">
@@ -330,7 +330,7 @@ export const ImageResizePage: React.FC = () => {
                         e.stopPropagation();
                         removeFile(idx);
                       }}
-                      className="text-slate-400 hover:text-[#730000]"
+                      className="text-slate-400 hover:text-[var(--accent-text)]"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -352,8 +352,8 @@ export const ImageResizePage: React.FC = () => {
 
           {/* Right: Dimension Form Controls */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-              <h3 className="font-bold text-slate-900 dark:text-white text-base pb-2 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-5">
+              <h3 className="font-bold text-[#09090B] dark:text-white text-base pb-2 border-b border-slate-100 dark:border-[#27272A]">
                 Resize Options
               </h3>
 
@@ -374,7 +374,7 @@ export const ImageResizePage: React.FC = () => {
                     <button
                       key={preset.label}
                       onClick={() => updateSelectedDimensions(preset.w, preset.h, false)}
-                      className="py-1 px-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-[#730000]/50 text-slate-700 dark:text-slate-300 text-left truncate font-medium"
+                      className="py-1 px-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-[var(--accent-text)]/50 text-slate-700 dark:text-slate-300 text-left truncate font-medium"
                     >
                       <span className="block font-semibold">{preset.label}</span>
                       <span className="text-[10px] text-slate-400">{preset.w}×{preset.h}</span>
@@ -393,7 +393,7 @@ export const ImageResizePage: React.FC = () => {
                     <button
                       key={pct}
                       onClick={() => scaleByPercent(pct)}
-                      className="py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-[#730000]/50 text-slate-700 dark:text-slate-300 font-semibold"
+                      className="py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-[var(--accent-text)]/50 text-slate-700 dark:text-slate-300 font-semibold"
                     >
                       {pct}%
                     </button>
@@ -413,7 +413,7 @@ export const ImageResizePage: React.FC = () => {
                     }
                     className={`flex items-center space-x-1 text-xs px-2 py-0.5 rounded border transition-colors ${
                       selected?.maintainAspect
-                        ? 'border-[#730000]/50 text-[#580000] dark:text-[#730000]/30 bg-[#730000]/10 dark:bg-[#580000]/40'
+                        ? 'border-[var(--accent-text)]/50 text-[var(--accent-hover)] dark:text-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)]'
                         : 'border-slate-300 dark:border-slate-700 text-slate-500'
                     }`}
                   >
@@ -434,7 +434,7 @@ export const ImageResizePage: React.FC = () => {
                           undefined
                         )
                       }
-                      className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                      className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-[#09090B] dark:text-white"
                     />
                   </div>
                   <div>
@@ -448,14 +448,14 @@ export const ImageResizePage: React.FC = () => {
                           e.target.value ? Math.max(1, parseInt(e.target.value, 10)) : 1
                         )
                       }
-                      className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                      className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-[#09090B] dark:text-white"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Format selection */}
-              <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-[#27272A]">
                 <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Save Format
                 </label>
@@ -466,7 +466,7 @@ export const ImageResizePage: React.FC = () => {
                       onClick={() => setFormat(fmt)}
                       className={`py-1.5 uppercase font-bold rounded-lg border ${
                         format === fmt
-                          ? 'border-[#730000] bg-[#730000] text-white'
+                          ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                           : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                       }`}
                     >
@@ -480,7 +480,7 @@ export const ImageResizePage: React.FC = () => {
               <button
                 onClick={() => resizeSingle(selectedIndex)}
                 disabled={selected?.status === 'processing'}
-                className="w-full py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+                className="w-full py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
               >
                 <RefreshCw
                   className={`w-4 h-4 ${selected?.status === 'processing' ? 'animate-spin' : ''}`}

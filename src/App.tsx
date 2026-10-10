@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -85,14 +86,39 @@ function ScrollToTop() {
   return null;
 }
 
+const pageTransition = {
+  initial: { opacity: 0, y: 6 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -6 },
+  transition: { duration: 0.18, ease: 'easeOut' as const },
+};
+
+function AnimatedPage({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        initial={pageTransition.initial}
+        animate={pageTransition.animate}
+        exit={pageTransition.exit}
+        transition={pageTransition.transition}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+         <div className="min-h-screen flex flex-col bg-white dark:bg-[#000000] text-[#09090B] dark:text-slate-100 transition-colors">
           <Header />
           <main className="flex-1">
+            <AnimatedPage>
             <Routes>
               {/* Homepage */}
               <Route path="/" element={<HomePage />} />
@@ -182,6 +208,7 @@ export default function App() {
               {/* Fallback */}
               <Route path="*" element={<HomePage />} />
             </Routes>
+            </AnimatedPage>
           </main>
           <Footer />
         </div>

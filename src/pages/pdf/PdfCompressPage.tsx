@@ -75,11 +75,11 @@ export const PdfCompressPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Client-Side PDF Optimizer</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Compress PDF Document
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -98,10 +98,10 @@ export const PdfCompressPage: React.FC = () => {
           description="Reduce PDF size for email attachments and uploads"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -113,7 +113,7 @@ export const PdfCompressPage: React.FC = () => {
                 setFile(null);
                 setCompressedBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change file</span>
@@ -130,7 +130,7 @@ export const PdfCompressPage: React.FC = () => {
                 onClick={() => applyPreset('maximum')}
                 className={`p-3 rounded-xl border text-left font-medium transition-colors ${
                   preset === 'maximum'
-                    ? 'border-[#730000] bg-[#730000]/10/50 dark:bg-[#580000]/40 text-[#730000] dark:text-[#730000]/30 font-bold'
+                    ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold'
                     : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                 }`}
               >
@@ -141,7 +141,7 @@ export const PdfCompressPage: React.FC = () => {
                 onClick={() => applyPreset('balanced')}
                 className={`p-3 rounded-xl border text-left font-medium transition-colors ${
                   preset === 'balanced'
-                    ? 'border-[#730000] bg-[#730000]/10/50 dark:bg-[#580000]/40 text-[#730000] dark:text-[#730000]/30 font-bold'
+                    ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold'
                     : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                 }`}
               >
@@ -152,7 +152,7 @@ export const PdfCompressPage: React.FC = () => {
                 onClick={() => applyPreset('high')}
                 className={`p-3 rounded-xl border text-left font-medium transition-colors ${
                   preset === 'high'
-                    ? 'border-[#730000] bg-[#730000]/10/50 dark:bg-[#580000]/40 text-[#730000] dark:text-[#730000]/30 font-bold'
+                    ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold'
                     : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                 }`}
               >
@@ -164,7 +164,7 @@ export const PdfCompressPage: React.FC = () => {
 
           {/* Results Comparison Box */}
           {stats && (
-            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#27272A]/60 border border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
               <div className="flex items-center space-x-3">
                 <div>
                   <span className="text-slate-400 block text-xs">Original</span>
@@ -175,15 +175,15 @@ export const PdfCompressPage: React.FC = () => {
                 <ArrowRight className="w-4 h-4 text-slate-400" />
                 <div>
                   <span className="text-slate-400 block text-xs">Compressed</span>
-                  <span className="font-bold text-slate-900 dark:text-white">
+                  <span className="font-bold text-[#09090B] dark:text-white">
                     {formatFileSize(stats.newBytes)}
                   </span>
                 </div>
               </div>
 
               {stats.isSmaller && (
-                <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 font-bold text-xs">
-                  <CheckCircle2 className="w-4 h-4 text-[#730000]" />
+                <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] font-bold text-xs">
+                  <CheckCircle2 className="w-4 h-4 text-[var(--accent-text)]" />
                   <span>
                     -{stats.percentageSaved}% ({formatFileSize(stats.differenceBytes)} saved)
                   </span>
@@ -209,7 +209,7 @@ export const PdfCompressPage: React.FC = () => {
             <button
               onClick={handleCompress}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>Compress PDF Now</span>
@@ -218,7 +218,7 @@ export const PdfCompressPage: React.FC = () => {
             {compressedBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download ({formatFileSize(compressedBlob.size)})</span>

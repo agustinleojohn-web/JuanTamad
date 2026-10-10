@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Sliders,
   FileText,
@@ -201,7 +202,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md transition-colors" ref={menuRef}>
+      <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-[#27272A] bg-white/95 dark:bg-[#09090B]/95 backdrop-blur-md transition-colors" ref={menuRef}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo & Brand */}
@@ -216,11 +217,11 @@ export const Header: React.FC = () => {
               </div>
               <div>
                 <div className="flex items-center space-x-1.5">
-                  <span className="font-black text-lg text-slate-900 dark:text-white tracking-tight">
+                  <span className="font-black text-lg text-[#09090B] dark:text-white tracking-tight">
                     JuanTamad
                   </span>
                 </div>
-                <p className="text-xs font-semibold text-[#730000] dark:text-red-400 -mt-0.5 hidden sm:block">
+                <p className="text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] -mt-0.5 hidden sm:block">
                   JUAN click away.
                 </p>
               </div>
@@ -232,8 +233,8 @@ export const Header: React.FC = () => {
                 to="/"
                 className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
                   isActive('/') && location.pathname === '/'
-                    ? 'bg-[#730000]/10 text-[#730000] dark:bg-red-950/60 dark:text-red-300'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                    ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
+                    : 'text-slate-600 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-[#27272A]'
                 }`}
               >
                 <Home className="w-4 h-4 opacity-80" />
@@ -246,8 +247,8 @@ export const Header: React.FC = () => {
                   onClick={() => setActiveDropdown(activeDropdown === 'image' ? null : 'image')}
                   className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
                     activeDropdown === 'image' || isActive('/image-tools')
-                      ? 'bg-[#730000]/10 text-[#730000] dark:bg-red-950/60 dark:text-red-300'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                      ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
+                      : 'text-slate-600 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-[#27272A]'
                   }`}
                 >
                   <Sliders className="w-4 h-4 opacity-80" />
@@ -256,8 +257,8 @@ export const Header: React.FC = () => {
                 </button>
 
                 {activeDropdown === 'image' && (
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[980px] bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-5 grid grid-cols-12 gap-6 z-50">
-                    <div className="col-span-3 border-r border-slate-200 dark:border-slate-800 pr-3 space-y-1">
+                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[980px] bg-white dark:bg-[#09090B] text-[#09090B] dark:text-slate-100 rounded-2xl shadow-2xl border border-slate-200 dark:border-[#27272A] p-5 grid grid-cols-12 gap-6 z-50">
+                    <div className="col-span-3 border-r border-slate-200 dark:border-[#27272A] pr-3 space-y-1">
                       <div className="text-xs font-bold text-slate-400 uppercase px-3 py-1 tracking-wider">Categories</div>
                       {imageCategories.map((cat) => {
                         const CatIcon = cat.icon;
@@ -268,11 +269,11 @@ export const Header: React.FC = () => {
                             onClick={() => setSelectedImageCategory(cat.id)}
                             className={`w-full text-left px-3 py-2.5 rounded-xl transition-all flex items-start space-x-3 ${
                               isSelected
-                                ? 'bg-[#730000]/10 text-[#730000] dark:bg-[#730000]/30 dark:text-red-300 border border-[#730000]/30 font-semibold'
-                                : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'
+                                ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/20 dark:text-[var(--accent-text)] border border-[var(--accent-text)]/30 font-semibold'
+                                : 'hover:bg-slate-100 dark:hover:bg-[#27272A] text-slate-600 dark:text-slate-300'
                             }`}
                           >
-                            <CatIcon className="w-4 h-4 mt-0.5 text-[#730000] dark:text-red-400 shrink-0" />
+                            <CatIcon className="w-4 h-4 mt-0.5 text-[var(--accent-text)] dark:text-[var(--accent-text)] shrink-0" />
                             <div>
                               <div className="text-sm font-semibold leading-tight">{cat.name}</div>
                               <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{cat.description}</div>
@@ -293,13 +294,13 @@ export const Header: React.FC = () => {
                                   key={`pop-${item.id}`}
                                   to={item.path}
                                   onClick={() => setActiveDropdown(null)}
-                                  className="p-3 rounded-xl  dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800  dark:border-slate-700/60 hover:border-[#730000]/50 transition-all flex items-start space-x-3 group"
+                                  className="p-3 rounded-xl  dark:bg-[#27272A]/80 hover:bg-slate-100 dark:hover:bg-[#27272A]  dark:border-slate-700/60 hover:border-[var(--accent-text)]/50 transition-all flex items-start space-x-3 group"
                                 >
-                                  <div className="p-2 rounded-lg bg-[#730000]/10 text-[#730000] dark:bg-red-500/10 dark:text-red-400 group-hover:bg-[#730000]/20 transition-colors shrink-0">
+                                  <div className="p-2 rounded-lg bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/10 dark:text-[var(--accent-text)] group-hover:bg-[var(--accent-text)]/20 transition-colors shrink-0">
                                     <ItemIcon className="w-4 h-4" />
                                   </div>
                                   <div>
-                                    <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-300 transition-colors">{item.name}</div>
+                                    <div className="text-xs font-bold text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">{item.name}</div>
                                     <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{item.description}</div>
                                   </div>
                                 </Link>
@@ -319,13 +320,13 @@ export const Header: React.FC = () => {
                               key={item.id}
                               to={item.path}
                               onClick={() => setActiveDropdown(null)}
-                              className="p-3 rounded-xl  dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-800  hover:border-[#730000]/50 transition-all flex items-start space-x-3 group"
+                              className="p-3 rounded-xl  dark:bg-[#27272A]/40 hover:bg-slate-100 dark:hover:bg-[#27272A]  hover:border-[var(--accent-text)]/50 transition-all flex items-start space-x-3 group"
                             >
-                              <div className="p-2 rounded-lg bg-[#730000]/10 text-[#730000] dark:bg-red-500/10 dark:text-red-400 group-hover:bg-[#730000]/20 transition-colors shrink-0">
+                              <div className="p-2 rounded-lg bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/10 dark:text-[var(--accent-text)] group-hover:bg-[var(--accent-text)]/20 transition-colors shrink-0">
                                 <ItemIcon className="w-4 h-4" />
                               </div>
                               <div>
-                                <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-300 transition-colors">{item.name}</div>
+                                <div className="text-xs font-bold text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">{item.name}</div>
                                 <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{item.description}</div>
                               </div>
                             </Link>
@@ -343,8 +344,8 @@ export const Header: React.FC = () => {
                   onClick={() => setActiveDropdown(activeDropdown === 'pdf' ? null : 'pdf')}
                   className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
                     activeDropdown === 'pdf' || isActive('/pdf-tools')
-                      ? ' text-[#730000] dark:bg-red-950/60 dark:text-red-300'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                      ? ' text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
+                      : 'text-slate-600 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-[#27272A]'
                   }`}
                 >
                   <Files className="w-4 h-4 opacity-80" />
@@ -353,8 +354,8 @@ export const Header: React.FC = () => {
                 </button>
 
                 {activeDropdown === 'pdf' && (
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[980px] bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-5 grid grid-cols-12 gap-6 z-50">
-                    <div className="col-span-3 border-r border-slate-200 dark:border-slate-800 pr-3 space-y-1">
+                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[980px] bg-white dark:bg-[#09090B] text-[#09090B] dark:text-slate-100 rounded-2xl shadow-2xl border border-slate-200 dark:border-[#27272A] p-5 grid grid-cols-12 gap-6 z-50">
+                    <div className="col-span-3 border-r border-slate-200 dark:border-[#27272A] pr-3 space-y-1">
                       <div className="text-xs font-bold text-slate-400 uppercase px-3 py-1 tracking-wider">Categories</div>
                       {pdfCategories.map((cat) => {
                         const CatIcon = cat.icon;
@@ -365,11 +366,11 @@ export const Header: React.FC = () => {
                             onClick={() => setSelectedPdfCategory(cat.id)}
                             className={`w-full text-left px-3 py-2.5 rounded-xl transition-all flex items-start space-x-3 ${
                               isSelected
-                                ? 'bg-[#730000]/10 text-[#730000] dark:bg-[#730000]/30 dark:text-red-300 border border-[#730000]/30 font-semibold'
-                                : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'
+                                ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/20 dark:text-[var(--accent-text)] border border-[var(--accent-text)]/30 font-semibold'
+                                : 'hover:bg-slate-100 dark:hover:bg-[#27272A] text-slate-600 dark:text-slate-300'
                             }`}
                           >
-                            <CatIcon className="w-4 h-4 mt-0.5 text-[#730000] dark:text-red-400 shrink-0" />
+                            <CatIcon className="w-4 h-4 mt-0.5 text-[var(--accent-text)] dark:text-[var(--accent-text)] shrink-0" />
                             <div>
                               <div className="text-sm font-semibold leading-tight">{cat.name}</div>
                               <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{cat.description}</div>
@@ -390,13 +391,13 @@ export const Header: React.FC = () => {
                                   key={`pop-pdf-${item.id}`}
                                   to={item.path}
                                   onClick={() => setActiveDropdown(null)}
-                                  className="p-3 rounded-xl  dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800  dark:border-slate-700/60 hover:border-[#730000]/50 transition-all flex items-start space-x-3 group"
+                                  className="p-3 rounded-xl  dark:bg-[#27272A]/80 hover:bg-slate-100 dark:hover:bg-[#27272A]  dark:border-slate-700/60 hover:border-[var(--accent-text)]/50 transition-all flex items-start space-x-3 group"
                                 >
-                                  <div className="p-2 rounded-lg bg-[#730000]/10 text-[#730000] dark:bg-red-500/10 dark:text-red-400 group-hover:bg-[#730000]/20 transition-colors shrink-0">
+                                  <div className="p-2 rounded-lg bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/10 dark:text-[var(--accent-text)] group-hover:bg-[var(--accent-text)]/20 transition-colors shrink-0">
                                     <ItemIcon className="w-4 h-4" />
                                   </div>
                                   <div>
-                                    <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-300 transition-colors">{item.name}</div>
+                                    <div className="text-xs font-bold text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">{item.name}</div>
                                     <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{item.description}</div>
                                   </div>
                                 </Link>
@@ -416,13 +417,13 @@ export const Header: React.FC = () => {
                               key={item.id}
                               to={item.path}
                               onClick={() => setActiveDropdown(null)}
-                              className="p-3 rounded-xl  dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-800  dark:border-slate-800 hover:border-[#730000]/50 transition-all flex items-start space-x-3 group"
+                              className="p-3 rounded-xl  dark:bg-[#27272A]/40 hover:bg-slate-100 dark:hover:bg-[#27272A]  dark:border-[#27272A] hover:border-[var(--accent-text)]/50 transition-all flex items-start space-x-3 group"
                             >
-                              <div className="p-2 rounded-lg bg-[#730000]/10 text-[#730000] dark:bg-red-500/10 dark:text-red-400 group-hover:bg-[#730000]/20 transition-colors shrink-0">
+                              <div className="p-2 rounded-lg bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/10 dark:text-[var(--accent-text)] group-hover:bg-[var(--accent-text)]/20 transition-colors shrink-0">
                                 <ItemIcon className="w-4 h-4" />
                               </div>
                               <div>
-                                <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-300 transition-colors">{item.name}</div>
+                                <div className="text-xs font-bold text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">{item.name}</div>
                                 <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{item.description}</div>
                               </div>
                             </Link>
@@ -440,8 +441,8 @@ export const Header: React.FC = () => {
                   onClick={() => setActiveDropdown(activeDropdown === 'document' ? null : 'document')}
                   className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
                     activeDropdown === 'document' || isActive('/document-tools')
-                      ? 'bg-[#730000]/10 text-[#730000] dark:bg-red-950/60 dark:text-red-300'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                      ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
+                      : 'text-slate-600 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-[#27272A]'
                   }`}
                 >
                   <FileText className="w-4 h-4 opacity-80" />
@@ -450,8 +451,8 @@ export const Header: React.FC = () => {
                 </button>
 
                 {activeDropdown === 'document' && (
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[980px] bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-5 grid grid-cols-12 gap-6 z-50">
-                    <div className="col-span-3 border-r border-slate-200 dark:border-slate-800 pr-3 space-y-1">
+                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[980px] bg-white dark:bg-[#09090B] text-[#09090B] dark:text-slate-100 rounded-2xl shadow-2xl border border-slate-200 dark:border-[#27272A] p-5 grid grid-cols-12 gap-6 z-50">
+                    <div className="col-span-3 border-r border-slate-200 dark:border-[#27272A] pr-3 space-y-1">
                       <div className="text-xs font-bold text-slate-400 uppercase px-3 py-1 tracking-wider">Categories</div>
                       {docCategories.map((cat) => {
                         const CatIcon = cat.icon;
@@ -462,11 +463,11 @@ export const Header: React.FC = () => {
                             onClick={() => setSelectedDocCategory(cat.id)}
                             className={`w-full text-left px-3 py-2.5 rounded-xl transition-all flex items-start space-x-3 ${
                               isSelected
-                                ? 'bg-[#730000]/10 text-[#730000] dark:bg-[#730000]/30 dark:text-red-300 border border-[#730000]/30 font-semibold'
-                                : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'
+                                ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/20 dark:text-[var(--accent-text)] border border-[var(--accent-text)]/30 font-semibold'
+                                : 'hover:bg-slate-100 dark:hover:bg-[#27272A] text-slate-600 dark:text-slate-300'
                             }`}
                           >
-                            <CatIcon className="w-4 h-4 mt-0.5 text-[#730000] dark:text-red-400 shrink-0" />
+                            <CatIcon className="w-4 h-4 mt-0.5 text-[var(--accent-text)] dark:text-[var(--accent-text)] shrink-0" />
                             <div>
                               <div className="text-sm font-semibold leading-tight">{cat.name}</div>
                               <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{cat.description}</div>
@@ -487,13 +488,13 @@ export const Header: React.FC = () => {
                                   key={`pop-doc-${item.id}`}
                                   to={item.path}
                                   onClick={() => setActiveDropdown(null)}
-                                  className="p-3 rounded-xl  dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800  dark:border-slate-700/60 hover:border-[#730000]/50 transition-all flex items-start space-x-3 group"
+                                  className="p-3 rounded-xl  dark:bg-[#27272A]/80 hover:bg-slate-100 dark:hover:bg-[#27272A]  dark:border-slate-700/60 hover:border-[var(--accent-text)]/50 transition-all flex items-start space-x-3 group"
                                 >
-                                  <div className="p-2 rounded-lg bg-[#730000]/10 text-[#730000] dark:bg-red-500/10 dark:text-red-400 group-hover:bg-[#730000]/20 transition-colors shrink-0">
+                                  <div className="p-2 rounded-lg bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/10 dark:text-[var(--accent-text)] group-hover:bg-[var(--accent-text)]/20 transition-colors shrink-0">
                                     <ItemIcon className="w-4 h-4" />
                                   </div>
                                   <div>
-                                    <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-300 transition-colors">{item.name}</div>
+                                    <div className="text-xs font-bold text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">{item.name}</div>
                                     <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{item.description}</div>
                                   </div>
                                 </Link>
@@ -513,13 +514,13 @@ export const Header: React.FC = () => {
                               key={item.id}
                               to={item.path}
                               onClick={() => setActiveDropdown(null)}
-                              className="p-3 rounded-xl  dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-800  dark:border-slate-800 hover:border-[#730000]/50 transition-all flex items-start space-x-3 group"
+                              className="p-3 rounded-xl  dark:bg-[#27272A]/40 hover:bg-slate-100 dark:hover:bg-[#27272A]  dark:border-[#27272A] hover:border-[var(--accent-text)]/50 transition-all flex items-start space-x-3 group"
                             >
-                              <div className="p-2 rounded-lg bg-[#730000]/10 text-[#730000] dark:bg-red-500/10 dark:text-red-400 group-hover:bg-[#730000]/20 transition-colors shrink-0">
+                              <div className="p-2 rounded-lg bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text)]/10 dark:text-[var(--accent-text)] group-hover:bg-[var(--accent-text)]/20 transition-colors shrink-0">
                                 <ItemIcon className="w-4 h-4" />
                               </div>
                               <div>
-                                <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-300 transition-colors">{item.name}</div>
+                                <div className="text-xs font-bold text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">{item.name}</div>
                                 <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{item.description}</div>
                               </div>
                             </Link>
@@ -535,8 +536,8 @@ export const Header: React.FC = () => {
                 to="/about"
                 className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
                   isActive('/about')
-                    ? 'bg-[#730000]/10 text-[#730000] dark:bg-red-950/60 dark:text-red-300'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                    ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
+                    : 'text-slate-600 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-[#27272A]'
                 }`}
               >
                 <ShieldCheck className="w-4 h-4 opacity-80" />
@@ -546,18 +547,30 @@ export const Header: React.FC = () => {
 
             {/* Right actions: Theme toggle + Mobile Menu Button */}
             <div className="flex items-center space-x-3">
-              <button
+              <motion.button
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
-                className="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
+                whileTap={{ scale: 0.88 }}
+                className="p-2 rounded-lg text-slate-500 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-[#27272A] transition-colors overflow-hidden"
               >
-                {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
-              </button>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={theme}
+                    initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                    transition={{ duration: 0.2 }}
+                    className="block"
+                  >
+                    {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.button>
 
               <button
                 onClick={() => setMobileMenuOpen(prev => !prev)}
                 aria-label="Open menu"
-                className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800"
+                className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-[#09090B] hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-[#27272A]"
               >
                 <Menu className="w-6 h-6" />
               </button>
@@ -567,11 +580,18 @@ export const Header: React.FC = () => {
       </header>
 
       {/* Full-Screen Mobile Menu Overlay (Moved outside header stacking context) */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[99999] bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col overflow-y-auto">
-          
+      <AnimatePresence>
+        {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 24 }}
+          transition={{ duration: 0.22, ease: 'easeOut' }}
+          className="fixed inset-0 z-[99999] bg-white dark:bg-[#000000] text-[#09090B] dark:text-slate-100 flex flex-col overflow-y-auto"
+        >
+
           {/* Header Bar */}
-          <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 shrink-0">
+          <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] shrink-0">
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-3">
               <div className="w-10 h-10 overflow-hidden rounded-xl">
                 <img src="/mascot.webp" alt="JuanTamad" className="w-full h-full object-cover" />
@@ -582,7 +602,7 @@ export const Header: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close menu"
-              className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-[#730000] hover:text-white transition-colors"
+              className="p-2 rounded-xl bg-slate-100 dark:bg-[#27272A] text-slate-700 dark:text-slate-200 hover:bg-[var(--accent)] hover:text-white transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
@@ -596,10 +616,10 @@ export const Header: React.FC = () => {
               <Link
                 to="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold text-sm hover:border-[#730000]"
+                className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] font-bold text-sm hover:border-[var(--accent-text)]"
               >
                 <div className="flex items-center space-x-3">
-                  <Home className="w-5 h-5 text-[#730000]" />
+                  <Home className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>Home</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -607,19 +627,19 @@ export const Header: React.FC = () => {
             </div>
 
             {/* Image Studio Accordion */}
-            <div className="rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl bg-slate-50 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] overflow-hidden">
               <button
                 onClick={() => setMobileSection(mobileSection === 'image' ? null : 'image')}
                 className="w-full flex items-center justify-between p-4 font-bold text-sm"
               >
                 <div className="flex items-center space-x-3">
-                  <Sliders className="w-5 h-5 text-[#730000]" />
+                  <Sliders className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>Image Studio ({imageItems.length} tools)</span>
                 </div>
                 <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'image' ? 'rotate-90' : ''}`} />
               </button>
               {mobileSection === 'image' && (
-                <div className="px-4 pb-4 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t border-slate-200 dark:border-slate-800">
+                <div className="px-4 pb-4 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t border-slate-200 dark:border-[#27272A]">
                   {imageItems.map((item) => {
                     const ItemIcon = item.icon;
                     return (
@@ -627,10 +647,10 @@ export const Header: React.FC = () => {
                         key={`mob-img-${item.id}`}
                         to={item.path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 hover:bg-[#730000]/10 border border-slate-100 dark:border-slate-800 flex items-center space-x-3 group transition-colors"
+                        className="p-2.5 rounded-xl bg-white dark:bg-[#27272A]/60 hover:bg-[var(--accent-text)]/10 border border-slate-100 dark:border-[#27272A] flex items-center space-x-3 group transition-colors"
                       >
-                        <ItemIcon className="w-4 h-4 text-[#730000] dark:text-red-400 shrink-0" />
-                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-[#730000]">{item.name}</span>
+                        <ItemIcon className="w-4 h-4 text-[var(--accent-text)] dark:text-[var(--accent-text)] shrink-0" />
+                        <span className="text-xs font-semibold text-[#27272A] dark:text-slate-200 group-hover:text-[var(--accent-text)]">{item.name}</span>
                       </Link>
                     );
                   })}
@@ -639,19 +659,19 @@ export const Header: React.FC = () => {
             </div>
 
             {/* PDF Toolkit Accordion */}
-            <div className="rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl bg-slate-50 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] overflow-hidden">
               <button
                 onClick={() => setMobileSection(mobileSection === 'pdf' ? null : 'pdf')}
                 className="w-full flex items-center justify-between p-4 font-bold text-sm"
               >
                 <div className="flex items-center space-x-3">
-                  <Files className="w-5 h-5 text-[#730000]" />
+                  <Files className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>PDF Toolkit ({pdfItems.length} tools)</span>
                 </div>
                 <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'pdf' ? 'rotate-90' : ''}`} />
               </button>
               {mobileSection === 'pdf' && (
-                <div className="px-4 pb-4 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t border-slate-200 dark:border-slate-800">
+                <div className="px-4 pb-4 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t border-slate-200 dark:border-[#27272A]">
                   {pdfItems.map((item) => {
                     const ItemIcon = item.icon;
                     return (
@@ -659,10 +679,10 @@ export const Header: React.FC = () => {
                         key={`mob-pdf-${item.id}`}
                         to={item.path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 hover:bg-[#730000]/10 border border-slate-100 dark:border-slate-800 flex items-center space-x-3 group transition-colors"
+                        className="p-2.5 rounded-xl bg-white dark:bg-[#27272A]/60 hover:bg-[var(--accent-text)]/10 border border-slate-100 dark:border-[#27272A] flex items-center space-x-3 group transition-colors"
                       >
-                        <ItemIcon className="w-4 h-4 text-[#730000] dark:text-red-400 shrink-0" />
-                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-[#730000]">{item.name}</span>
+                        <ItemIcon className="w-4 h-4 text-[var(--accent-text)] dark:text-[var(--accent-text)] shrink-0" />
+                        <span className="text-xs font-semibold text-[#27272A] dark:text-slate-200 group-hover:text-[var(--accent-text)]">{item.name}</span>
                       </Link>
                     );
                   })}
@@ -671,19 +691,19 @@ export const Header: React.FC = () => {
             </div>
 
             {/* Document Converters Accordion */}
-            <div className="rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="rounded-2xl bg-slate-50 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] overflow-hidden">
               <button
                 onClick={() => setMobileSection(mobileSection === 'document' ? null : 'document')}
                 className="w-full flex items-center justify-between p-4 font-bold text-sm"
               >
                 <div className="flex items-center space-x-3">
-                  <FileText className="w-5 h-5 text-[#730000]" />
+                  <FileText className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>Document Converters ({docItems.length} tools)</span>
                 </div>
                 <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'document' ? 'rotate-90' : ''}`} />
               </button>
               {mobileSection === 'document' && (
-                <div className="px-4 pb-4 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t border-slate-200 dark:border-slate-800">
+                <div className="px-4 pb-4 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t border-slate-200 dark:border-[#27272A]">
                   {docItems.map((item) => {
                     const ItemIcon = item.icon;
                     return (
@@ -691,10 +711,10 @@ export const Header: React.FC = () => {
                         key={`mob-doc-${item.id}`}
                         to={item.path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="p-2.5 rounded-xl bg-white dark:bg-slate-800/60 hover:bg-[#730000]/10 border border-slate-100 dark:border-slate-800 flex items-center space-x-3 group transition-colors"
+                        className="p-2.5 rounded-xl bg-white dark:bg-[#27272A]/60 hover:bg-[var(--accent-text)]/10 border border-slate-100 dark:border-[#27272A] flex items-center space-x-3 group transition-colors"
                       >
-                        <ItemIcon className="w-4 h-4 text-[#730000] dark:text-red-400 shrink-0" />
-                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-[#730000]">{item.name}</span>
+                        <ItemIcon className="w-4 h-4 text-[var(--accent-text)] dark:text-[var(--accent-text)] shrink-0" />
+                        <span className="text-xs font-semibold text-[#27272A] dark:text-slate-200 group-hover:text-[var(--accent-text)]">{item.name}</span>
                       </Link>
                     );
                   })}
@@ -707,10 +727,10 @@ export const Header: React.FC = () => {
               <Link
                 to="/about"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold text-sm hover:border-[#730000]"
+                className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] font-bold text-sm hover:border-[var(--accent-text)]"
               >
                 <div className="flex items-center space-x-3">
-                  <ShieldCheck className="w-5 h-5 text-[#730000]" />
+                  <ShieldCheck className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>About &amp; Privacy</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -719,15 +739,16 @@ export const Header: React.FC = () => {
 
             {/* Privacy Sandbox Notice */}
             <div className="pt-2">
-              <div className="flex items-center space-x-3 p-4 rounded-2xl text-xs font-medium bg-[#730000]/10 text-[#730000] dark:bg-red-950/60 dark:text-red-300 border border-[#730000]/20">
-                <ShieldCheck className="w-5 h-5 shrink-0 text-[#730000]" />
+              <div className="flex items-center space-x-3 p-4 rounded-2xl text-xs font-medium bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] border border-[var(--accent-text)]/20">
+                <ShieldCheck className="w-5 h-5 shrink-0 text-[var(--accent-text)]" />
                 <span>All operations run locally in your browser sandbox. Zero server uploads.</span>
               </div>
             </div>
 
           </div>
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

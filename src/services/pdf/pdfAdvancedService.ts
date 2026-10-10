@@ -1,5 +1,6 @@
 import { PDFDocument, rgb, degrees, StandardFonts, PageSizes } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { Document, Packer, Paragraph, TextRun, PageBreak, HeadingLevel } from 'docx';
 import { loadPdfDocument, renderPdfPageToCanvas } from './pdfRenderer';
 
 export interface PageNumberOptions {
@@ -718,45 +719,125 @@ export async function unlockPdf(
   return new Blob([saved as unknown as BlobPart], { type: 'application/pdf' });
 }
 
+interface TextLine {
+  text: string;
+  y: number;
+  maxFontHeight: number;
+}
+
 /**
- * Converts PDF into a formatted Word (.doc) document that opens in Word / Docs
+ * Groups raw PDF.js text-content items (each with its own x/y) into reading
+ * order lines, using their baseline Y position and a tolerance derived from
+ * font size — PDFs have no inherent "line" concept, so this reconstructs one.
+ */
+function groupTextItemsIntoLines(items: any[]): TextLine[] {
+  const withPos = items
+    .filter((it) => 'str' in it && it.str !== undefined)
+    .map((it) => ({
+      str: it.str as string,
+      x: it.transform[4] as number,
+      y: it.transform[5] as number,
+      height: (it.height as number) || Math.abs(it.transform[3]) || 10,
+      hasEOL: !!it.hasEOL,
+    }));
+
+  withPos.sort((a, b) => (b.y - a.y) || (a.x - b.x));
+
+  const lines: TextLine[] = [];
+  let current: typeof withPos = [];
+
+  const flush = () => {
+    if (current.length === 0) return;
+    current.sort((a, b) => a.x - b.x);
+    const text = current.map((c) => c.str).join(' ').replace(/\s+/g, ' ').trim();
+    const avgY = current.reduce((s, c) => s + c.y, 0) / current.length;
+    const maxH = Math.max(...current.map((c) => c.height));
+    if (text) lines.push({ text, y: avgY, maxFontHeight: maxH });
+    current = [];
+  };
+
+  for (const it of withPos) {
+    if (current.length === 0) {
+      current.push(it);
+      continue;
+    }
+    const refY = current[0].y;
+    const tolerance = Math.max(2, current[0].height * 0.4);
+    if (Math.abs(it.y - refY) <= tolerance) {
+      current.push(it);
+    } else {
+      flush();
+      current.push(it);
+    }
+  }
+  flush();
+
+  return lines;
+}
+
+/**
+ * Converts a PDF's extracted text into a genuine, Word-native .docx file
+ * using the open-source `docx` library — rather than the old HTML-dressed-up-
+ * as-.doc trick, which many versions of Word and Google Docs render poorly
+ * or flag as an untrusted/foreign format. Headings are inferred from relative
+ * font size, and each PDF page becomes its own Word page.
  */
 export async function convertPdfToWordDoc(file: File): Promise<Blob> {
-  const doc = await loadPdfDocument(file);
-  let htmlBody = '';
+  const pdfDoc = await loadPdfDocument(file);
+  const children: Paragraph[] = [];
 
-  for (let i = 1; i <= doc.numPages; i++) {
-    const page = await doc.getPage(i);
+  for (let i = 1; i <= pdfDoc.numPages; i++) {
+    const page = await pdfDoc.getPage(i);
     const content = await page.getTextContent();
-    const strings = content.items
-      .map((item: any) => ('str' in item ? item.str : ''))
-      .filter(Boolean);
+    const lines = groupTextItemsIntoLines(content.items as any[]);
 
-    htmlBody += `<div class="page" style="page-break-after: always; padding: 20px;">`;
-    htmlBody += `<h3 style="color: #666; font-size: 11pt; border-bottom: 1px solid #ddd; padding-bottom: 4px;">Page ${i}</h3>`;
-    htmlBody += `<p style="font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #222;">`;
-    htmlBody += strings.join(' ').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    htmlBody += `</p></div>`;
+    if (lines.length === 0) {
+      children.push(new Paragraph({ text: `(Page ${i} contains no extractable text — it may be a scanned image. Try the OCR tool instead.)` }));
+    }
+
+    const sizes = lines.map((l) => l.maxFontHeight);
+    const bodySize = sizes.length ? median(sizes) : 10;
+
+    lines.forEach((line) => {
+      const relativeSize = line.maxFontHeight / (bodySize || 1);
+      let heading: (typeof HeadingLevel)[keyof typeof HeadingLevel] | undefined;
+      if (relativeSize >= 1.6) heading = HeadingLevel.HEADING_1;
+      else if (relativeSize >= 1.3) heading = HeadingLevel.HEADING_2;
+      else if (relativeSize >= 1.12) heading = HeadingLevel.HEADING_3;
+
+      children.push(
+        new Paragraph({
+          heading,
+          spacing: { after: 120 },
+          children: [
+            new TextRun({
+              text: line.text,
+              bold: !!heading,
+              size: Math.max(16, Math.round((line.maxFontHeight || 10) * 1.5)), // half-points
+            }),
+          ],
+        })
+      );
+    });
+
+    if (i < pdfDoc.numPages) {
+      children.push(new Paragraph({ children: [new PageBreak()] }));
+    }
   }
 
-  const wordDocumentHtml = `
-    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-    <head>
-      <meta charset='utf-8'>
-      <title>${file.name.replace(/\.pdf$/i, '')}</title>
-      <style>
-        body { font-family: 'Calibri', 'Arial', sans-serif; }
-      </style>
-    </head>
-    <body>
-      ${htmlBody}
-    </body>
-    </html>
-  `;
-
-  return new Blob([wordDocumentHtml], {
-    type: 'application/msword',
+  const docxDoc = new Document({
+    title: file.name.replace(/\.pdf$/i, ''),
+    sections: [{ children }],
   });
+
+  const blob = await Packer.toBlob(docxDoc);
+  return blob;
+}
+
+function median(nums: number[]): number {
+  const sorted = [...nums].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
 /**

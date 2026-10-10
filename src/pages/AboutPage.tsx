@@ -5,11 +5,11 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-3">
+        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-3">
           <Globe className="w-3.5 h-3.5" />
           <span>About JuanTamad</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Effortless File Utilities, Built for Privacy
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
@@ -19,11 +19,11 @@ export const AboutPage: React.FC = () => {
 
       {/* Why JuanTamad? */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-          <div className="w-10 h-10 rounded-xl bg-[#730000]/10 dark:bg-[#580000] text-[#730000] dark:text-[#730000]/40 flex items-center justify-center">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] shadow-sm space-y-3">
+          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center">
             <Lock className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-lg text-slate-900 dark:text-white">
+          <h3 className="font-bold text-lg text-[#09090B] dark:text-white">
             100% Client-Side Sandbox
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -31,11 +31,11 @@ export const AboutPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-          <div className="w-10 h-10 rounded-xl bg-[#730000]/10 dark:bg-[#580000] text-[#730000] dark:text-[#730000]/40 flex items-center justify-center">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] shadow-sm space-y-3">
+          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center">
             <Zap className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-lg text-slate-900 dark:text-white">
+          <h3 className="font-bold text-lg text-[#09090B] dark:text-white">
             Zero Limits &amp; No Accounts
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -45,8 +45,8 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* The Story Behind the Name */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+      <div className="p-6 sm:p-8 rounded-2xl bg-slate-50 dark:bg-[#09090B]/60 border border-slate-200 dark:border-[#27272A] space-y-4">
+        <h2 className="text-xl font-bold text-[#09090B] dark:text-white">
           The Meaning of "JuanTamad"
         </h2>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -56,7 +56,7 @@ export const AboutPage: React.FC = () => {
 
       {/* Open Source Tech Stack */}
       <div className="space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+        <h2 className="text-xl font-bold text-[#09090B] dark:text-white">
           Powered by Open-Source Web Technologies
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
@@ -70,11 +70,11 @@ export const AboutPage: React.FC = () => {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-start space-x-3"
+              className="p-3.5 rounded-xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] flex items-start space-x-3"
             >
-              <CheckCircle2 className="w-4 h-4 text-[#730000]/50 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent-text)]/50 shrink-0 mt-0.5" />
               <div>
-                <span className="font-semibold text-slate-900 dark:text-white block">{item.name}</span>
+                <span className="font-semibold text-[#09090B] dark:text-white block">{item.name}</span>
                 <span className="text-xs text-slate-500">{item.desc}</span>
               </div>
             </div>

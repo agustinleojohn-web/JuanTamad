@@ -1,10 +1,30 @@
 @import "tailwindcss";
 @import '@fontsource-variable/google-sans-flex';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
+    color-scheme: light;
+    /* Solid brand fill — used for buttons/CTAs. Stays stable across themes
+       because white-on-#730000 already passes AAA contrast in both. */
     --accent: #730000;
     --accent-hover: #580000;
+    /* Adaptive accent — used for text, icons, borders, rings and tinted
+       surfaces that sit directly on the page background. This one MUST
+       flip in dark mode: a dark maroon on a near-black background fails
+       contrast, so dark mode gets a brighter, accessible red instead. */
+    --accent-text: #730000;
+    --accent-text-tint: rgb(115 0 0 / 0.1);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --accent-text: #F3BA6F;
+    --accent: #8C4A20;
+    --accent-hover: #6B3118;
+    --accent-text-tint: rgb(243 166 111 / 0.14);
+    --hover-button:#6B3118;
   }
 
   body {
@@ -13,5 +33,14 @@
     font-family: "Google Sans Flex Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 400;
   }
-  
+
+  .dark body {
+    background-color: #1a1a1a;
+    color: #f1f5f9;
+  }
+
+  ::selection {
+    background-color: var(--accent-text-tint);
+    color: var(--accent-text);
+  }
 }

@@ -179,11 +179,11 @@ export const ImageCollagePage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <LayoutGrid className="w-3.5 h-3.5" />
           <span>Multi-Photo Montage</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Photo Collage Maker
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -202,9 +202,9 @@ export const ImageCollagePage: React.FC = () => {
       />
 
       {images.length > 0 && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
-            <span className="font-bold text-sm text-slate-900 dark:text-white">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
+            <span className="font-bold text-sm text-[#09090B] dark:text-white">
               {images.length} photos selected for collage
             </span>
             <button
@@ -212,7 +212,7 @@ export const ImageCollagePage: React.FC = () => {
                 setImages([]);
                 setCollageBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Clear all</span>
@@ -240,8 +240,8 @@ export const ImageCollagePage: React.FC = () => {
                   }}
                   className={`p-3 rounded-xl text-xs font-bold border transition-colors text-center ${
                     layout === tmpl.id
-                      ? 'bg-[#730000] border-[#730000] text-white'
-                      : 'border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
+                      ? 'bg-[var(--accent)] border-[var(--accent-text)] text-white'
+                      : 'border-slate-200 dark:border-[#27272A] text-slate-700 dark:text-slate-300 hover:border-slate-300'
                   }`}
                 >
                   {tmpl.label}
@@ -252,7 +252,7 @@ export const ImageCollagePage: React.FC = () => {
 
           {/* Spacing & Style Tuning */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
                 <span>Gap Margin</span>
                 <span>{gap}px</span>
@@ -266,11 +266,11 @@ export const ImageCollagePage: React.FC = () => {
                   setGap(Number(e.target.value));
                   setCollageBlob(null);
                 }}
-                className="w-full accent-[#730000]"
+                className="w-full accent-[var(--accent-text)]"
               />
             </div>
 
-            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
                 <span>Corner Rounding</span>
                 <span>{borderRadius}px</span>
@@ -284,11 +284,11 @@ export const ImageCollagePage: React.FC = () => {
                   setBorderRadius(Number(e.target.value));
                   setCollageBlob(null);
                 }}
-                className="w-full accent-[#730000]"
+                className="w-full accent-[var(--accent-text)]"
               />
             </div>
 
-            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
                 Background Tone
               </span>
@@ -301,7 +301,7 @@ export const ImageCollagePage: React.FC = () => {
                       setCollageBlob(null);
                     }}
                     className={`w-6 h-6 rounded-full border border-slate-300 ${
-                      bgColor === c ? 'ring-2 ring-[#730000]/50' : ''
+                      bgColor === c ? 'ring-2 ring-[var(--accent-text)]/50' : ''
                     }`}
                     style={{ backgroundColor: c }}
                   />
@@ -339,7 +339,7 @@ export const ImageCollagePage: React.FC = () => {
             <button
               onClick={handleRenderCollage}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Compiling Collage...' : 'Generate Collage'}</span>
@@ -348,7 +348,7 @@ export const ImageCollagePage: React.FC = () => {
             {collageBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#730000]/50 dark:hover:bg-[#730000] dark:text-slate-950 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[var(--accent-text)]/20 dark:hover:bg-[var(--accent)] dark:text-[#000000] shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Collage ({formatFileSize(collageBlob.size)})</span>

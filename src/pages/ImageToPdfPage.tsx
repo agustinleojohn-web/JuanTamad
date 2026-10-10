@@ -97,11 +97,11 @@ export const ImageToPdfPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+          <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
             <FileText className="w-3.5 h-3.5" />
             <span>Multi-Page Document Maker</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
             Image to PDF Converter
           </h1>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -114,7 +114,7 @@ export const ImageToPdfPage: React.FC = () => {
             <button
               onClick={handleGenerate}
               disabled={isGenerating}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isGenerating ? 'animate-spin' : ''}`} />
               <span>Create PDF ({images.length} Images)</span>
@@ -122,7 +122,7 @@ export const ImageToPdfPage: React.FC = () => {
             {pdfBlob && (
               <button
                 onClick={handleDownload}
-                className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors"
               >
                 <Download className="w-4 h-4" />
                 <span>Download ({formatFileSize(pdfBlob.size)})</span>
@@ -154,9 +154,9 @@ export const ImageToPdfPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Images List / Reorder */}
           <div className="lg:col-span-8 space-y-4">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-                <span className="font-bold text-slate-900 dark:text-white text-sm">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#27272A]">
+                <span className="font-bold text-[#09090B] dark:text-white text-sm">
                   Document Pages ({images.length})
                 </span>
                 <span className="text-xs text-slate-400">Drag or use arrows to change order</span>
@@ -166,7 +166,7 @@ export const ImageToPdfPage: React.FC = () => {
                 {images.map((item, idx) => (
                   <div
                     key={item.id}
-                    className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
+                    className="p-3 rounded-xl border border-slate-200 dark:border-[#27272A] flex items-center justify-between hover:bg-slate-50 dark:hover:bg-[#27272A]/40 transition-colors"
                   >
                     <div className="flex items-center space-x-3 truncate">
                       <span className="w-6 text-center text-xs font-bold text-slate-400">
@@ -178,7 +178,7 @@ export const ImageToPdfPage: React.FC = () => {
                         className="w-12 h-12 rounded object-cover border border-slate-200 dark:border-slate-700 shrink-0"
                       />
                       <div className="truncate">
-                        <p className="font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-200 truncate">
+                        <p className="font-semibold text-xs sm:text-sm text-[#27272A] dark:text-slate-200 truncate">
                           {item.file.name}
                         </p>
                         <p className="text-[11px] text-slate-400">
@@ -206,7 +206,7 @@ export const ImageToPdfPage: React.FC = () => {
                       </button>
                       <button
                         onClick={() => removeImage(idx)}
-                        className="p-1.5 text-slate-400 hover:text-[#730000]"
+                        className="p-1.5 text-slate-400 hover:text-[var(--accent-text)]"
                         title="Remove"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -230,8 +230,8 @@ export const ImageToPdfPage: React.FC = () => {
 
           {/* Right: PDF Settings */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-              <h3 className="font-bold text-slate-900 dark:text-white text-base pb-2 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-5">
+              <h3 className="font-bold text-[#09090B] dark:text-white text-base pb-2 border-b border-slate-100 dark:border-[#27272A]">
                 PDF Page Settings
               </h3>
 
@@ -248,7 +248,7 @@ export const ImageToPdfPage: React.FC = () => {
                     }}
                     className={`py-2 rounded-lg font-bold border transition-colors ${
                       pageSize === 'a4'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                     }`}
                   >
@@ -261,7 +261,7 @@ export const ImageToPdfPage: React.FC = () => {
                     }}
                     className={`py-2 rounded-lg font-bold border transition-colors ${
                       pageSize === 'letter'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                     }`}
                   >
@@ -274,7 +274,7 @@ export const ImageToPdfPage: React.FC = () => {
                     }}
                     className={`py-2 rounded-lg font-bold border transition-colors ${
                       pageSize === 'fit'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                     }`}
                   >
@@ -297,7 +297,7 @@ export const ImageToPdfPage: React.FC = () => {
                       }}
                       className={`py-2 rounded-lg font-bold border transition-colors ${
                         orientation === 'portrait'
-                          ? 'border-[#730000] bg-[#730000] text-white'
+                          ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                           : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                       }`}
                     >
@@ -310,7 +310,7 @@ export const ImageToPdfPage: React.FC = () => {
                       }}
                       className={`py-2 rounded-lg font-bold border transition-colors ${
                         orientation === 'landscape'
-                          ? 'border-[#730000] bg-[#730000] text-white'
+                          ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                           : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                       }`}
                     >
@@ -337,7 +337,7 @@ export const ImageToPdfPage: React.FC = () => {
                       }}
                       className={`py-1.5 rounded-lg border font-semibold ${
                         margin === m
-                          ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                          ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                           : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                       }`}
                     >
@@ -352,7 +352,7 @@ export const ImageToPdfPage: React.FC = () => {
                 <button
                   onClick={handleGenerate}
                   disabled={isGenerating}
-                  className="w-full py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+                  className="w-full py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
                 >
                   <RefreshCw className={`w-4 h-4 ${isGenerating ? 'animate-spin' : ''}`} />
                   <span>Generate PDF Document</span>
@@ -361,7 +361,7 @@ export const ImageToPdfPage: React.FC = () => {
                 {pdfBlob && (
                   <button
                     onClick={handleDownload}
-                    className="w-full py-3 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                    className="w-full py-3 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download PDF Now</span>

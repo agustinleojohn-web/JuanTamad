@@ -116,11 +116,11 @@ export const ImageMemePage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Type className="w-3.5 h-3.5" />
           <span>Meme Generator</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Meme Creator
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -139,10 +139,10 @@ export const ImageMemePage: React.FC = () => {
           description="Supports all image formats"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -155,7 +155,7 @@ export const ImageMemePage: React.FC = () => {
                 setImageSrc(null);
                 setMemeBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change image</span>
@@ -167,7 +167,7 @@ export const ImageMemePage: React.FC = () => {
             <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Meme Style:
             </span>
-            <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-slate-50 dark:bg-slate-800">
+            <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-slate-50 dark:bg-[#27272A]">
               <button
                 onClick={() => {
                   setStyle('classic');
@@ -175,7 +175,7 @@ export const ImageMemePage: React.FC = () => {
                 }}
                 className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors ${
                   style === 'classic'
-                    ? 'bg-[#730000] text-white'
+                    ? 'bg-[var(--accent)] text-white'
                     : 'text-slate-600 dark:text-slate-300'
                 }`}
               >
@@ -188,7 +188,7 @@ export const ImageMemePage: React.FC = () => {
                 }}
                 className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors ${
                   style === 'modern'
-                    ? 'bg-[#730000] text-white'
+                    ? 'bg-[var(--accent)] text-white'
                     : 'text-slate-600 dark:text-slate-300'
                 }`}
               >
@@ -211,7 +211,7 @@ export const ImageMemePage: React.FC = () => {
                   setMemeBlob(null);
                 }}
                 placeholder="Enter meme text..."
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#730000]/50"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-xs sm:text-sm text-[#09090B] dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-text)]/50"
               />
             </div>
 
@@ -228,7 +228,7 @@ export const ImageMemePage: React.FC = () => {
                     setMemeBlob(null);
                   }}
                   placeholder="Enter bottom punchline..."
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#730000]/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-xs sm:text-sm text-[#09090B] dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-text)]/50"
                 />
               </div>
             )}
@@ -236,7 +236,7 @@ export const ImageMemePage: React.FC = () => {
 
           {/* Font Controls */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
                 <span>Font Size</span>
                 <span>{fontSize}px</span>
@@ -250,11 +250,11 @@ export const ImageMemePage: React.FC = () => {
                   setFontSize(Number(e.target.value));
                   setMemeBlob(null);
                 }}
-                className="w-full accent-[#730000]"
+                className="w-full accent-[var(--accent-text)]"
               />
             </div>
 
-            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="space-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
                 Text Color
               </span>
@@ -267,7 +267,7 @@ export const ImageMemePage: React.FC = () => {
                       setMemeBlob(null);
                     }}
                     className={`w-6 h-6 rounded-full border border-slate-300 ${
-                      textColor === c ? 'ring-2 ring-[#730000]/50' : ''
+                      textColor === c ? 'ring-2 ring-[var(--accent-text)]/50' : ''
                     }`}
                     style={{ backgroundColor: c }}
                   />
@@ -281,7 +281,7 @@ export const ImageMemePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center space-x-2 p-3 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <input
                 type="checkbox"
                 id="upper"
@@ -290,7 +290,7 @@ export const ImageMemePage: React.FC = () => {
                   setIsUppercase(e.target.checked);
                   setMemeBlob(null);
                 }}
-                className="rounded text-[#730000] focus:ring-[#730000]/50"
+                className="rounded text-[var(--accent-text)] focus:ring-[var(--accent-text)]/50"
               />
               <label htmlFor="upper" className="text-xs text-slate-700 dark:text-slate-300">
                 Force ALL CAPS (Standard Meme)
@@ -299,10 +299,10 @@ export const ImageMemePage: React.FC = () => {
           </div>
 
           {/* Live Preview Display */}
-          <div className="relative w-full max-h-[460px] overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 p-2 flex items-center justify-center">
+          <div className="relative w-full max-h-[460px] overflow-hidden rounded-xl border border-slate-200 dark:border-[#27272A] bg-[#000000] p-2 flex items-center justify-center">
             <div className="relative max-h-[440px] inline-block">
               {style === 'modern' && (
-                <div className="bg-white text-slate-900 p-3 font-semibold text-sm">
+                <div className="bg-white text-[#09090B] p-3 font-semibold text-sm">
                   {isUppercase ? topText.toUpperCase() : topText}
                 </div>
               )}
@@ -344,7 +344,7 @@ export const ImageMemePage: React.FC = () => {
             <button
               onClick={handleRenderMeme}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Compiling Meme...' : 'Generate Meme'}</span>
@@ -353,7 +353,7 @@ export const ImageMemePage: React.FC = () => {
             {memeBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#730000]/50 dark:hover:bg-[#730000] dark:text-slate-950 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[var(--accent-text)]/20 dark:hover:bg-[var(--accent)] dark:text-[#000000] shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Meme ({formatFileSize(memeBlob.size)})</span>

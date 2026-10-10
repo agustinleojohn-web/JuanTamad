@@ -231,13 +231,13 @@ export const ImageCompressPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2 mb-2">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-red-950 dark:text-red-300">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Image Compressor</span>
             </div>
             
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
             Image Compressor
           </h1>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -250,7 +250,7 @@ export const ImageCompressPage: React.FC = () => {
             <button
               onClick={handleProcessAll}
               disabled={isBatchProcessing}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isBatchProcessing ? 'animate-spin' : ''}`} />
               <span>Compress All ({queue.length})</span>
@@ -258,7 +258,7 @@ export const ImageCompressPage: React.FC = () => {
             <button
               onClick={handleDownloadAllZip}
               disabled={!queue.some((q) => q.result)}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <Archive className="w-4 h-4" />
               <span>Download ZIP</span>
@@ -292,16 +292,16 @@ export const ImageCompressPage: React.FC = () => {
           <div className="lg:col-span-8 space-y-6">
             {/* Viewer */}
             {selectedItem && (
-              <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm">
-                <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-slate-800">
+              <div className="bg-white dark:bg-[#09090B] rounded-2xl p-4 border border-slate-200 dark:border-[#27272A] shadow-sm">
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-[#27272A]">
                   <div className="flex items-center space-x-2 truncate">
-                    <ImageIcon className="w-4 h-4 text-[#730000] shrink-0" />
-                    <span className="font-semibold text-sm text-slate-900 dark:text-white truncate">
+                    <ImageIcon className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
+                    <span className="font-semibold text-sm text-[#09090B] dark:text-white truncate">
                       {selectedItem.file.name}
                     </span>
                   </div>
                   {selectedItem.status === 'processing' && (
-                    <span className="flex items-center space-x-1 text-xs text-[#730000] dark:text-[#730000]/40 font-medium animate-pulse">
+                    <span className="flex items-center space-x-1 text-xs text-[var(--accent-text)] dark:text-[var(--accent-text)] font-medium animate-pulse">
                       <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                       <span>Optimizing...</span>
                     </span>
@@ -309,7 +309,7 @@ export const ImageCompressPage: React.FC = () => {
                   {selectedItem.status === 'done' && (
                     <button
                       onClick={() => handleDownloadItem(selectedItem)}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm transition-colors"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm transition-colors"
                     >
                       <Download className="w-3.5 h-3.5" />
                       <span>Download</span>
@@ -330,9 +330,9 @@ export const ImageCompressPage: React.FC = () => {
                     optimizedFormat={selectedItem.result.format}
                   />
                 ) : (
-                  <div className="h-[360px] flex items-center justify-center bg-slate-50 dark:bg-slate-950 rounded-xl text-slate-400 text-sm">
+                  <div className="h-[360px] flex items-center justify-center bg-slate-50 dark:bg-[#000000] rounded-xl text-slate-400 text-sm">
                     {selectedItem.status === 'error' ? (
-                      <span className="text-[#730000] flex items-center space-x-2">
+                      <span className="text-[var(--accent-text)] flex items-center space-x-2">
                         <AlertCircle className="w-5 h-5" />
                         <span>{selectedItem.error}</span>
                       </span>
@@ -345,7 +345,7 @@ export const ImageCompressPage: React.FC = () => {
             )}
 
             {/* Queue List Bar */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-4 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-3">
               <div className="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 <span>Batch Files ({queue.length})</span>
                 <span>Click to inspect</span>
@@ -363,8 +363,8 @@ export const ImageCompressPage: React.FC = () => {
                       onClick={() => setSelectedIndex(idx)}
                       className={`cursor-pointer p-2 rounded-xl border flex items-center justify-between space-x-2 text-xs transition-all ${
                         isSelected
-                          ? 'border-[#730000]/50 bg-[#730000]/10/50 dark:bg-[#580000]/30 font-medium'
-                          : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                          ? 'border-[var(--accent-text)]/50 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] font-medium'
+                          : 'border-slate-200 dark:border-[#27272A] hover:bg-slate-50 dark:hover:bg-[#27272A]/50'
                       }`}
                     >
                       <div className="flex items-center space-x-2 min-w-0">
@@ -374,13 +374,13 @@ export const ImageCompressPage: React.FC = () => {
                           className="w-8 h-8 rounded object-cover shrink-0 border border-slate-200 dark:border-slate-700"
                         />
                         <div className="truncate">
-                          <p className="truncate text-slate-800 dark:text-slate-200 font-medium">
+                          <p className="truncate text-[#27272A] dark:text-slate-200 font-medium">
                             {item.file.name}
                           </p>
                           <div className="flex items-center space-x-1 text-[10px] text-slate-400">
                             <span>{formatFileSize(item.file.size)}</span>
                             {stats && stats.isSmaller && (
-                              <span className="text-[#730000] font-bold">
+                              <span className="text-[var(--accent-text)] font-bold">
                                 → -{stats.percentageSaved}%
                               </span>
                             )}
@@ -393,7 +393,7 @@ export const ImageCompressPage: React.FC = () => {
                           e.stopPropagation();
                           handleRemove(idx);
                         }}
-                        className="text-slate-400 hover:text-[#730000] p-1"
+                        className="text-slate-400 hover:text-[var(--accent-text)] p-1"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -417,10 +417,10 @@ export const ImageCompressPage: React.FC = () => {
 
           {/* Right Column: Compression Controls */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-              <div className="flex items-center space-x-2 pb-3 border-b border-slate-100 dark:border-slate-800">
-                <Sliders className="w-5 h-5 text-[#730000]" />
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+              <div className="flex items-center space-x-2 pb-3 border-b border-slate-100 dark:border-[#27272A]">
+                <Sliders className="w-5 h-5 text-[var(--accent-text)]" />
+                <h3 className="font-bold text-[#09090B] dark:text-white text-base">
                   Compression Settings
                 </h3>
               </div>
@@ -433,30 +433,30 @@ export const ImageCompressPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <button
                     onClick={() => applyPreset('smallest')}
-                    className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[#730000]/50 dark:hover:border-[#730000]/50 text-left transition-colors"
+                    className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[var(--accent-text)]/50 dark:hover:border-[var(--accent-text)]/50 text-left transition-colors"
                   >
-                    <div className="font-semibold text-slate-800 dark:text-slate-200">Smallest</div>
+                    <div className="font-semibold text-[#27272A] dark:text-slate-200">Smallest</div>
                     <div className="text-[10px] text-slate-500">WebP • 60% Qual</div>
                   </button>
                   <button
                     onClick={() => applyPreset('balanced')}
-                    className="p-2 rounded-xl border border-[#730000]/50 bg-[#730000]/10/50 dark:bg-[#580000]/30 text-left transition-colors"
+                    className="p-2 rounded-xl border border-[var(--accent-text)]/50 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-left transition-colors"
                   >
-                    <div className="font-semibold text-[#730000] dark:text-[#730000]/30">Balanced</div>
-                    <div className="text-[10px] text-[#730000]">WebP • 80% Qual</div>
+                    <div className="font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)]">Balanced</div>
+                    <div className="text-[10px] text-[var(--accent-text)]">WebP • 80% Qual</div>
                   </button>
                   <button
                     onClick={() => applyPreset('high')}
-                    className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[#730000]/50 dark:hover:border-[#730000]/50 text-left transition-colors"
+                    className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[var(--accent-text)]/50 dark:hover:border-[var(--accent-text)]/50 text-left transition-colors"
                   >
-                    <div className="font-semibold text-slate-800 dark:text-slate-200">High Quality</div>
+                    <div className="font-semibold text-[#27272A] dark:text-slate-200">High Quality</div>
                     <div className="text-[10px] text-slate-500">WebP • 92% Qual</div>
                   </button>
                   <button
                     onClick={() => applyPreset('lossless')}
-                    className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[#730000]/50 dark:hover:border-[#730000]/50 text-left transition-colors"
+                    className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[var(--accent-text)]/50 dark:hover:border-[var(--accent-text)]/50 text-left transition-colors"
                   >
-                    <div className="font-semibold text-slate-800 dark:text-slate-200">Lossless PNG</div>
+                    <div className="font-semibold text-[#27272A] dark:text-slate-200">Lossless PNG</div>
                     <div className="text-[10px] text-slate-500">Crisp • Transparency</div>
                   </button>
                 </div>
@@ -474,7 +474,7 @@ export const ImageCompressPage: React.FC = () => {
                       onClick={() => setFormat(fmt)}
                       className={`py-2 text-xs font-bold uppercase rounded-lg border transition-all ${
                         format === fmt
-                          ? 'bg-[#730000] text-white border-[#730000]'
+                          ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
                           : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-400'
                       }`}
                     >
@@ -494,7 +494,7 @@ export const ImageCompressPage: React.FC = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs font-semibold">
                     <span className="text-slate-700 dark:text-slate-300">Quality</span>
-                    <span className="text-[#730000] dark:text-[#730000]/40 font-bold">{quality}%</span>
+                    <span className="text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold">{quality}%</span>
                   </div>
                   <input
                     type="range"
@@ -502,7 +502,7 @@ export const ImageCompressPage: React.FC = () => {
                     max="100"
                     value={quality}
                     onChange={(e) => setQuality(parseInt(e.target.value, 10))}
-                    className="w-full accent-[#730000] cursor-pointer"
+                    className="w-full accent-[var(--accent-text)] cursor-pointer"
                   />
                   <div className="flex justify-between text-[10px] text-slate-400">
                     <span>Smaller file</span>
@@ -510,13 +510,13 @@ export const ImageCompressPage: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-xs text-slate-500">
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#27272A] text-xs text-slate-500">
                   PNG uses lossless compression. To reduce file size further, use WebP or scale dimensions.
                 </div>
               )}
 
               {/* Resize Controls */}
-              <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-[#27272A]">
                 <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Dimensions &amp; Scaling
                 </label>
@@ -526,7 +526,7 @@ export const ImageCompressPage: React.FC = () => {
                     onClick={() => setResizeMode('none')}
                     className={`py-1.5 rounded-lg border font-medium ${
                       resizeMode === 'none'
-                        ? 'border-[#730000] bg-[#730000]/10 dark:bg-[#580000] text-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-hover)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -536,7 +536,7 @@ export const ImageCompressPage: React.FC = () => {
                     onClick={() => setResizeMode('percent')}
                     className={`py-1.5 rounded-lg border font-medium ${
                       resizeMode === 'percent'
-                        ? 'border-[#730000] bg-[#730000]/10 dark:bg-[#580000] text-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-hover)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -546,7 +546,7 @@ export const ImageCompressPage: React.FC = () => {
                     onClick={() => setResizeMode('custom')}
                     className={`py-1.5 rounded-lg border font-medium ${
                       resizeMode === 'custom'
-                        ? 'border-[#730000] bg-[#730000]/10 dark:bg-[#580000] text-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-hover)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -558,7 +558,7 @@ export const ImageCompressPage: React.FC = () => {
                   <div className="space-y-1.5">
                     <div className="flex justify-between text-xs">
                       <span className="text-slate-600 dark:text-slate-400">Scale</span>
-                      <span className="font-semibold text-slate-800 dark:text-white">{scalePercent}%</span>
+                      <span className="font-semibold text-[#27272A] dark:text-white">{scalePercent}%</span>
                     </div>
                     <div className="flex space-x-2">
                       {[75, 50, 25].map((pct) => (
@@ -567,7 +567,7 @@ export const ImageCompressPage: React.FC = () => {
                           onClick={() => setScalePercent(pct)}
                           className={`flex-1 py-1 rounded text-xs border ${
                             scalePercent === pct
-                              ? 'border-[#730000] bg-[#730000] text-white font-bold'
+                              ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white font-bold'
                               : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300'
                           }`}
                         >
@@ -590,7 +590,7 @@ export const ImageCompressPage: React.FC = () => {
                           onChange={(e) =>
                             setCustomWidth(e.target.value ? parseInt(e.target.value, 10) : undefined)
                           }
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-[#09090B] dark:text-white"
                         />
                       </div>
                       <div>
@@ -602,7 +602,7 @@ export const ImageCompressPage: React.FC = () => {
                           onChange={(e) =>
                             setCustomHeight(e.target.value ? parseInt(e.target.value, 10) : undefined)
                           }
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-[#09090B] dark:text-white"
                         />
                       </div>
                     </div>
@@ -611,7 +611,7 @@ export const ImageCompressPage: React.FC = () => {
                         type="checkbox"
                         checked={maintainAspect}
                         onChange={(e) => setMaintainAspect(e.target.checked)}
-                        className="rounded accent-[#730000]"
+                        className="rounded accent-[var(--accent-text)]"
                       />
                       <span>Lock aspect ratio</span>
                     </label>
@@ -623,7 +623,7 @@ export const ImageCompressPage: React.FC = () => {
               {selectedItem?.result && (
                 <button
                   onClick={() => handleDownloadItem(selectedItem)}
-                  className="w-full py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                  className="w-full py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download {selectedItem.result.format.toUpperCase()}</span>

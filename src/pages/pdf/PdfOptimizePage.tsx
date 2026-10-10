@@ -77,11 +77,11 @@ export const PdfOptimizePage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Gauge className="w-3.5 h-3.5" />
           <span>Stream Optimizer</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Optimize PDF Document
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -100,10 +100,10 @@ export const PdfOptimizePage: React.FC = () => {
           description="Compress image streams &amp; structure for faster loading"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -115,7 +115,7 @@ export const PdfOptimizePage: React.FC = () => {
                 setFile(null);
                 setOptimizedBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change file</span>
@@ -153,8 +153,8 @@ export const PdfOptimizePage: React.FC = () => {
                   onClick={() => applyProfile(p.id as any)}
                   className={`p-3.5 rounded-xl border text-left transition-all ${
                     profile === p.id
-                      ? 'border-[#730000]/50 bg-[#730000]/10/50 dark:bg-[#580000]/30 text-[#580000] dark:text-[#730000]/20'
-                      : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 text-slate-700 dark:text-slate-300'
+                      ? 'border-[var(--accent-text)]/50 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-hover)] dark:text-[var(--accent-text)]'
+                      : 'border-slate-200 dark:border-[#27272A] hover:border-slate-300 text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
@@ -162,8 +162,8 @@ export const PdfOptimizePage: React.FC = () => {
                     <span
                       className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
                         profile === p.id
-                          ? 'bg-[#730000]/20/80 dark:bg-[#730000] text-[#730000] dark:text-[#730000]/10'
-                          : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+                          ? 'bg-[var(--accent-text)]/20 dark:bg-[var(--accent-text)]/20 text-[var(--accent-text)] dark:text-[var(--accent-text)]'
+                          : 'bg-slate-100 dark:bg-[#27272A] text-slate-500'
                       }`}
                     >
                       {p.badge}
@@ -196,7 +196,7 @@ export const PdfOptimizePage: React.FC = () => {
                   setQuality(Number(e.target.value));
                   setOptimizedBlob(null);
                 }}
-                className="w-full accent-[#730000]"
+                className="w-full accent-[var(--accent-text)]"
               />
             </div>
 
@@ -218,7 +218,7 @@ export const PdfOptimizePage: React.FC = () => {
                   setScale(Number(e.target.value));
                   setOptimizedBlob(null);
                 }}
-                className="w-full accent-[#730000]"
+                className="w-full accent-[var(--accent-text)]"
               />
             </div>
           </div>
@@ -229,7 +229,7 @@ export const PdfOptimizePage: React.FC = () => {
               id="stripMeta"
               checked={stripMetadata}
               onChange={(e) => setStripMetadata(e.target.checked)}
-              className="rounded text-[#730000] focus:ring-[#730000]/50"
+              className="rounded text-[var(--accent-text)] focus:ring-[var(--accent-text)]/50"
             />
             <label htmlFor="stripMeta" className="text-xs text-slate-600 dark:text-slate-400">
               Strip non-essential metadata and trailer revisions to maximize byte reduction
@@ -244,16 +244,16 @@ export const PdfOptimizePage: React.FC = () => {
           )}
 
           {stats && optimizedBlob && (
-            <div className="p-4 rounded-xl bg-[#730000]/10 dark:bg-[#580000]/40 border border-[#730000]/20 dark:border-[#730000] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="p-4 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] border border-[var(--accent-text)]/20 dark:border-[var(--accent-text)]/40 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-xl bg-[#730000] text-white flex items-center justify-center font-bold text-xs shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[var(--accent)] text-white flex items-center justify-center font-bold text-xs shrink-0">
                   {stats.percentageSaved}%
                 </div>
                 <div>
-                  <span className="font-bold text-xs text-[#730000] dark:text-[#730000]/20 block">
+                  <span className="font-bold text-xs text-[var(--accent-text)] dark:text-[var(--accent-text)] block">
                     Optimized Size: {formatFileSize(optimizedBlob.size)}
                   </span>
-                  <span className="text-[11px] text-[#580000] dark:text-[#730000]/40">
+                  <span className="text-[11px] text-[var(--accent-hover)] dark:text-[var(--accent-text)]">
                     Saved {formatFileSize(stats.differenceBytes)} of document payload
                   </span>
                 </div>
@@ -261,7 +261,7 @@ export const PdfOptimizePage: React.FC = () => {
 
               <button
                 onClick={handleDownload}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-[#730000] hover:bg-[#580000] text-white flex items-center justify-center space-x-2 shadow-sm"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white flex items-center justify-center space-x-2 shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download Optimized PDF</span>
@@ -273,7 +273,7 @@ export const PdfOptimizePage: React.FC = () => {
             <button
               onClick={handleOptimize}
               disabled={isProcessing}
-              className="w-full py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="w-full py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Optimizing Document Streams...' : 'Optimize PDF Now'}</span>

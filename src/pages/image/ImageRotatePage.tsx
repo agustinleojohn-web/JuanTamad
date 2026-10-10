@@ -82,11 +82,11 @@ export const ImageRotatePage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <RotateCw className="w-3.5 h-3.5" />
           <span>Precision Angular Rotation</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Rotate Image
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -105,10 +105,10 @@ export const ImageRotatePage: React.FC = () => {
           description="Supports precision straightening and 90° orientation correction"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -121,7 +121,7 @@ export const ImageRotatePage: React.FC = () => {
                 setImageSrc(null);
                 setRotatedBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change image</span>
@@ -138,9 +138,9 @@ export const ImageRotatePage: React.FC = () => {
                 setAngle((prev) => (prev - 90 < -180 ? prev - 90 + 360 : prev - 90));
                 setRotatedBlob(null);
               }}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold flex items-center space-x-1 hover:bg-slate-50 dark:hover:bg-slate-800"
+              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold flex items-center space-x-1 hover:bg-slate-50 dark:hover:bg-[#27272A]"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-[#730000]" />
+              <RotateCcw className="w-3.5 h-3.5 text-[var(--accent-text)]" />
               <span>-90° Left</span>
             </button>
             <button
@@ -148,9 +148,9 @@ export const ImageRotatePage: React.FC = () => {
                 setAngle((prev) => (prev + 90 > 180 ? prev + 90 - 360 : prev + 90));
                 setRotatedBlob(null);
               }}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold flex items-center space-x-1 hover:bg-slate-50 dark:hover:bg-slate-800"
+              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold flex items-center space-x-1 hover:bg-slate-50 dark:hover:bg-[#27272A]"
             >
-              <RotateCw className="w-3.5 h-3.5 text-[#730000]" />
+              <RotateCw className="w-3.5 h-3.5 text-[var(--accent-text)]" />
               <span>+90° Right</span>
             </button>
             <button
@@ -158,7 +158,7 @@ export const ImageRotatePage: React.FC = () => {
                 setAngle(180);
                 setRotatedBlob(null);
               }}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-800"
+              className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-[#27272A]"
             >
               180° Flip
             </button>
@@ -174,13 +174,13 @@ export const ImageRotatePage: React.FC = () => {
           </div>
 
           {/* Continuous Angle Slider & Compass */}
-          <div className="space-y-2 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+          <div className="space-y-2 p-4 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
             <div className="flex justify-between items-center text-xs font-semibold text-slate-700 dark:text-slate-300">
               <span className="flex items-center space-x-1.5">
-                <Compass className="w-4 h-4 text-[#730000]" />
+                <Compass className="w-4 h-4 text-[var(--accent-text)]" />
                 <span>Arbitrary Angle Dial:</span>
               </span>
-              <span className="text-sm font-bold text-[#730000]">{angle}°</span>
+              <span className="text-sm font-bold text-[var(--accent-text)]">{angle}°</span>
             </div>
             <input
               type="range"
@@ -191,7 +191,7 @@ export const ImageRotatePage: React.FC = () => {
                 setAngle(Number(e.target.value));
                 setRotatedBlob(null);
               }}
-              className="w-full accent-[#730000]"
+              className="w-full accent-[var(--accent-text)]"
             />
             <div className="flex justify-between text-[10px] text-slate-400 px-1">
               <span>-180°</span>
@@ -203,7 +203,7 @@ export const ImageRotatePage: React.FC = () => {
           </div>
 
           {/* Preview Viewport */}
-          <div className="relative w-full max-h-[460px] overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 p-4 flex items-center justify-center">
+          <div className="relative w-full max-h-[460px] overflow-hidden rounded-xl border border-slate-200 dark:border-[#27272A] bg-[#000000] p-4 flex items-center justify-center">
             <img
               src={imageSrc}
               alt="Rotation preview"
@@ -218,7 +218,7 @@ export const ImageRotatePage: React.FC = () => {
             <button
               onClick={handleRotate}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Rendering Rotation...' : `Apply ${angle}° Rotation`}</span>
@@ -227,7 +227,7 @@ export const ImageRotatePage: React.FC = () => {
             {rotatedBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#730000]/50 dark:hover:bg-[#730000] dark:text-slate-950 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[var(--accent-text)]/20 dark:hover:bg-[var(--accent)] dark:text-[#000000] shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Rotated Image ({formatFileSize(rotatedBlob.size)})</span>

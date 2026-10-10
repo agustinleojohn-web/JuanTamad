@@ -89,15 +89,15 @@ export const PdfUnlockPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Unlock className="w-3.5 h-3.5" />
           <span>Security Removal Engine</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Unlock PDF Document
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
-          Strip password protection, print locks, and permission restrictions directly in your browser with zero cloud uploads.
+          Remove printing, copying, and editing restrictions instantly — no password needed for those. If a PDF requires a password just to <em>open</em> it, that password is real encryption: we can only decrypt it if you tell us the password, the same way Adobe Acrobat would.
         </p>
       </div>
 
@@ -112,10 +112,10 @@ export const PdfUnlockPage: React.FC = () => {
           description="Removes printing, copying, and password restrictions 100% locally"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -129,7 +129,7 @@ export const PdfUnlockPage: React.FC = () => {
                 setSecurityStatus(null);
                 setPassword('');
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change file</span>
@@ -143,7 +143,7 @@ export const PdfUnlockPage: React.FC = () => {
                 securityStatus.needsPassword
                   ? 'bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200'
                   : securityStatus.isOwnerProtectedOnly
-                  ? 'bg-[#730000]/10 dark:bg-[#580000]/40 border-[#730000]/20 dark:border-[#730000] text-[#730000] dark:text-[#730000]/20'
+                  ? 'bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] border-[var(--accent-text)]/20 dark:border-[var(--accent-text)]/40 text-[var(--accent-text)] dark:text-[var(--accent-text)]'
                   : 'bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800/60 text-blue-900 dark:text-blue-200'
               }`}
             >
@@ -158,20 +158,26 @@ export const PdfUnlockPage: React.FC = () => {
                 </span>
                 <p>
                   {securityStatus.needsPassword
-                    ? 'This PDF requires an open password. Enter the passphrase below to permanently decrypt and save an unencrypted version.'
+                    ? 'This PDF is encrypted with an open password — the same kind Adobe Acrobat uses. There is no way to recover or bypass it without the password itself; enter it below to decrypt and save an unprotected copy.'
                     : securityStatus.isOwnerProtectedOnly
-                    ? 'This PDF has printing, copying, or modification restrictions. Click "Unlock & Remove Restrictions" below to strip them instantly!'
+                    ? 'This PDF has printing, copying, or modification restrictions but no open password. Click "Unlock & Remove Restrictions" below to strip them instantly — no password needed.'
                     : 'This document has no open restrictions. You can re-save a sanitized, clean version.'}
                 </p>
               </div>
             </div>
           )}
 
+          {securityStatus?.needsPassword && (
+            <p className="text-[11px] text-slate-400 dark:text-slate-500 -mt-4">
+              Forgot the password? Genuine PDF encryption can't be removed without it — that's what makes it secure. This tool can only decrypt a file you already know the password to.
+            </p>
+          )}
+
           {/* Password Input (shown if password needed or user wants to provide) */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center space-x-1.5">
-                <KeyRound className="w-3.5 h-3.5 text-[#730000]" />
+                <KeyRound className="w-3.5 h-3.5 text-[var(--accent-text)]" />
                 <span>
                   {securityStatus?.needsPassword
                     ? 'Document Open Password (Required)'
@@ -196,23 +202,23 @@ export const PdfUnlockPage: React.FC = () => {
               }
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#730000]/50"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-xs sm:text-sm text-[#09090B] dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-text)]/50"
             />
           </div>
 
           {/* Progress bar during unlocking */}
           {isProcessing && (
-            <div className="space-y-2 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+            <div className="space-y-2 p-4 rounded-xl bg-slate-50 dark:bg-[#27272A]/50 border border-slate-200 dark:border-[#27272A]">
               <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
                 <span className="font-medium flex items-center space-x-2">
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#730000]/50" />
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[var(--accent-text)]/50" />
                   <span>{progressMsg}</span>
                 </span>
-                <span className="font-bold text-[#730000]">{progressPercent}%</span>
+                <span className="font-bold text-[var(--accent-text)]">{progressPercent}%</span>
               </div>
               <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
                 <div
-                  className="bg-[#730000]/50 h-2 rounded-full transition-all duration-300"
+                  className="bg-[var(--accent-text)]/50 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
@@ -227,9 +233,9 @@ export const PdfUnlockPage: React.FC = () => {
           )}
 
           {unlockedBlob && (
-            <div className="p-4 rounded-xl bg-[#730000]/10 dark:bg-[#580000]/40 border border-[#730000]/20 dark:border-[#730000] text-[#730000] dark:text-[#730000]/30 flex items-center justify-between">
+            <div className="p-4 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] border border-[var(--accent-text)]/20 dark:border-[var(--accent-text)]/40 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-between">
               <div className="flex items-center space-x-2.5">
-                <CheckCircle2 className="w-5 h-5 text-[#730000] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[var(--accent-text)] shrink-0" />
                 <span className="text-xs font-semibold">
                   PDF successfully unlocked! All encryption &amp; restrictions permanently removed ({formatFileSize(unlockedBlob.size)}).
                 </span>
@@ -241,7 +247,7 @@ export const PdfUnlockPage: React.FC = () => {
             <button
               onClick={handleUnlock}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Decrypting...' : 'Unlock & Remove Restrictions'}</span>
@@ -250,7 +256,7 @@ export const PdfUnlockPage: React.FC = () => {
             {unlockedBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#730000]/50 dark:hover:bg-[#730000] dark:text-slate-950 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[var(--accent-text)]/20 dark:hover:bg-[var(--accent)] dark:text-[#000000] shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Unlocked PDF</span>

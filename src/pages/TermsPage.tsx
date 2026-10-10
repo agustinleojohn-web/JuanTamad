@@ -5,11 +5,11 @@ export const TermsPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-3">
+        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-3">
           <FileCheck className="w-3.5 h-3.5" />
           <span>Terms &amp; Conditions</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Terms of Use
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2">
@@ -19,7 +19,7 @@ export const TermsPage: React.FC = () => {
 
       <div className="space-y-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             1. Acceptance of Terms
           </h2>
           <p>
@@ -28,7 +28,7 @@ export const TermsPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             2. Permitted Use
           </h2>
           <p>
@@ -37,7 +37,7 @@ export const TermsPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             3. Disclaimer of Warranties
           </h2>
           <p>
@@ -46,7 +46,7 @@ export const TermsPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             4. Limitation of Liability
           </h2>
           <p>

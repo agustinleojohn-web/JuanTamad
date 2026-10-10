@@ -5,11 +5,11 @@ export const PrivacyPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-3">
+        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-3">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>Privacy Architecture</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Privacy Policy
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2">
@@ -17,13 +17,13 @@ export const PrivacyPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="p-6 rounded-2xl bg-[#730000]/10/70 dark:bg-[#580000]/40 border border-[#730000]/20 dark:border-[#730000] text-sm sm:text-base text-[#730000] dark:text-[#730000]/20 leading-relaxed font-medium">
+      <div className="p-6 rounded-2xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] border border-[var(--accent-text)]/20 dark:border-[var(--accent-text)]/40 text-sm sm:text-base text-[var(--accent-text)] dark:text-[var(--accent-text)] leading-relaxed font-medium">
         Our core promise: <strong>Your files never leave your device.</strong> Every single image compression, format conversion, PDF merge, DOCX parse, and spreadsheet export occurs strictly inside your web browser’s memory.
       </div>
 
       <div className="space-y-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             1. Zero File Uploads
           </h2>
           <p>
@@ -32,7 +32,7 @@ export const PrivacyPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             2. No Account or Registration Required
           </h2>
           <p>
@@ -41,7 +41,7 @@ export const PrivacyPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             3. Local Storage Usage
           </h2>
           <p>
@@ -50,7 +50,7 @@ export const PrivacyPage: React.FC = () => {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h2 className="text-lg font-bold text-[#09090B] dark:text-white">
             4. No Third-Party Trackers or Data Selling
           </h2>
           <p>

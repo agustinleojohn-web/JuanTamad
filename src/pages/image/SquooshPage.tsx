@@ -269,21 +269,21 @@ export const SquooshPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fade-in">
       {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-[#27272A] pb-6">
         <div>
           <div className="flex items-center space-x-2 mb-1.5">
-            <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#730000]/10 text-[#730000] border border-[#730000]/20">
+            <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--accent-text)]/10 text-[var(--accent-text)] border border-[var(--accent-text)]/20">
               Squoosh Studio • Pro Image Compression
             </span>
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
               Batch Enabled
             </span>
           </div>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-3xl font-black text-[#09090B] dark:text-white tracking-tight flex items-center gap-2">
             <span>Squoosh Interactive Optimizer</span>
           </h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl">
-            Google Chrome Labs Squoosh studio with interactive before/after split viewer, MozJPEG, WebP, PNG quantization, AVIF, and <strong className="text-[#730000] dark:text-red-400">batch conversion using your exact settings</strong>.
+            Google Chrome Labs Squoosh studio with interactive before/after split viewer, MozJPEG, WebP, PNG quantization, AVIF, and <strong className="text-[var(--accent-text)] dark:text-[var(--accent-text)]">batch conversion using your exact settings</strong>.
           </p>
         </div>
 
@@ -292,7 +292,7 @@ export const SquooshPage: React.FC = () => {
           {queue.length > 0 && (
             <button
               onClick={handleClearAll}
-              className="px-3.5 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors flex items-center space-x-1.5"
+              className="px-3.5 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-xl border border-slate-200 dark:border-[#27272A] transition-colors flex items-center space-x-1.5"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Clear All</span>
@@ -302,7 +302,7 @@ export const SquooshPage: React.FC = () => {
             <button
               onClick={handleRunBatch}
               disabled={isBatchRunning}
-              className="px-4 py-2 text-xs font-bold bg-[#730000] hover:bg-[#5a0000] text-white rounded-xl shadow-md shadow-[#730000]/20 transition-all flex items-center space-x-1.5 disabled:opacity-50"
+              className="px-4 py-2 text-xs font-bold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-xl shadow-md shadow-[var(--accent-text)]/20 transition-all flex items-center space-x-1.5 disabled:opacity-50"
             >
               {isBatchRunning ? (
                 <>
@@ -336,22 +336,22 @@ export const SquooshPage: React.FC = () => {
           {/* Left / Center: Interactive Squoosh Comparison Viewer (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Viewer Controls Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A]">
               {/* Size Comparison Badge */}
               {comparisonStats && activeResult && (
                 <div className="flex items-center space-x-2 text-xs font-medium">
                   <span className="text-slate-500">Original:</span>
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">
+                  <span className="font-semibold text-[#27272A] dark:text-slate-200">
                     {formatFileSize(activeItem.originalSize)}
                   </span>
                   <ArrowRight className="w-3 h-3 text-slate-400" />
-                  <span className="font-bold text-[#730000] dark:text-red-400">
+                  <span className="font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)]">
                     {formatFileSize(activeResult.sizeBytes)}
                   </span>
                   <span
                     className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
                       comparisonStats.percentageSaved > 0
-                        ? 'bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30'
+                        ? 'bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                         : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'
                     }`}
                   >
@@ -369,8 +369,8 @@ export const SquooshPage: React.FC = () => {
                   title="Split Slider"
                   className={`p-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-colors ${
                     viewMode === 'split'
-                      ? 'bg-white dark:bg-slate-800 shadow-sm text-[#730000] dark:text-red-400'
-                      : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-white dark:bg-[#27272A] shadow-sm text-[var(--accent-text)] dark:text-[var(--accent-text)]'
+                      : 'text-slate-500 hover:text-[#09090B] dark:hover:text-white'
                   }`}
                 >
                   <Split className="w-4 h-4" />
@@ -381,8 +381,8 @@ export const SquooshPage: React.FC = () => {
                   title="Side-by-Side"
                   className={`p-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 transition-colors ${
                     viewMode === 'side-by-side'
-                      ? 'bg-white dark:bg-slate-800 shadow-sm text-[#730000] dark:text-red-400'
-                      : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-white dark:bg-[#27272A] shadow-sm text-[var(--accent-text)] dark:text-[var(--accent-text)]'
+                      : 'text-slate-500 hover:text-[#09090B] dark:hover:text-white'
                   }`}
                 >
                   <Columns className="w-4 h-4" />
@@ -394,7 +394,7 @@ export const SquooshPage: React.FC = () => {
                 <button
                   onClick={() => setZoomLevel((z) => Math.max(1, z - 0.5))}
                   title="Zoom Out"
-                  className="p-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-white rounded-lg transition-colors"
+                  className="p-1.5 text-slate-500 hover:text-[#27272A] dark:hover:text-white rounded-lg transition-colors"
                 >
                   <ZoomOut className="w-4 h-4" />
                 </button>
@@ -404,7 +404,7 @@ export const SquooshPage: React.FC = () => {
                 <button
                   onClick={() => setZoomLevel((z) => Math.min(3, z + 0.5))}
                   title="Zoom In"
-                  className="p-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-white rounded-lg transition-colors"
+                  className="p-1.5 text-slate-500 hover:text-[#27272A] dark:hover:text-white rounded-lg transition-colors"
                 >
                   <ZoomIn className="w-4 h-4" />
                 </button>
@@ -414,12 +414,12 @@ export const SquooshPage: React.FC = () => {
             {/* Squoosh Interactive Canvas Area */}
             <div
               ref={sliderContainerRef}
-              className="relative w-full h-[460px] sm:h-[540px] rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-[size:16px_16px] flex items-center justify-center select-none cursor-crosshair shadow-sm"
+              className="relative w-full h-[460px] sm:h-[540px] rounded-3xl overflow-hidden border border-slate-200 dark:border-[#27272A] bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-[size:16px_16px] flex items-center justify-center select-none cursor-crosshair shadow-sm"
               onMouseDown={() => viewMode === 'split' && setIsDraggingSlider(true)}
               onTouchStart={() => viewMode === 'split' && setIsDraggingSlider(true)}
             >
               {isProcessingActive && (
-                <div className="absolute top-4 right-4 z-30 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 shadow-md backdrop-blur border border-slate-200 dark:border-slate-700 flex items-center space-x-2 text-xs font-semibold text-[#730000]">
+                <div className="absolute top-4 right-4 z-30 px-3 py-1.5 rounded-full bg-white/90 dark:bg-[#09090B]/90 shadow-md backdrop-blur border border-slate-200 dark:border-slate-700 flex items-center space-x-2 text-xs font-semibold text-[var(--accent-text)]">
                   <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                   <span>Squoosh encoding...</span>
                 </div>
@@ -467,8 +467,8 @@ export const SquooshPage: React.FC = () => {
                     className="absolute top-0 bottom-0 z-20 pointer-events-none"
                     style={{ left: `${sliderPos}%` }}
                   >
-                    <div className="w-0.5 h-full bg-[#730000] dark:bg-white shadow-[0_0_10px_rgba(115,0,0,0.5)] relative">
-                      <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#730000] text-white shadow-xl flex items-center justify-center cursor-ew-resize pointer-events-auto border-2 border-white transition-transform hover:scale-110 active:scale-95">
+                    <div className="w-0.5 h-full bg-[var(--accent)] dark:bg-white shadow-[0_0_10px_rgba(115,0,0,0.5)] relative">
+                      <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[var(--accent)] text-white shadow-xl flex items-center justify-center cursor-ew-resize pointer-events-auto border-2 border-white transition-transform hover:scale-110 active:scale-95">
                         <Split className="w-4 h-4 rotate-90" />
                       </div>
                     </div>
@@ -478,14 +478,14 @@ export const SquooshPage: React.FC = () => {
                   <div className="absolute bottom-4 left-4 z-10 px-2.5 py-1 rounded-lg bg-black/60 text-white text-[11px] font-semibold backdrop-blur">
                     Original ({formatFileSize(activeItem.originalSize)})
                   </div>
-                  <div className="absolute bottom-4 right-4 z-10 px-2.5 py-1 rounded-lg bg-[#730000]/90 text-white text-[11px] font-semibold backdrop-blur">
+                  <div className="absolute bottom-4 right-4 z-10 px-2.5 py-1 rounded-lg bg-[var(--accent-text)]/90 text-white text-[11px] font-semibold backdrop-blur">
                     Squoosh ({activeResult ? formatFileSize(activeResult.sizeBytes) : '...'})
                   </div>
                 </div>
               ) : (
                 /* Side-by-Side 2-Up Mode */
                 <div className="w-full h-full grid grid-cols-2 gap-2 p-2">
-                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 flex items-center justify-center">
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#27272A] bg-white/50 dark:bg-[#09090B]/50 flex items-center justify-center">
                     <img
                       src={activeItem.originalUrl}
                       alt="Original"
@@ -496,14 +496,14 @@ export const SquooshPage: React.FC = () => {
                       Original ({formatFileSize(activeItem.originalSize)})
                     </span>
                   </div>
-                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 flex items-center justify-center">
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#27272A] bg-white/50 dark:bg-[#09090B]/50 flex items-center justify-center">
                     <img
                       src={activeResult?.url || activeItem.originalUrl}
                       alt="Squoosh"
                       className="max-w-full max-h-full object-contain"
                       style={{ transform: `scale(${zoomLevel})` }}
                     />
-                    <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-[#730000] text-white text-[10px] font-bold">
+                    <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-[var(--accent)] text-white text-[10px] font-bold">
                       Squoosh ({activeResult ? formatFileSize(activeResult.sizeBytes) : '...'})
                     </span>
                   </div>
@@ -512,13 +512,13 @@ export const SquooshPage: React.FC = () => {
             </div>
 
             {/* Bottom Viewer Action Buttons */}
-            <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-white dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] shadow-sm">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-xl bg-[#730000]/10 text-[#730000] flex items-center justify-center font-bold text-xs uppercase">
+                <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] flex items-center justify-center font-bold text-xs uppercase">
                   {settings.codec}
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[220px] sm:max-w-[320px]">
+                  <p className="text-xs font-bold text-[#09090B] dark:text-white truncate max-w-[220px] sm:max-w-[320px]">
                     {activeItem.file.name}
                   </p>
                   <p className="text-[11px] text-slate-500">
@@ -532,7 +532,7 @@ export const SquooshPage: React.FC = () => {
                 <button
                   onClick={runActiveOptimization}
                   disabled={isProcessingActive}
-                  className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center space-x-1.5"
+                  className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-[#27272A] transition-colors flex items-center space-x-1.5"
                 >
                   <RefreshCw className={`w-3.5 h-3.5 ${isProcessingActive ? 'animate-spin' : ''}`} />
                   <span>Re-calculate</span>
@@ -540,7 +540,7 @@ export const SquooshPage: React.FC = () => {
                 <button
                   onClick={handleDownloadActive}
                   disabled={!activeResult}
-                  className="px-5 py-2 rounded-xl text-xs font-bold bg-[#730000] hover:bg-[#5a0000] text-white shadow-md shadow-[#730000]/25 transition-all flex items-center space-x-1.5 disabled:opacity-50"
+                  className="px-5 py-2 rounded-xl text-xs font-bold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/25 transition-all flex items-center space-x-1.5 disabled:opacity-50"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download This File</span>
@@ -549,14 +549,14 @@ export const SquooshPage: React.FC = () => {
             </div>
 
             {/* Batch Conversion Section (Requested specifically by user) */}
-            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-4 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div className="rounded-3xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] p-5 space-y-4 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-[#27272A] pb-3">
                 <div>
                   <div className="flex items-center space-x-2">
-                    <h3 className="font-extrabold text-sm text-slate-900 dark:text-white">
+                    <h3 className="font-extrabold text-sm text-[#09090B] dark:text-white">
                       Batch Processing Queue ({queue.length} files)
                     </h3>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#730000]/10 text-[#730000]">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--accent-text)]/10 text-[var(--accent-text)]">
                       Same User Settings
                     </span>
                   </div>
@@ -569,7 +569,7 @@ export const SquooshPage: React.FC = () => {
                   <button
                     onClick={handleRunBatch}
                     disabled={isBatchRunning}
-                    className="px-4 py-2 text-xs font-bold bg-[#730000] hover:bg-[#5a0000] text-white rounded-xl shadow-md transition-all flex items-center space-x-1.5 disabled:opacity-50"
+                    className="px-4 py-2 text-xs font-bold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-xl shadow-md transition-all flex items-center space-x-1.5 disabled:opacity-50"
                   >
                     {isBatchRunning ? (
                       <>
@@ -587,7 +587,7 @@ export const SquooshPage: React.FC = () => {
                   {completedBatchCount > 0 && (
                     <button
                       onClick={handleDownloadBatchZip}
-                      className="px-4 py-2 text-xs font-bold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 rounded-xl transition-all flex items-center space-x-1.5"
+                      className="px-4 py-2 text-xs font-bold bg-[#09090B] dark:bg-slate-100 text-white dark:text-[#09090B] hover:bg-[#27272A] rounded-xl transition-all flex items-center space-x-1.5"
                     >
                       <Archive className="w-3.5 h-3.5" />
                       <span>Download All ZIP ({completedBatchCount})</span>
@@ -610,8 +610,8 @@ export const SquooshPage: React.FC = () => {
                       onClick={() => setActiveIndex(idx)}
                       className={`flex items-center justify-between p-2.5 rounded-2xl border transition-all cursor-pointer ${
                         isSelected
-                          ? 'border-[#730000] bg-[#730000]/5 dark:bg-[#730000]/10'
-                          : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                          ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/5 dark:bg-[var(--accent-text)]/20'
+                          : 'border-slate-200 dark:border-[#27272A] hover:bg-slate-50 dark:hover:bg-[#27272A]/50'
                       }`}
                     >
                       <div className="flex items-center space-x-3 min-w-0">
@@ -621,7 +621,7 @@ export const SquooshPage: React.FC = () => {
                           className="w-10 h-10 rounded-xl object-cover border border-slate-200 dark:border-slate-700 shrink-0"
                         />
                         <div className="min-w-0">
-                          <p className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[180px] sm:max-w-xs">
+                          <p className="text-xs font-bold text-[#09090B] dark:text-white truncate max-w-[180px] sm:max-w-xs">
                             {item.file.name}
                           </p>
                           <div className="flex items-center space-x-2 text-[11px] text-slate-500">
@@ -629,10 +629,10 @@ export const SquooshPage: React.FC = () => {
                             {item.result && (
                               <>
                                 <ArrowRight className="w-3 h-3 text-slate-400" />
-                                <span className="font-bold text-[#730000] dark:text-red-400">
+                                <span className="font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)]">
                                   {formatFileSize(item.result.sizeBytes)}
                                 </span>
-                                <span className="text-[#730000] font-semibold">
+                                <span className="text-[var(--accent-text)] font-semibold">
                                   (↓ {Math.abs(Math.round(itemStats?.percentageSaved || 0))}%)
                                 </span>
                               </>
@@ -649,13 +649,13 @@ export const SquooshPage: React.FC = () => {
                           </span>
                         )}
                         {item.status === 'done' && (
-                          <span className="text-[10px] font-semibold text-[#580000] bg-[#730000]/10 dark:bg-[#580000]/60 px-2 py-0.5 rounded-full flex items-center space-x-1">
+                          <span className="text-[10px] font-semibold text-[var(--accent-hover)] bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] px-2 py-0.5 rounded-full flex items-center space-x-1">
                             <CheckCircle2 className="w-3 h-3" />
                             <span>Done</span>
                           </span>
                         )}
                         {item.status === 'error' && (
-                          <span className="text-[10px] font-semibold text-red-700 bg-red-50 dark:bg-red-950/60 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-semibold text-red-700 bg-red-50 dark:bg-[var(--accent-text-tint)] px-2 py-0.5 rounded-full">
                             Error
                           </span>
                         )}
@@ -665,7 +665,7 @@ export const SquooshPage: React.FC = () => {
                             e.stopPropagation();
                             handleRemoveItem(idx);
                           }}
-                          className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                          className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg hover:bg-slate-100 dark:hover:bg-[#27272A] transition-colors"
                           title="Remove item"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -691,7 +691,7 @@ export const SquooshPage: React.FC = () => {
 
           {/* Right Panel: Squoosh Encoders & Quality Tuning (5 cols) */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 space-y-6 shadow-sm">
+            <div className="rounded-3xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] p-6 space-y-6 shadow-sm">
               {/* Codec Selection Tabs */}
               <div>
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2">
@@ -715,8 +715,8 @@ export const SquooshPage: React.FC = () => {
                       }
                       className={`p-3 rounded-2xl border text-left transition-all ${
                         settings.codec === codec.id
-                          ? 'border-[#730000] bg-[#730000]/5 dark:bg-[#730000]/10 text-[#730000] dark:text-red-400 font-bold shadow-sm ring-1 ring-[#730000]'
-                          : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300'
+                          ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/5 dark:bg-[var(--accent-text)]/20 text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold shadow-sm ring-1 ring-[var(--accent-text)]'
+                          : 'border-slate-200 dark:border-[#27272A] hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300'
                       }`}
                     >
                       <div className="text-xs font-black">{codec.label}</div>
@@ -727,13 +727,13 @@ export const SquooshPage: React.FC = () => {
               </div>
 
               {/* Codec Fine Tuning Options */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-4">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#27272A]/60 border border-slate-200 dark:border-slate-700/80 space-y-4">
                 {settings.codec === 'mozjpeg' && (
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between text-xs font-bold mb-1">
                         <span className="text-slate-700 dark:text-slate-300">Quality:</span>
-                        <span className="text-[#730000] font-mono">{settings.mozjpeg.quality}</span>
+                        <span className="text-[var(--accent-text)] font-mono">{settings.mozjpeg.quality}</span>
                       </div>
                       <input
                         type="range"
@@ -746,7 +746,7 @@ export const SquooshPage: React.FC = () => {
                             mozjpeg: { ...prev.mozjpeg, quality: Number(e.target.value) },
                           }))
                         }
-                        className="w-full accent-[#730000]"
+                        className="w-full accent-[var(--accent-text)]"
                       />
                     </div>
 
@@ -764,7 +764,7 @@ export const SquooshPage: React.FC = () => {
                           }
                           className={`p-2 rounded-xl border text-center transition-colors ${
                             settings.mozjpeg.chromaSubsample === '4:2:0'
-                              ? 'bg-white dark:bg-slate-700 border-[#730000] text-[#730000]'
+                              ? 'bg-white dark:bg-slate-700 border-[var(--accent-text)] text-[var(--accent-text)]'
                               : 'border-slate-200 dark:border-slate-700 text-slate-600'
                           }`}
                         >
@@ -779,7 +779,7 @@ export const SquooshPage: React.FC = () => {
                           }
                           className={`p-2 rounded-xl border text-center transition-colors ${
                             settings.mozjpeg.chromaSubsample === '4:4:4'
-                              ? 'bg-white dark:bg-slate-700 border-[#730000] text-[#730000]'
+                              ? 'bg-white dark:bg-slate-700 border-[var(--accent-text)] text-[var(--accent-text)]'
                               : 'border-slate-200 dark:border-slate-700 text-slate-600'
                           }`}
                         >
@@ -791,7 +791,7 @@ export const SquooshPage: React.FC = () => {
                     <div>
                       <div className="flex justify-between text-xs font-bold mb-1">
                         <span className="text-slate-700 dark:text-slate-300">Smoothing:</span>
-                        <span className="text-[#730000] font-mono">{settings.mozjpeg.smoothing}</span>
+                        <span className="text-[var(--accent-text)] font-mono">{settings.mozjpeg.smoothing}</span>
                       </div>
                       <input
                         type="range"
@@ -804,7 +804,7 @@ export const SquooshPage: React.FC = () => {
                             mozjpeg: { ...prev.mozjpeg, smoothing: Number(e.target.value) },
                           }))
                         }
-                        className="w-full accent-[#730000]"
+                        className="w-full accent-[var(--accent-text)]"
                       />
                     </div>
                   </div>
@@ -826,7 +826,7 @@ export const SquooshPage: React.FC = () => {
                           }
                           className={`px-3 py-1 rounded-lg ${
                             settings.webp.mode === 'lossy'
-                              ? 'bg-white dark:bg-slate-900 text-[#730000] font-bold shadow-sm'
+                              ? 'bg-white dark:bg-[#09090B] text-[var(--accent-text)] font-bold shadow-sm'
                               : 'text-slate-600'
                           }`}
                         >
@@ -841,7 +841,7 @@ export const SquooshPage: React.FC = () => {
                           }
                           className={`px-3 py-1 rounded-lg ${
                             settings.webp.mode === 'lossless'
-                              ? 'bg-white dark:bg-slate-900 text-[#730000] font-bold shadow-sm'
+                              ? 'bg-white dark:bg-[#09090B] text-[var(--accent-text)] font-bold shadow-sm'
                               : 'text-slate-600'
                           }`}
                         >
@@ -854,7 +854,7 @@ export const SquooshPage: React.FC = () => {
                       <div>
                         <div className="flex justify-between text-xs font-bold mb-1">
                           <span className="text-slate-700 dark:text-slate-300">Quality:</span>
-                          <span className="text-[#730000] font-mono">{settings.webp.quality}</span>
+                          <span className="text-[var(--accent-text)] font-mono">{settings.webp.quality}</span>
                         </div>
                         <input
                           type="range"
@@ -867,7 +867,7 @@ export const SquooshPage: React.FC = () => {
                               webp: { ...prev.webp, quality: Number(e.target.value) },
                             }))
                           }
-                          className="w-full accent-[#730000]"
+                          className="w-full accent-[var(--accent-text)]"
                         />
                       </div>
                     )}
@@ -887,7 +887,7 @@ export const SquooshPage: React.FC = () => {
                             png: { ...prev.png, quantize: e.target.checked },
                           }))
                         }
-                        className="rounded accent-[#730000] w-4 h-4"
+                        className="rounded accent-[var(--accent-text)] w-4 h-4"
                       />
                     </label>
 
@@ -896,7 +896,7 @@ export const SquooshPage: React.FC = () => {
                         <div>
                           <div className="flex justify-between text-xs font-bold mb-1">
                             <span className="text-slate-700 dark:text-slate-300">Max Colors:</span>
-                            <span className="text-[#730000] font-mono">{settings.png.maxColors}</span>
+                            <span className="text-[var(--accent-text)] font-mono">{settings.png.maxColors}</span>
                           </div>
                           <div className="grid grid-cols-4 gap-1 text-[11px] font-semibold">
                             {[16, 32, 64, 128, 256].map((cols) => (
@@ -910,7 +910,7 @@ export const SquooshPage: React.FC = () => {
                                 }
                                 className={`py-1.5 rounded-lg border text-center ${
                                   settings.png.maxColors === cols
-                                    ? 'bg-[#730000] text-white border-[#730000]'
+                                    ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
                                     : 'border-slate-200 dark:border-slate-700 text-slate-600'
                                 }`}
                               >
@@ -930,7 +930,7 @@ export const SquooshPage: React.FC = () => {
                                 png: { ...prev.png, dither: e.target.checked },
                               }))
                             }
-                            className="rounded accent-[#730000]"
+                            className="rounded accent-[var(--accent-text)]"
                           />
                           <span>Floyd-Steinberg Dithering (prevents color banding)</span>
                         </label>
@@ -943,7 +943,7 @@ export const SquooshPage: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between text-xs font-bold mb-1">
                       <span className="text-slate-700 dark:text-slate-300">AVIF Quality:</span>
-                      <span className="text-[#730000] font-mono">{settings.avif.quality}</span>
+                      <span className="text-[var(--accent-text)] font-mono">{settings.avif.quality}</span>
                     </div>
                     <input
                       type="range"
@@ -956,7 +956,7 @@ export const SquooshPage: React.FC = () => {
                           avif: { ...prev.avif, quality: Number(e.target.value) },
                         }))
                       }
-                      className="w-full accent-[#730000]"
+                      className="w-full accent-[var(--accent-text)]"
                     />
                   </div>
                 )}
@@ -969,9 +969,9 @@ export const SquooshPage: React.FC = () => {
               </div>
 
               {/* Preprocessing Options: Resize, Rotate, Filters */}
-              <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-slate-800">
+              <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-[#27272A]">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#27272A] dark:text-white uppercase tracking-wider">
                     Resize Image
                   </span>
                   <input
@@ -983,12 +983,12 @@ export const SquooshPage: React.FC = () => {
                         resize: { ...prev.resize, enabled: e.target.checked },
                       }))
                     }
-                    className="rounded accent-[#730000] w-4 h-4 cursor-pointer"
+                    className="rounded accent-[var(--accent-text)] w-4 h-4 cursor-pointer"
                   />
                 </div>
 
                 {settings.resize.enabled && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 space-y-3">
+                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#27272A]/40 border border-slate-200 dark:border-slate-700/80 space-y-3">
                     <div className="grid grid-cols-5 gap-1 text-[11px] font-semibold">
                       {[25, 50, 75, 100, 150].map((pct) => (
                         <button
@@ -1001,7 +1001,7 @@ export const SquooshPage: React.FC = () => {
                           }
                           className={`py-1.5 rounded-lg border text-center ${
                             settings.resize.percent === pct
-                              ? 'bg-[#730000] text-white border-[#730000]'
+                              ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
                               : 'border-slate-200 dark:border-slate-700 text-slate-600'
                           }`}
                         >
@@ -1014,8 +1014,8 @@ export const SquooshPage: React.FC = () => {
               </div>
 
               {/* Rotate & Color Effects */}
-              <div className="space-y-3 pt-2 border-t border-slate-200 dark:border-slate-800">
-                <span className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider block">
+              <div className="space-y-3 pt-2 border-t border-slate-200 dark:border-[#27272A]">
+                <span className="text-xs font-bold text-[#27272A] dark:text-white uppercase tracking-wider block">
                   Rotate &amp; Visual Effects
                 </span>
 
@@ -1028,8 +1028,8 @@ export const SquooshPage: React.FC = () => {
                       }
                       className={`py-2 rounded-xl border text-center ${
                         settings.rotate === deg
-                          ? 'bg-[#730000] text-white border-[#730000]'
-                          : 'border-slate-200 dark:border-slate-800 text-slate-600'
+                          ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
+                          : 'border-slate-200 dark:border-[#27272A] text-slate-600'
                       }`}
                     >
                       {deg}°
@@ -1045,7 +1045,7 @@ export const SquooshPage: React.FC = () => {
                       onChange={(e) =>
                         setSettings((prev) => ({ ...prev, grayscale: e.target.checked }))
                       }
-                      className="rounded accent-[#730000]"
+                      className="rounded accent-[var(--accent-text)]"
                     />
                     <span>Grayscale</span>
                   </label>
@@ -1056,7 +1056,7 @@ export const SquooshPage: React.FC = () => {
                       onChange={(e) =>
                         setSettings((prev) => ({ ...prev, invert: e.target.checked }))
                       }
-                      className="rounded accent-[#730000]"
+                      className="rounded accent-[var(--accent-text)]"
                     />
                     <span>Invert</span>
                   </label>

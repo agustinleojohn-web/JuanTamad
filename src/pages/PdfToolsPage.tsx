@@ -319,11 +319,11 @@ export const PdfToolsPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Layers className="w-3.5 h-3.5" />
           <span>Complete PDF Power Suite</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           PDF Toolkit
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-2xl">
@@ -349,8 +349,8 @@ export const PdfToolsPage: React.FC = () => {
               onClick={() => setActiveCategory(cat.id as any)}
               className={`px-3.5 py-2 rounded-xl transition-all whitespace-nowrap ${
                 activeCategory === cat.id
-                  ? 'bg-slate-900 text-white dark:bg-[#730000] shadow-sm font-bold'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
+                  ? 'bg-[#09090B] text-white dark:bg-[var(--accent-text)]/20 shadow-sm font-bold'
+                  : 'bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300 hover:bg-slate-200'
               }`}
             >
               {cat.label}
@@ -365,7 +365,7 @@ export const PdfToolsPage: React.FC = () => {
             placeholder="Search PDF tools..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl text-xs border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#730000]/50 shadow-sm"
+            className="w-full px-3.5 py-2 rounded-xl text-xs border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#09090B] text-[#09090B] dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-text)]/50 shadow-sm"
           />
         </div>
       </div>
@@ -378,19 +378,19 @@ export const PdfToolsPage: React.FC = () => {
             <Link
               key={tool.id}
               to={tool.path}
-              className="group bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 hover:border-[#730000]/50 dark:hover:border-[#730000]/50 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)]/50 dark:hover:border-[var(--accent-text)]/50 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#730000]/10 dark:bg-[#580000]/60 text-[#730000] dark:text-[#730000]/40 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-700 dark:text-slate-300">
                     {tool.badge}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-[#730000]/40 transition-colors">
+                <h3 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)]/40 transition-colors">
                   {tool.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
@@ -398,7 +398,7 @@ export const PdfToolsPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-[#730000] dark:text-[#730000]/40 group-hover:translate-x-0.5 transition-transform">
+              <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A] flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
                 <span>Launch Tool</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>

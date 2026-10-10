@@ -87,11 +87,11 @@ export const ImageBlurFacePage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <EyeOff className="w-3.5 h-3.5" />
           <span>Face Blur &amp; Censor Studio</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Blur Faces &amp; Sensitive Data
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -110,10 +110,10 @@ export const ImageBlurFacePage: React.FC = () => {
           description="Supports JPG, PNG, and WebP"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -126,7 +126,7 @@ export const ImageBlurFacePage: React.FC = () => {
                 setImageSrc(null);
                 setResultBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change image</span>
@@ -139,7 +139,7 @@ export const ImageBlurFacePage: React.FC = () => {
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                 Censor Style:
               </span>
-              <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-slate-50 dark:bg-slate-800">
+              <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-slate-50 dark:bg-[#27272A]">
                 {[
                   { id: 'pixelate', label: 'Mosaic Pixelate' },
                   { id: 'blur', label: 'Gaussian Blur' },
@@ -150,7 +150,7 @@ export const ImageBlurFacePage: React.FC = () => {
                     onClick={() => setCensorType(s.id as any)}
                     className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors ${
                       censorType === s.id
-                        ? 'bg-[#730000] text-white'
+                        ? 'bg-[var(--accent)] text-white'
                         : 'text-slate-600 dark:text-slate-300'
                     }`}
                   >
@@ -162,15 +162,15 @@ export const ImageBlurFacePage: React.FC = () => {
 
             <button
               onClick={addBox}
-              className="px-3.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center space-x-1"
+              className="px-3.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#27272A] flex items-center space-x-1"
             >
-              <Plus className="w-3.5 h-3.5 text-[#730000]" />
+              <Plus className="w-3.5 h-3.5 text-[var(--accent-text)]" />
               <span>Add Censor Box</span>
             </button>
           </div>
 
           {/* Interactive Preview Container */}
-          <div className="relative w-full max-h-[500px] overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 flex items-center justify-center select-none">
+          <div className="relative w-full max-h-[500px] overflow-hidden rounded-xl border border-slate-200 dark:border-[#27272A] bg-[#000000] flex items-center justify-center select-none">
             <img
               ref={imgRef}
               src={imageSrc}
@@ -200,7 +200,7 @@ export const ImageBlurFacePage: React.FC = () => {
             {boxes.map((box, idx) => (
               <div
                 key={box.id}
-                className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 space-y-2 text-xs"
+                className="p-3.5 rounded-xl border border-slate-200 dark:border-[#27272A] bg-slate-50 dark:bg-[#27272A]/40 space-y-2 text-xs"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-700 dark:text-slate-300">
@@ -209,7 +209,7 @@ export const ImageBlurFacePage: React.FC = () => {
                   {boxes.length > 1 && (
                     <button
                       onClick={() => removeBox(box.id)}
-                      className="text-[#730000] hover:underline text-[11px]"
+                      className="text-[var(--accent-text)] hover:underline text-[11px]"
                     >
                       Remove
                     </button>
@@ -224,7 +224,7 @@ export const ImageBlurFacePage: React.FC = () => {
                       max={100 - box.width}
                       value={box.x}
                       onChange={(e) => updateBox(box.id, { x: Number(e.target.value) })}
-                      className="w-full accent-[#730000]"
+                      className="w-full accent-[var(--accent-text)]"
                     />
                   </div>
                   <div>
@@ -235,7 +235,7 @@ export const ImageBlurFacePage: React.FC = () => {
                       max={100 - box.height}
                       value={box.y}
                       onChange={(e) => updateBox(box.id, { y: Number(e.target.value) })}
-                      className="w-full accent-[#730000]"
+                      className="w-full accent-[var(--accent-text)]"
                     />
                   </div>
                   <div>
@@ -246,7 +246,7 @@ export const ImageBlurFacePage: React.FC = () => {
                       max={100 - box.x}
                       value={box.width}
                       onChange={(e) => updateBox(box.id, { width: Number(e.target.value) })}
-                      className="w-full accent-[#730000]"
+                      className="w-full accent-[var(--accent-text)]"
                     />
                   </div>
                   <div>
@@ -257,7 +257,7 @@ export const ImageBlurFacePage: React.FC = () => {
                       max={100 - box.y}
                       value={box.height}
                       onChange={(e) => updateBox(box.id, { height: Number(e.target.value) })}
-                      className="w-full accent-[#730000]"
+                      className="w-full accent-[var(--accent-text)]"
                     />
                   </div>
                 </div>
@@ -269,7 +269,7 @@ export const ImageBlurFacePage: React.FC = () => {
             <button
               onClick={handleApply}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Applying Censors...' : 'Apply Censor Mask'}</span>
@@ -278,7 +278,7 @@ export const ImageBlurFacePage: React.FC = () => {
             {resultBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#730000]/50 dark:hover:bg-[#730000] dark:text-slate-950 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[var(--accent-text)]/20 dark:hover:bg-[var(--accent)] dark:text-[#000000] shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Censored Image ({formatFileSize(resultBlob.size)})</span>

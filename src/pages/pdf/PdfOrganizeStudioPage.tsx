@@ -124,11 +124,11 @@ export const PdfOrganizeStudioPage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Layers className="w-3.5 h-3.5" />
           <span>Studio Workspace</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Organize PDF Studio
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -147,11 +147,11 @@ export const PdfOrganizeStudioPage: React.FC = () => {
           description="Drag, drop, rotate and duplicate pages in visual card studio"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
           {/* Controls Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -162,7 +162,7 @@ export const PdfOrganizeStudioPage: React.FC = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={reverseAll}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 flex items-center space-x-1"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-[#27272A] hover:bg-slate-200 text-slate-700 dark:text-slate-300 flex items-center space-x-1"
               >
                 <ArrowUpDown className="w-3.5 h-3.5" />
                 <span>Reverse Order</span>
@@ -173,7 +173,7 @@ export const PdfOrganizeStudioPage: React.FC = () => {
                   setPages([]);
                   setResultBlob(null);
                 }}
-                className="text-xs text-[#730000] hover:underline flex items-center space-x-1 pl-2"
+                className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1 pl-2"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Change file</span>
@@ -189,11 +189,11 @@ export const PdfOrganizeStudioPage: React.FC = () => {
               return (
                 <div
                   key={card.uniqueId}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 p-2.5 bg-slate-50 dark:bg-slate-950 flex flex-col justify-between shadow-sm group hover:border-[#730000]/50 transition-colors"
+                  className="rounded-xl border border-slate-200 dark:border-[#27272A] p-2.5 bg-slate-50 dark:bg-[#000000] flex flex-col justify-between shadow-sm group hover:border-[var(--accent-text)]/50 transition-colors"
                 >
                   {/* Top card header */}
                   <div className="flex items-center justify-between text-xs text-slate-500 mb-1.5">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">
+                    <span className="font-bold text-[#27272A] dark:text-slate-200">
                       Page {idx + 1}
                     </span>
                     <span className="text-[10px] text-slate-400">
@@ -202,7 +202,7 @@ export const PdfOrganizeStudioPage: React.FC = () => {
                   </div>
 
                   {/* Thumbnail */}
-                  <div className="h-36 w-full flex items-center justify-center overflow-hidden mb-2 rounded bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
+                  <div className="h-36 w-full flex items-center justify-center overflow-hidden mb-2 rounded bg-white dark:bg-[#09090B] border border-slate-100 dark:border-[#27272A]">
                     {thumbUrl ? (
                       <img
                         src={thumbUrl}
@@ -216,26 +216,26 @@ export const PdfOrganizeStudioPage: React.FC = () => {
                   </div>
 
                   {/* Action buttons */}
-                  <div className="grid grid-cols-4 gap-1 pt-1 border-t border-slate-200 dark:border-slate-800 text-slate-500">
+                  <div className="grid grid-cols-4 gap-1 pt-1 border-t border-slate-200 dark:border-[#27272A] text-slate-500">
                     <button
                       onClick={() => movePage(idx, 'left')}
                       disabled={idx === 0}
                       title="Move left"
-                      className="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center justify-center disabled:opacity-20"
+                      className="p-1 rounded hover:bg-slate-200 dark:hover:bg-[#27272A] flex items-center justify-center disabled:opacity-20"
                     >
                       <ArrowLeft className="w-3 h-3" />
                     </button>
                     <button
                       onClick={() => rotatePage(idx)}
                       title="Rotate 90°"
-                      className="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center justify-center text-[#730000]"
+                      className="p-1 rounded hover:bg-slate-200 dark:hover:bg-[#27272A] flex items-center justify-center text-[var(--accent-text)]"
                     >
                       <RotateCw className="w-3 h-3" />
                     </button>
                     <button
                       onClick={() => duplicatePage(idx)}
                       title="Duplicate page"
-                      className="p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center justify-center text-teal-600"
+                      className="p-1 rounded hover:bg-slate-200 dark:hover:bg-[#27272A] flex items-center justify-center text-teal-600"
                     >
                       <Copy className="w-3 h-3" />
                     </button>
@@ -243,7 +243,7 @@ export const PdfOrganizeStudioPage: React.FC = () => {
                       onClick={() => deletePage(idx)}
                       disabled={pages.length <= 1}
                       title="Delete page"
-                      className="p-1 rounded hover:bg-rose-100 dark:hover:bg-rose-950 text-[#730000] flex items-center justify-center disabled:opacity-20"
+                      className="p-1 rounded hover:bg-rose-100 dark:hover:bg-rose-950 text-[var(--accent-text)] flex items-center justify-center disabled:opacity-20"
                     >
                       <Trash2 className="w-3 h-3" />
                     </button>
@@ -258,7 +258,7 @@ export const PdfOrganizeStudioPage: React.FC = () => {
             <button
               onClick={handleExport}
               disabled={isProcessing || pages.length === 0}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>Save &amp; Export Organized PDF ({pages.length} Pages)</span>
@@ -267,7 +267,7 @@ export const PdfOrganizeStudioPage: React.FC = () => {
             {resultBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Organized PDF ({formatFileSize(resultBlob.size)})</span>

@@ -66,11 +66,11 @@ export const CsvToPdfPage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <FileSpreadsheet className="w-3.5 h-3.5" />
           <span>Tabular PDF Generator</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           CSV to PDF Converter
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -94,11 +94,11 @@ export const CsvToPdfPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Preview Table */}
           <div className="lg:col-span-8 space-y-4">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#27272A]">
                 <div className="flex items-center space-x-2">
-                  <Table className="w-4 h-4 text-[#730000]" />
-                  <span className="font-bold text-sm text-slate-900 dark:text-white truncate">
+                  <Table className="w-4 h-4 text-[var(--accent-text)]" />
+                  <span className="font-bold text-sm text-[#09090B] dark:text-white truncate">
                     {filename}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export const CsvToPdfPage: React.FC = () => {
                     setPreviewRows([]);
                     setPdfBlob(null);
                   }}
-                  className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+                  className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
                 >
                   <Trash2 className="w-3 h-3" />
                   <span>Remove file</span>
@@ -116,11 +116,11 @@ export const CsvToPdfPage: React.FC = () => {
               </div>
 
               {/* Data preview */}
-              <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-xl">
+              <div className="overflow-x-auto border border-slate-200 dark:border-[#27272A] rounded-xl">
                 <table className="w-full text-left text-xs">
                   {previewRows.length > 0 && (
                     <>
-                      <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-slate-800">
+                      <thead className="bg-slate-50 dark:bg-[#27272A]/80 text-slate-600 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-[#27272A]">
                         <tr>
                           {previewRows[0].map((headerCell, i) => (
                             <th key={i} className="p-2.5 whitespace-nowrap">
@@ -129,9 +129,9 @@ export const CsvToPdfPage: React.FC = () => {
                           ))}
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                      <tbody className="divide-y divide-slate-100 dark:divide-[#27272A]">
                         {previewRows.slice(1).map((row, rIdx) => (
-                          <tr key={rIdx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                          <tr key={rIdx} className="hover:bg-slate-50/50 dark:hover:bg-[#27272A]/40">
                             {row.map((cell, cIdx) => (
                               <td key={cIdx} className="p-2.5 whitespace-nowrap text-slate-700 dark:text-slate-300">
                                 {cell}
@@ -147,15 +147,15 @@ export const CsvToPdfPage: React.FC = () => {
 
               <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
                 <span>Showing first {previewRows.length} rows preview</span>
-                <span className="text-[#730000] font-semibold">Ready for PDF generation</span>
+                <span className="text-[var(--accent-text)] font-semibold">Ready for PDF generation</span>
               </div>
             </div>
           </div>
 
           {/* Right: PDF Settings */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-              <h3 className="font-bold text-slate-900 dark:text-white text-base pb-2 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-5">
+              <h3 className="font-bold text-[#09090B] dark:text-white text-base pb-2 border-b border-slate-100 dark:border-[#27272A]">
                 Table Layout Settings
               </h3>
 
@@ -172,7 +172,7 @@ export const CsvToPdfPage: React.FC = () => {
                     }}
                     className={`py-2 rounded-lg font-bold border ${
                       orientation === 'landscape'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -185,7 +185,7 @@ export const CsvToPdfPage: React.FC = () => {
                     }}
                     className={`py-2 rounded-lg font-bold border ${
                       orientation === 'portrait'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -198,7 +198,7 @@ export const CsvToPdfPage: React.FC = () => {
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs font-semibold">
                   <span className="text-slate-700 dark:text-slate-300">Table Font Size</span>
-                  <span className="text-[#730000]">{fontSize}pt</span>
+                  <span className="text-[var(--accent-text)]">{fontSize}pt</span>
                 </div>
                 <input
                   type="range"
@@ -209,12 +209,12 @@ export const CsvToPdfPage: React.FC = () => {
                     setFontSize(parseInt(e.target.value, 10));
                     setPdfBlob(null);
                   }}
-                  className="w-full accent-[#730000] cursor-pointer"
+                  className="w-full accent-[var(--accent-text)] cursor-pointer"
                 />
               </div>
 
               {/* Header options */}
-              <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
+              <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-[#27272A] text-xs">
                 <label className="flex items-center space-x-2 text-slate-700 dark:text-slate-300 cursor-pointer">
                   <input
                     type="checkbox"
@@ -223,7 +223,7 @@ export const CsvToPdfPage: React.FC = () => {
                       setIncludeHeaders(e.target.checked);
                       setPdfBlob(null);
                     }}
-                    className="rounded accent-[#730000]"
+                    className="rounded accent-[var(--accent-text)]"
                   />
                   <span>First row is column header</span>
                 </label>
@@ -235,7 +235,7 @@ export const CsvToPdfPage: React.FC = () => {
                       setRepeatHeaders(e.target.checked);
                       setPdfBlob(null);
                     }}
-                    className="rounded accent-[#730000]"
+                    className="rounded accent-[var(--accent-text)]"
                   />
                   <span>Repeat header on every page</span>
                 </label>
@@ -246,7 +246,7 @@ export const CsvToPdfPage: React.FC = () => {
                 <button
                   onClick={handleConvert}
                   disabled={isProcessing}
-                  className="w-full py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+                  className="w-full py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
                 >
                   <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
                   <span>Convert Table to PDF</span>
@@ -255,7 +255,7 @@ export const CsvToPdfPage: React.FC = () => {
                 {pdfBlob && (
                   <button
                     onClick={handleDownload}
-                    className="w-full py-3 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                    className="w-full py-3 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download PDF ({formatFileSize(pdfBlob.size)})</span>

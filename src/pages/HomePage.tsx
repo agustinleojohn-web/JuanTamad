@@ -615,8 +615,8 @@ export const HomePage: React.FC = () => {
     <div className="space-y-16 sm:space-y-24 pb-16">
       {/* Hero Section - Full Screen Height */}
       <section className="relative overflow-hidden min-h-[100vh] h-screen flex items-center px-4 sm:px-6 lg:px-8">
-        {/* Subtle background glow with #730000 accent */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[360px] bg-[#730000]/5 blur-3xl rounded-full -z-10 pointer-events-none" />
+        {/* Subtle background glow with var(--accent-text) accent */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[360px] bg-[var(--accent-text)]/5 blur-3xl rounded-full -z-10 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
         
@@ -639,46 +639,46 @@ export const HomePage: React.FC = () => {
 
             {/* Right Text Column */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="uppercase inline-flex items-center space-x-2 py-1.5 rounded-full text-xs font-bold text-[#730000] dark:bg-red-950/60 dark:text-red-300  animate-fade-in">
+            <div className="uppercase inline-flex items-center space-x-2 py-1.5 rounded-full text-xs font-bold text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]  animate-fade-in">
              
               <span>Image tools . File conversion . Zero hassle.</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-6xl font-black text-[#09090B] dark:text-white tracking-tight leading-[1.08]">
               Your Files.{' '}<br></br>
-              <span className="text-[#730000] dark:text-red-400">
+              <span className="text-[var(--accent-text)] dark:text-[var(--accent-text)]">
                 JUAN click away.
               </span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
-              Relax like Juan Tamad! Batch optimize images with <strong className="text-[#730000] dark:text-red-400 font-bold">Image Compressor</strong>, convert documents, and manipulate PDFs effortlessly with zero uploads and zero setup.
+              Relax like Juan Tamad! Batch optimize images with <strong className="text-[var(--accent-text)] dark:text-[var(--accent-text)] font-bold">Image Compressor</strong>, convert documents, and manipulate PDFs effortlessly with zero uploads and zero setup.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Link
                 to="/image-tools/compress"
-                className="px-6 py-4 rounded-2xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-xl shadow-[#730000]/25 flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]"
+                className="px-6 py-4 rounded-2xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-xl shadow-[var(--accent-text)]/25 flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]"
               >
                 <Sliders className="w-4 h-4" />
                 <span>Optimize Image</span>
               </Link>
               <Link
                 to="/pdf-tools"
-                className="px-6 py-4 rounded-2xl font-bold text-sm bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:border-[#730000] shadow-sm flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]"
+                className="px-6 py-4 rounded-2xl font-bold text-sm bg-white dark:bg-[#09090B] text-[#27272A] dark:text-slate-200 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] shadow-sm flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]"
               >
-                <Files className="w-4 h-4 text-[#730000]" />
+                <Files className="w-4 h-4 text-[var(--accent-text)]" />
                 <span>Explore PDF Toolkit</span>
               </Link>
             </div>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 pt-1">
               <div className="flex items-center space-x-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#730000]" />
+                <ShieldCheck className="w-4 h-4 text-[var(--accent-text)]" />
                 <span>100% On-Device Processing</span>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Zap className="w-4 h-4 text-[#730000]" />
+                <Zap className="w-4 h-4 text-[var(--accent-text)]" />
                 <span>Image Compressor</span>
               </div>
             </div>
@@ -689,10 +689,10 @@ export const HomePage: React.FC = () => {
       {/* Tool Discovery Section (Grouped with View All Links) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
-          <span className="text-xs font-bold text-[#730000] uppercase tracking-wider block mb-1">
+          <span className="text-xs font-bold text-[var(--accent-text)] uppercase tracking-wider block mb-1">
             Toolkit Directory
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
             Instant Client-Side Tools
           </h2>
         </div>
@@ -700,10 +700,10 @@ export const HomePage: React.FC = () => {
         <div className="space-y-16">
           {/* 1. Image Studio Group */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] pb-4">
               <div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white flex items-center space-x-2">
-                  <Sliders className="w-5 h-5 text-[#730000]" />
+                <h3 className="text-xl font-black text-[#09090B] dark:text-white flex items-center space-x-2">
+                  <Sliders className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>Image Studio</span>
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -712,7 +712,7 @@ export const HomePage: React.FC = () => {
               </div>
               <Link
                 to="/image-tools"
-                className="text-xs font-bold text-[#730000] dark:text-red-400 hover:underline flex items-center space-x-1"
+                className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:underline flex items-center space-x-1"
               >
                 <span>View all ({ALL_TOOLS.filter((t) => t.category === 'image').length})</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -727,25 +727,25 @@ export const HomePage: React.FC = () => {
                     <Link
                       key={tool.id}
                       to={tool.path}
-                      className="group bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 hover:border-[#730000] dark:hover:border-[#730000] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                      className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] dark:hover:border-[var(--accent-text)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-[#730000]/10 text-[#730000] dark:text-red-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
                             <Icon className="w-5 h-5" />
                           </div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
                             {tool.badge}
                           </span>
                         </div>
-                        <h4 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-400 transition-colors">
+                        <h4 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">
                           {tool.title}
                         </h4>
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed line-clamp-2">
                           {tool.description}
                         </p>
                       </div>
-                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold text-[#730000] dark:text-red-400 group-hover:translate-x-0.5 transition-transform">
+                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A]/80 flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
                         <span>Open Tool</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
@@ -757,10 +757,10 @@ export const HomePage: React.FC = () => {
 
           {/* 2. Document Converters Group */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] pb-4">
               <div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-[#730000]" />
+                <h3 className="text-xl font-black text-[#09090B] dark:text-white flex items-center space-x-2">
+                  <FileText className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>Document Converters</span>
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -769,7 +769,7 @@ export const HomePage: React.FC = () => {
               </div>
               <Link
                 to="/document-tools"
-                className="text-xs font-bold text-[#730000] dark:text-red-400 hover:underline flex items-center space-x-1"
+                className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:underline flex items-center space-x-1"
               >
                 <span>View all ({ALL_TOOLS.filter((t) => t.category === 'document').length})</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -784,25 +784,25 @@ export const HomePage: React.FC = () => {
                     <Link
                       key={tool.id}
                       to={tool.path}
-                      className="group bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 hover:border-[#730000] dark:hover:border-[#730000] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                      className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] dark:hover:border-[var(--accent-text)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-[#730000]/10 text-[#730000] dark:text-red-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
                             <Icon className="w-5 h-5" />
                           </div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
                             {tool.badge}
                           </span>
                         </div>
-                        <h4 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-400 transition-colors">
+                        <h4 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">
                           {tool.title}
                         </h4>
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed line-clamp-2">
                           {tool.description}
                         </p>
                       </div>
-                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold text-[#730000] dark:text-red-400 group-hover:translate-x-0.5 transition-transform">
+                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A]/80 flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
                         <span>Open Tool</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
@@ -814,10 +814,10 @@ export const HomePage: React.FC = () => {
 
           {/* 3. PDF Toolkit Group */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#27272A] pb-4">
               <div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white flex items-center space-x-2">
-                  <Files className="w-5 h-5 text-[#730000]" />
+                <h3 className="text-xl font-black text-[#09090B] dark:text-white flex items-center space-x-2">
+                  <Files className="w-5 h-5 text-[var(--accent-text)]" />
                   <span>PDF Toolkit</span>
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -826,7 +826,7 @@ export const HomePage: React.FC = () => {
               </div>
               <Link
                 to="/pdf-tools"
-                className="text-xs font-bold text-[#730000] dark:text-red-400 hover:underline flex items-center space-x-1"
+                className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:underline flex items-center space-x-1"
               >
                 <span>View all ({ALL_TOOLS.filter((t) => t.category === 'pdf').length})</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -841,25 +841,25 @@ export const HomePage: React.FC = () => {
                     <Link
                       key={tool.id}
                       to={tool.path}
-                      className="group bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 hover:border-[#730000] dark:hover:border-[#730000] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                      className="group bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)] dark:hover:border-[var(--accent-text)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-[#730000]/10 text-[#730000] dark:text-red-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                          <div className="w-10 h-10 rounded-xl bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
                             <Icon className="w-5 h-5" />
                           </div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
                             {tool.badge}
                           </span>
                         </div>
-                        <h4 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-red-400 transition-colors">
+                        <h4 className="font-bold text-base text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)] transition-colors">
                           {tool.title}
                         </h4>
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed line-clamp-2">
                           {tool.description}
                         </p>
                       </div>
-                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold text-[#730000] dark:text-red-400 group-hover:translate-x-0.5 transition-transform">
+                      <div className="mt-5 pt-3 border-t border-slate-100 dark:border-[#27272A]/80 flex items-center justify-between text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-0.5 transition-transform">
                         <span>Open Tool</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
@@ -873,7 +873,7 @@ export const HomePage: React.FC = () => {
 
       {/* Mascot Featured CTA Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#730000] to-[#990000] text-white p-8 sm:p-12 shadow-xl shadow-[#730000]/20">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[var(--accent-text)] to-[var(--accent-hover)] text-white p-8 sm:p-12 shadow-xl shadow-[var(--accent-text)]/20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-6 space-y-4">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur border border-white/30">
@@ -888,7 +888,7 @@ export const HomePage: React.FC = () => {
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <Link
                   to="/image-tools/compress"
-                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-white text-[#730000] hover:bg-rose-50 shadow-lg transition-transform hover:scale-105 flex items-center space-x-2"
+                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-white text-[var(--accent-text)] hover:bg-rose-50 shadow-lg transition-transform hover:scale-105 flex items-center space-x-2"
                 >
                   <Sliders className="w-4 h-4" />
                   <span>Open Image Compressor</span>
@@ -919,12 +919,12 @@ export const HomePage: React.FC = () => {
 
       {/* How It Works Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-8 sm:p-12">
+        <div className="rounded-3xl bg-slate-50 dark:bg-[#09090B]/60 border border-slate-200 dark:border-[#27272A] p-8 sm:p-12">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold text-[#730000] dark:text-red-400 uppercase tracking-wider block mb-1">
+            <span className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] uppercase tracking-wider block mb-1">
               Seamless Workflow
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white">
               How Local Processing Works
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
@@ -934,10 +934,10 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#730000] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[#730000]/20">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[var(--accent-text)]/20">
                 1
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">
+              <h3 className="font-bold text-base text-[#09090B] dark:text-white">
                 Drop Your Files
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
@@ -946,10 +946,10 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#730000] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[#730000]/20">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[var(--accent-text)]/20">
                 2
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">
+              <h3 className="font-bold text-base text-[#09090B] dark:text-white">
                 Inspect &amp; Tune
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
@@ -958,10 +958,10 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#730000] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[#730000]/20">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-extrabold flex items-center justify-center text-lg shadow-md shadow-[var(--accent-text)]/20">
                 3
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">
+              <h3 className="font-bold text-base text-[#09090B] dark:text-white">
                 Download Instantly
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
@@ -975,10 +975,10 @@ export const HomePage: React.FC = () => {
       {/* Supported Formats Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="text-xs font-bold text-[#730000] dark:text-red-400 uppercase tracking-wider block mb-1">
+          <span className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] uppercase tracking-wider block mb-1">
             Format Compatibility
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white">
             Supported Formats &amp; Standards
           </h2>
         </div>
@@ -1000,9 +1000,9 @@ export const HomePage: React.FC = () => {
           ].map((fmt) => (
             <div
               key={fmt.ext}
-              className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col items-center justify-center hover:border-[#730000] transition-colors"
+              className="p-3 rounded-xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] flex flex-col items-center justify-center hover:border-[var(--accent-text)] transition-colors"
             >
-              <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+              <span className="font-extrabold text-sm text-[#09090B] dark:text-white">
                 {fmt.ext}
               </span>
               <span className="text-[10px] text-slate-400 mt-0.5">{fmt.desc}</span>
@@ -1014,10 +1014,10 @@ export const HomePage: React.FC = () => {
       {/* FAQ Section */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center">
-          <span className="text-xs font-bold text-[#730000] dark:text-red-400 uppercase tracking-wider block mb-1">
+          <span className="text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] uppercase tracking-wider block mb-1">
             Questions &amp; Answers
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white">
             Frequently Asked Questions
           </h2>
         </div>
@@ -1028,21 +1028,21 @@ export const HomePage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden"
+                className="rounded-2xl border border-slate-200 dark:border-[#27272A] bg-white dark:bg-[#09090B] overflow-hidden"
               >
                 <button
                   onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center justify-between transition-colors hover:text-[#730000]"
+                  className="w-full p-4 sm:p-5 text-left font-bold text-sm sm:text-base text-[#09090B] dark:text-white flex items-center justify-between transition-colors hover:text-[var(--accent-text)]"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
-                      isOpen ? 'rotate-180 text-[#730000]' : ''
+                      isOpen ? 'rotate-180 text-[var(--accent-text)]' : ''
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-[#27272A]/60 pt-3">
                     {faq.a}
                   </div>
                 )}

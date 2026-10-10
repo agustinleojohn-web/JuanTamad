@@ -137,11 +137,11 @@ export const ImageObjectRemoverPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Eraser className="w-3.5 h-3.5" />
           <span>Magic Inpaint Eraser</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Object Remover
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -160,10 +160,10 @@ export const ImageObjectRemoverPage: React.FC = () => {
           description="Erase power lines, text, blemishes, or background people"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -176,7 +176,7 @@ export const ImageObjectRemoverPage: React.FC = () => {
                 setImageSrc(null);
                 setResultBlob(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change image</span>
@@ -184,7 +184,7 @@ export const ImageObjectRemoverPage: React.FC = () => {
           </div>
 
           {/* Eraser Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 dark:bg-[#27272A]/60 border border-slate-200 dark:border-[#27272A]">
             <div className="flex items-center space-x-3 w-full sm:w-auto">
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 shrink-0">
                 Brush Radius: {brushSize}px
@@ -195,7 +195,7 @@ export const ImageObjectRemoverPage: React.FC = () => {
                 max="80"
                 value={brushSize}
                 onChange={(e) => setBrushSize(Number(e.target.value))}
-                className="w-48 accent-[#730000]"
+                className="w-48 accent-[var(--accent-text)]"
               />
             </div>
 
@@ -209,7 +209,7 @@ export const ImageObjectRemoverPage: React.FC = () => {
           </div>
 
           {/* Interactive Painting Canvas */}
-          <div className="relative w-full max-h-[500px] overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 flex items-center justify-center select-none">
+          <div className="relative w-full max-h-[500px] overflow-hidden rounded-xl border border-slate-200 dark:border-[#27272A] bg-[#000000] flex items-center justify-center select-none">
             <canvas
               ref={canvasRef}
               className="max-h-[480px] w-auto max-w-full object-contain"
@@ -234,7 +234,7 @@ export const ImageObjectRemoverPage: React.FC = () => {
             <button
               onClick={handleErase}
               disabled={isProcessing}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>{isProcessing ? 'Inpainting Pixels...' : 'Erase Painted Object'}</span>
@@ -243,7 +243,7 @@ export const ImageObjectRemoverPage: React.FC = () => {
             {resultBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-[#730000]/50 dark:hover:bg-[#730000] dark:text-slate-950 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[var(--accent-text)]/20 dark:hover:bg-[var(--accent)] dark:text-[#000000] shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Healed Image</span>

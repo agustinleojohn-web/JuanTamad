@@ -52,11 +52,11 @@ export const PdfExtractTextPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <FileText className="w-3.5 h-3.5" />
           <span>Local Text Extractor</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Extract Text from PDF
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -75,10 +75,10 @@ export const PdfExtractTextPage: React.FC = () => {
           description="Instant plain text extraction across all document pages"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -90,7 +90,7 @@ export const PdfExtractTextPage: React.FC = () => {
               <button
                 onClick={handleCopy}
                 disabled={!text}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30 hover:bg-[#730000]/10 flex items-center space-x-1"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] hover:bg-[var(--accent-text)]/10 flex items-center space-x-1"
               >
                 {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copied ? 'Copied' : 'Copy All'}</span>
@@ -98,7 +98,7 @@ export const PdfExtractTextPage: React.FC = () => {
               <button
                 onClick={handleDownloadTxt}
                 disabled={!text}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center space-x-1"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 flex items-center space-x-1"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Export .TXT</span>
@@ -108,7 +108,7 @@ export const PdfExtractTextPage: React.FC = () => {
                   setFile(null);
                   setText('');
                 }}
-                className="text-xs text-[#730000] hover:underline pl-2"
+                className="text-xs text-[var(--accent-text)] hover:underline pl-2"
               >
                 Change
               </button>
@@ -123,12 +123,12 @@ export const PdfExtractTextPage: React.FC = () => {
               placeholder="Search in extracted text..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl text-xs border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+              className="w-full pl-9 pr-4 py-2 rounded-xl text-xs border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-[#09090B] dark:text-white"
             />
           </div>
 
           {/* Text Area display */}
-          <div className="h-96 overflow-y-auto p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 font-mono text-xs text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
+          <div className="h-96 overflow-y-auto p-4 rounded-xl border border-slate-200 dark:border-[#27272A] bg-slate-50 dark:bg-[#000000] font-mono text-xs text-[#27272A] dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
             {isProcessing ? (
               <span className="text-slate-400 flex items-center space-x-2">
                 <RefreshCw className="w-4 h-4 animate-spin" />

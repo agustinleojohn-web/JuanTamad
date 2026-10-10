@@ -46,11 +46,11 @@ export const HtmlToPdfPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <FileCode className="w-3.5 h-3.5" />
           <span>Sanitized HTML Converter</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           HTML to PDF Converter
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -63,9 +63,9 @@ export const HtmlToPdfPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Editor & Dropzone */}
         <div className="lg:col-span-8 space-y-4">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-              <span className="font-bold text-sm text-slate-900 dark:text-white">
+          <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#27272A]">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white">
                 HTML Source Code
               </span>
               <button
@@ -73,7 +73,7 @@ export const HtmlToPdfPage: React.FC = () => {
                   setHtmlContent('');
                   setPdfBlob(null);
                 }}
-                className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+                className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
               >
                 <Trash2 className="w-3 h-3" />
                 <span>Clear</span>
@@ -88,7 +88,7 @@ export const HtmlToPdfPage: React.FC = () => {
               }}
               rows={14}
               placeholder="Paste HTML here or drop an HTML file..."
-              className="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-mono text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#730000]/50"
+              className="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#000000] text-[#09090B] dark:text-white font-mono text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-text)]/50"
             />
 
             <div className="pt-2">
@@ -106,8 +106,8 @@ export const HtmlToPdfPage: React.FC = () => {
 
         {/* Right: PDF Settings */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-            <h3 className="font-bold text-slate-900 dark:text-white text-base pb-2 border-b border-slate-100 dark:border-slate-800">
+          <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-5">
+            <h3 className="font-bold text-[#09090B] dark:text-white text-base pb-2 border-b border-slate-100 dark:border-[#27272A]">
               PDF Options
             </h3>
 
@@ -121,7 +121,7 @@ export const HtmlToPdfPage: React.FC = () => {
                   onClick={() => setPageSize('a4')}
                   className={`py-2 rounded-lg font-bold border ${
                     pageSize === 'a4'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -131,7 +131,7 @@ export const HtmlToPdfPage: React.FC = () => {
                   onClick={() => setPageSize('letter')}
                   className={`py-2 rounded-lg font-bold border ${
                     pageSize === 'letter'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -150,7 +150,7 @@ export const HtmlToPdfPage: React.FC = () => {
                   onClick={() => setOrientation('portrait')}
                   className={`py-2 rounded-lg font-bold border ${
                     orientation === 'portrait'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -160,7 +160,7 @@ export const HtmlToPdfPage: React.FC = () => {
                   onClick={() => setOrientation('landscape')}
                   className={`py-2 rounded-lg font-bold border ${
                     orientation === 'landscape'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -181,7 +181,7 @@ export const HtmlToPdfPage: React.FC = () => {
                     onClick={() => setMargin(m)}
                     className={`py-1.5 rounded-lg border font-semibold ${
                       margin === m
-                        ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -196,7 +196,7 @@ export const HtmlToPdfPage: React.FC = () => {
               <button
                 onClick={handleConvert}
                 disabled={isProcessing || !htmlContent.trim()}
-                className="w-full py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+                className="w-full py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
               >
                 <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
                 <span>Generate PDF</span>
@@ -205,7 +205,7 @@ export const HtmlToPdfPage: React.FC = () => {
               {pdfBlob && (
                 <button
                   onClick={handleDownload}
-                  className="w-full py-3 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                  className="w-full py-3 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download PDF ({formatFileSize(pdfBlob.size)})</span>

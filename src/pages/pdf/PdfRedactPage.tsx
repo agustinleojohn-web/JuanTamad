@@ -125,11 +125,11 @@ export const PdfRedactPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <EyeOff className="w-3.5 h-3.5" />
           <span>Confidentiality Protection</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Redact &amp; Blackout PDF
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -148,10 +148,10 @@ export const PdfRedactPage: React.FC = () => {
           description="Click & drag over confidential content to blackout permanently"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -181,14 +181,14 @@ export const PdfRedactPage: React.FC = () => {
             </div>
           </div>
 
-          <p className="text-xs text-[#580000] dark:text-[#730000]/40 font-medium">
+          <p className="text-xs text-[var(--accent-hover)] dark:text-[var(--accent-text)] font-medium">
             💡 Click and drag directly on the page below to create a blacked-out area.
           </p>
 
           {/* Interactive Redaction Canvas Container */}
-          <div className="flex justify-center bg-slate-100 dark:bg-slate-950 p-4 rounded-xl overflow-auto">
+          <div className="flex justify-center bg-slate-100 dark:bg-[#000000] p-4 rounded-xl overflow-auto">
             <div
-              className="relative inline-block cursor-crosshair select-none shadow-md rounded border border-slate-200 dark:border-slate-800"
+              className="relative inline-block cursor-crosshair select-none shadow-md rounded border border-slate-200 dark:border-[#27272A]"
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
@@ -212,7 +212,7 @@ export const PdfRedactPage: React.FC = () => {
               {/* In-progress drag rectangle */}
               {dragStart && dragCurrent && (
                 <div
-                  className="absolute bg-black/80 border-2 border-[#730000]/50 pointer-events-none"
+                  className="absolute bg-black/80 border-2 border-[var(--accent-text)]/50 pointer-events-none"
                   style={{
                     left: `${Math.min(dragStart.x, dragCurrent.x)}%`,
                     top: `${Math.min(dragStart.y, dragCurrent.y)}%`,
@@ -234,12 +234,12 @@ export const PdfRedactPage: React.FC = () => {
                 {redactions.map((r, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300"
+                    className="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#27272A] text-xs text-slate-700 dark:text-slate-300"
                   >
                     <span>Box #{idx + 1} (p. {r.pageNumber})</span>
                     <button
                       onClick={() => removeRedaction(idx)}
-                      className="text-[#730000] hover:text-rose-700 ml-1"
+                      className="text-[var(--accent-text)] hover:text-rose-700 ml-1"
                     >
                       ×
                     </button>
@@ -253,7 +253,7 @@ export const PdfRedactPage: React.FC = () => {
             <button
               onClick={handleApply}
               disabled={isProcessing || redactions.length === 0}
-              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>Burn {redactions.length} Blackouts Permanently</span>
@@ -262,7 +262,7 @@ export const PdfRedactPage: React.FC = () => {
             {resultBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Redacted PDF</span>

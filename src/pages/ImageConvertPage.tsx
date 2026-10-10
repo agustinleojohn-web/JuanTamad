@@ -125,11 +125,11 @@ export const ImageConvertPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+          <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
             <ArrowRightLeft className="w-3.5 h-3.5" />
             <span>Format Transformation</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
             Image Converter
           </h1>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -142,7 +142,7 @@ export const ImageConvertPage: React.FC = () => {
             <button
               onClick={convertAll}
               disabled={isProcessing}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>Convert All ({files.length})</span>
@@ -150,7 +150,7 @@ export const ImageConvertPage: React.FC = () => {
             <button
               onClick={downloadAllZip}
               disabled={!files.some((f) => f.resultBlob)}
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-sm flex items-center space-x-1.5 transition-colors disabled:opacity-50"
             >
               <Archive className="w-4 h-4" />
               <span>Download ZIP</span>
@@ -169,7 +169,7 @@ export const ImageConvertPage: React.FC = () => {
       <PrivacyNotice toolName="Image Converter" />
 
       {/* Global Controls */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
           <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
             Convert All To:
@@ -181,8 +181,8 @@ export const ImageConvertPage: React.FC = () => {
                 onClick={() => handleGlobalFormatChange(fmt)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all ${
                   globalFormat === fmt
-                    ? 'bg-[#730000] text-white shadow-sm'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                    ? 'bg-[var(--accent)] text-white shadow-sm'
+                    : 'bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                 }`}
               >
                 {fmt}
@@ -200,7 +200,7 @@ export const ImageConvertPage: React.FC = () => {
               max="100"
               value={quality}
               onChange={(e) => setQuality(parseInt(e.target.value, 10))}
-              className="accent-[#730000] w-28 cursor-pointer"
+              className="accent-[var(--accent-text)] w-28 cursor-pointer"
             />
           </div>
         )}
@@ -218,10 +218,10 @@ export const ImageConvertPage: React.FC = () => {
         </div>
       ) : (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+          <div className="bg-white dark:bg-[#09090B] rounded-2xl border border-slate-200 dark:border-[#27272A] overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-500 border-b border-slate-200 dark:border-slate-800 font-semibold">
+                <thead className="bg-slate-50 dark:bg-[#27272A]/80 text-slate-500 border-b border-slate-200 dark:border-[#27272A] font-semibold">
                   <tr>
                     <th className="p-4">File Name</th>
                     <th className="p-4">Original</th>
@@ -230,19 +230,19 @@ export const ImageConvertPage: React.FC = () => {
                     <th className="p-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                <tbody className="divide-y divide-slate-100 dark:divide-[#27272A]">
                   {files.map((item, idx) => {
                     const ext = getFileExtension(item.file.name).toUpperCase();
 
                     return (
-                      <tr key={item.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                      <tr key={item.id} className="hover:bg-slate-50/50 dark:hover:bg-[#27272A]/40">
                         <td className="p-4">
-                          <div className="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-xs">
+                          <div className="font-semibold text-[#27272A] dark:text-slate-200 truncate max-w-xs">
                             {item.file.name}
                           </div>
                         </td>
                         <td className="p-4 text-slate-500">
-                          <span className="uppercase font-medium px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 mr-2 text-[11px]">
+                          <span className="uppercase font-medium px-1.5 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] mr-2 text-[11px]">
                             {ext || 'IMG'}
                           </span>
                           {formatFileSize(item.file.size)}
@@ -259,7 +259,7 @@ export const ImageConvertPage: React.FC = () => {
                                 )
                               );
                             }}
-                            className="px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold uppercase text-slate-800 dark:text-white"
+                            className="px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#27272A] text-xs font-semibold uppercase text-[#27272A] dark:text-white"
                           >
                             <option value="webp">WEBP</option>
                             <option value="jpeg">JPEG</option>
@@ -269,12 +269,12 @@ export const ImageConvertPage: React.FC = () => {
                         </td>
                         <td className="p-4">
                           {item.status === 'done' && item.resultBlob && (
-                            <span className="font-bold text-[#730000] dark:text-[#730000]/40">
+                            <span className="font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)]">
                               {formatFileSize(item.resultBlob.size)}
                             </span>
                           )}
                           {item.status === 'converting' && (
-                            <span className="text-[#730000] flex items-center space-x-1 animate-pulse">
+                            <span className="text-[var(--accent-text)] flex items-center space-x-1 animate-pulse">
                               <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                               <span>Converting...</span>
                             </span>
@@ -283,14 +283,14 @@ export const ImageConvertPage: React.FC = () => {
                             <span className="text-slate-400">Ready</span>
                           )}
                           {item.status === 'error' && (
-                            <span className="text-[#730000] text-xs">{item.error}</span>
+                            <span className="text-[var(--accent-text)] text-xs">{item.error}</span>
                           )}
                         </td>
                         <td className="p-4 text-right space-x-2">
                           {item.status === 'done' ? (
                             <button
                               onClick={() => downloadSingle(item)}
-                              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm inline-flex items-center space-x-1"
+                              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm inline-flex items-center space-x-1"
                             >
                               <Download className="w-3.5 h-3.5" />
                               <span>Download</span>
@@ -299,14 +299,14 @@ export const ImageConvertPage: React.FC = () => {
                             <button
                               onClick={() => convertSingle(idx)}
                               disabled={item.status === 'converting'}
-                              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-900 text-white dark:bg-slate-700 dark:hover:bg-slate-600 inline-flex items-center space-x-1"
+                              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#27272A] hover:bg-[#09090B] text-white dark:bg-slate-700 dark:hover:bg-slate-600 inline-flex items-center space-x-1"
                             >
                               <span>Convert</span>
                             </button>
                           )}
                           <button
                             onClick={() => removeFile(item.id)}
-                            className="p-1.5 text-slate-400 hover:text-[#730000] rounded"
+                            className="p-1.5 text-slate-400 hover:text-[var(--accent-text)] rounded"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>

@@ -100,11 +100,11 @@ export const ImageColorReaderPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Pipette className="w-3.5 h-3.5" />
           <span>Color Eyedropper &amp; Palette</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Color Reader &amp; Palette Extractor
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -123,10 +123,10 @@ export const ImageColorReaderPage: React.FC = () => {
           description="Works with artwork, photographs, and web mockups"
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div>
-              <span className="font-bold text-sm text-slate-900 dark:text-white block">
+              <span className="font-bold text-sm text-[#09090B] dark:text-white block">
                 {file.name}
               </span>
               <span className="text-xs text-slate-400">
@@ -141,7 +141,7 @@ export const ImageColorReaderPage: React.FC = () => {
                 setHoverColor(null);
                 setPinnedColor(null);
               }}
-              className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+              className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Change image</span>
@@ -149,7 +149,7 @@ export const ImageColorReaderPage: React.FC = () => {
           </div>
 
           {/* Active Color Card */}
-          <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 flex flex-wrap items-center justify-between gap-4">
+          <div className="p-4 rounded-xl border border-slate-200 dark:border-[#27272A] bg-slate-50 dark:bg-[#27272A]/40 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center space-x-3">
               <div
                 className="w-12 h-12 rounded-xl border border-slate-300 dark:border-slate-700 shadow-sm shrink-0"
@@ -158,7 +158,7 @@ export const ImageColorReaderPage: React.FC = () => {
                 }}
               />
               <div>
-                <span className="font-bold text-sm text-slate-900 dark:text-white block font-mono">
+                <span className="font-bold text-sm text-[#09090B] dark:text-white block font-mono">
                   {(hoverColor || pinnedColor)?.hex || '#------'}
                 </span>
                 <span className="text-xs text-slate-500 font-mono">
@@ -173,7 +173,7 @@ export const ImageColorReaderPage: React.FC = () => {
                   (hoverColor || pinnedColor) &&
                   copyToClipboard((hoverColor || pinnedColor)!.hex)
                 }
-                className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold flex items-center space-x-1.5 hover:bg-slate-50 dark:hover:bg-slate-700"
+                className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#27272A] text-xs font-semibold flex items-center space-x-1.5 hover:bg-slate-50 dark:hover:bg-slate-700"
               >
                 <Copy className="w-3.5 h-3.5" />
                 <span>{copiedText === (hoverColor || pinnedColor)?.hex ? 'Copied HEX!' : 'Copy HEX'}</span>
@@ -183,7 +183,7 @@ export const ImageColorReaderPage: React.FC = () => {
                   (hoverColor || pinnedColor) &&
                   copyToClipboard((hoverColor || pinnedColor)!.rgb)
                 }
-                className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold flex items-center space-x-1.5 hover:bg-slate-50 dark:hover:bg-slate-700"
+                className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#27272A] text-xs font-semibold flex items-center space-x-1.5 hover:bg-slate-50 dark:hover:bg-slate-700"
               >
                 <Copy className="w-3.5 h-3.5" />
                 <span>{copiedText === (hoverColor || pinnedColor)?.rgb ? 'Copied RGB!' : 'Copy RGB'}</span>
@@ -202,13 +202,13 @@ export const ImageColorReaderPage: React.FC = () => {
                   <button
                     key={item.hex}
                     onClick={() => setPinnedColor({ hex: item.hex, rgb: item.rgb })}
-                    className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 text-left hover:scale-[1.02] transition-transform"
+                    className="p-2.5 rounded-xl border border-slate-200 dark:border-[#27272A] bg-slate-50 dark:bg-[#27272A]/40 text-left hover:scale-[1.02] transition-transform"
                   >
                     <div
                       className="w-full h-12 rounded-lg mb-2 border border-slate-300 dark:border-slate-700"
                       style={{ backgroundColor: item.hex }}
                     />
-                    <span className="font-bold text-xs text-slate-900 dark:text-white block font-mono">
+                    <span className="font-bold text-xs text-[#09090B] dark:text-white block font-mono">
                       {item.hex}
                     </span>
                     <span className="text-[10px] text-slate-400 block truncate">
@@ -225,7 +225,7 @@ export const ImageColorReaderPage: React.FC = () => {
             <span className="text-xs text-slate-500">
               Hover over image to inspect pixel color • Click to pin color
             </span>
-            <div className="relative w-full max-h-[480px] overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 p-2 flex items-center justify-center">
+            <div className="relative w-full max-h-[480px] overflow-hidden rounded-xl border border-slate-200 dark:border-[#27272A] bg-[#000000] p-2 flex items-center justify-center">
               <canvas
                 ref={canvasRef}
                 onMouseMove={handleCanvasMouseMove}

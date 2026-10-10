@@ -67,11 +67,11 @@ export const DocumentToolsPage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <FileText className="w-3.5 h-3.5" />
           <span>Local Document Engine</span>
         </div>
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Document Converters
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-2xl">
@@ -88,19 +88,19 @@ export const DocumentToolsPage: React.FC = () => {
             <Link
               key={tool.path}
               to={tool.path}
-              className="group bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-[#730000]/50 dark:hover:border-[#730000]/50 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              className="group bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] hover:border-[var(--accent-text)]/50 dark:hover:border-[var(--accent-text)]/50 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#730000]/10 dark:bg-[#580000]/60 text-[#730000] dark:text-[#730000]/40 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center justify-center group-hover:scale-105 transition-transform">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="text-[11px] font-semibold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                  <span className="text-[11px] font-semibold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-300">
                     {tool.badge}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-lg text-slate-900 dark:text-white group-hover:text-[#730000] dark:group-hover:text-[#730000]/40 transition-colors">
+                <h3 className="font-bold text-lg text-[#09090B] dark:text-white group-hover:text-[var(--accent-text)] dark:group-hover:text-[var(--accent-text)]/40 transition-colors">
                   {tool.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
@@ -108,7 +108,7 @@ export const DocumentToolsPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="mt-6 flex items-center space-x-1 text-xs font-bold text-[#730000] dark:text-[#730000]/40 group-hover:translate-x-1 transition-transform">
+              <div className="mt-6 flex items-center space-x-1 text-xs font-bold text-[var(--accent-text)] dark:text-[var(--accent-text)] group-hover:translate-x-1 transition-transform">
                 <span>Convert file</span>
                 <ArrowRight className="w-4 h-4" />
               </div>

@@ -117,11 +117,11 @@ export const PdfToImagesPage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <Layers className="w-3.5 h-3.5" />
           <span>High-Resolution Page Renderer</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           PDF to Images Converter
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -145,10 +145,10 @@ export const PdfToImagesPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Rendered Pages or Page Selection */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#27272A]">
                 <div className="truncate">
-                  <span className="font-bold text-sm text-slate-900 dark:text-white block truncate">
+                  <span className="font-bold text-sm text-[#09090B] dark:text-white block truncate">
                     {file.name}
                   </span>
                   <span className="text-xs text-slate-400">
@@ -157,7 +157,7 @@ export const PdfToImagesPage: React.FC = () => {
                 </div>
                 <button
                   onClick={handleReset}
-                  className="text-xs text-[#730000] hover:underline flex items-center space-x-1"
+                  className="text-xs text-[var(--accent-text)] hover:underline flex items-center space-x-1"
                 >
                   <Trash2 className="w-3 h-3" />
                   <span>Remove file</span>
@@ -173,7 +173,7 @@ export const PdfToImagesPage: React.FC = () => {
                   <div className="space-x-2">
                     <button
                       onClick={selectAll}
-                      className="text-[#730000] hover:underline font-medium"
+                      className="text-[var(--accent-text)] hover:underline font-medium"
                     >
                       Select All
                     </button>
@@ -186,7 +186,7 @@ export const PdfToImagesPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-1 border border-slate-100 dark:border-slate-800 rounded-xl">
+                <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-1 border border-slate-100 dark:border-[#27272A] rounded-xl">
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => {
                     const isSelected = selectedPages.includes(p);
                     return (
@@ -195,8 +195,8 @@ export const PdfToImagesPage: React.FC = () => {
                         onClick={() => togglePage(p)}
                         className={`w-9 h-9 rounded-lg text-xs font-bold transition-colors ${
                           isSelected
-                            ? 'bg-[#730000] text-white'
-                            : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
+                            ? 'bg-[var(--accent)] text-white'
+                            : 'bg-slate-100 dark:bg-[#27272A] text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                         }`}
                       >
                         {p}
@@ -209,14 +209,14 @@ export const PdfToImagesPage: React.FC = () => {
 
             {/* Results Grid */}
             {renderedImages.length > 0 && (
-              <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+              <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white">
+                  <h3 className="font-bold text-sm text-[#09090B] dark:text-white">
                     Rendered Images ({renderedImages.length})
                   </h3>
                   <button
                     onClick={downloadAllZip}
-                    className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#730000] hover:bg-[#580000] text-white shadow-sm flex items-center space-x-1"
+                    className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm flex items-center space-x-1"
                   >
                     <Archive className="w-3.5 h-3.5" />
                     <span>Download All as ZIP</span>
@@ -227,7 +227,7 @@ export const PdfToImagesPage: React.FC = () => {
                   {renderedImages.map((img) => (
                     <div
                       key={img.pageNumber}
-                      className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 flex flex-col group"
+                      className="border border-slate-200 dark:border-[#27272A] rounded-xl overflow-hidden bg-slate-50 dark:bg-[#000000] flex flex-col group"
                     >
                       <div className="h-44 p-2 flex items-center justify-center overflow-hidden">
                         <img
@@ -236,9 +236,9 @@ export const PdfToImagesPage: React.FC = () => {
                           className="max-w-full max-h-full object-contain shadow-sm rounded"
                         />
                       </div>
-                      <div className="p-2.5 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                      <div className="p-2.5 bg-white dark:bg-[#09090B] border-t border-slate-100 dark:border-[#27272A] flex items-center justify-between text-xs">
                         <div>
-                          <span className="font-bold text-slate-800 dark:text-slate-200">
+                          <span className="font-bold text-[#27272A] dark:text-slate-200">
                             Page {img.pageNumber}
                           </span>
                           <span className="text-[10px] text-slate-400 block">
@@ -247,7 +247,7 @@ export const PdfToImagesPage: React.FC = () => {
                         </div>
                         <button
                           onClick={() => downloadSingle(img)}
-                          className="p-1.5 rounded bg-[#730000]/10 dark:bg-[#580000] text-[#730000] dark:text-[#730000]/40 hover:bg-[#730000]/10"
+                          className="p-1.5 rounded bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-[var(--accent-text)] dark:text-[var(--accent-text)] hover:bg-[var(--accent-text)]/10"
                           title="Download Image"
                         >
                           <Download className="w-3.5 h-3.5" />
@@ -262,8 +262,8 @@ export const PdfToImagesPage: React.FC = () => {
 
           {/* Right: Render Settings */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-              <h3 className="font-bold text-slate-900 dark:text-white text-base pb-2 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white dark:bg-[#09090B] rounded-2xl p-5 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-5">
+              <h3 className="font-bold text-[#09090B] dark:text-white text-base pb-2 border-b border-slate-100 dark:border-[#27272A]">
                 Render Quality
               </h3>
 
@@ -277,7 +277,7 @@ export const PdfToImagesPage: React.FC = () => {
                     onClick={() => setFormat('image/png')}
                     className={`py-2 rounded-lg font-bold border ${
                       format === 'image/png'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -287,7 +287,7 @@ export const PdfToImagesPage: React.FC = () => {
                     onClick={() => setFormat('image/jpeg')}
                     className={`py-2 rounded-lg font-bold border ${
                       format === 'image/jpeg'
-                        ? 'border-[#730000] bg-[#730000] text-white'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -306,7 +306,7 @@ export const PdfToImagesPage: React.FC = () => {
                     onClick={() => setScale(1.0)}
                     className={`py-2 rounded-lg font-semibold border ${
                       scale === 1.0
-                        ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -316,7 +316,7 @@ export const PdfToImagesPage: React.FC = () => {
                     onClick={() => setScale(2.0)}
                     className={`py-2 rounded-lg font-semibold border ${
                       scale === 2.0
-                        ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -326,7 +326,7 @@ export const PdfToImagesPage: React.FC = () => {
                     onClick={() => setScale(3.0)}
                     className={`py-2 rounded-lg font-semibold border ${
                       scale === 3.0
-                        ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                        ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -336,16 +336,16 @@ export const PdfToImagesPage: React.FC = () => {
               </div>
 
               {progress && (
-                <div className="p-3 rounded-xl bg-[#730000]/10 dark:bg-[#580000]/40 text-xs text-[#730000] dark:text-[#730000]/30">
+                <div className="p-3 rounded-xl bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-xs text-[var(--accent-text)] dark:text-[var(--accent-text)]">
                   <div className="flex justify-between font-semibold mb-1">
                     <span>Rendering page...</span>
                     <span>
                       {progress.current} / {progress.total}
                     </span>
                   </div>
-                  <div className="w-full bg-[#730000]/20 dark:bg-[#730000] rounded-full h-1.5 overflow-hidden">
+                  <div className="w-full bg-[var(--accent-text)]/20 dark:bg-[var(--accent-text)]/20 rounded-full h-1.5 overflow-hidden">
                     <div
-                      className="bg-[#730000] h-1.5 rounded-full transition-all"
+                      className="bg-[var(--accent)] h-1.5 rounded-full transition-all"
                       style={{ width: `${(progress.current / progress.total) * 100}%` }}
                     />
                   </div>
@@ -362,7 +362,7 @@ export const PdfToImagesPage: React.FC = () => {
               <button
                 onClick={handleRender}
                 disabled={isRendering || selectedPages.length === 0}
-                className="w-full py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+                className="w-full py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
               >
                 <RefreshCw className={`w-4 h-4 ${isRendering ? 'animate-spin' : ''}`} />
                 <span>Render {selectedPages.length} Pages</span>

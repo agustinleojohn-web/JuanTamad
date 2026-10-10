@@ -70,11 +70,11 @@ export const DocxToPdfPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <FileText className="w-3.5 h-3.5" />
           <span>Local Word Engine</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           DOCX to PDF Converter
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -104,14 +104,14 @@ export const DocxToPdfPage: React.FC = () => {
           description="Select any standard Word .docx document for instant local conversion."
         />
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-xs">
                 DOCX
               </div>
               <div>
-                <p className="font-semibold text-sm text-slate-900 dark:text-white">
+                <p className="font-semibold text-sm text-[#09090B] dark:text-white">
                   {file.name}
                 </p>
                 <p className="text-xs text-slate-400">{formatFileSize(file.size)}</p>
@@ -119,7 +119,7 @@ export const DocxToPdfPage: React.FC = () => {
             </div>
             <button
               onClick={handleReset}
-              className="p-1.5 text-slate-400 hover:text-[#730000] rounded"
+              className="p-1.5 text-slate-400 hover:text-[var(--accent-text)] rounded"
               title="Remove file"
             >
               <Trash2 className="w-4 h-4" />
@@ -137,7 +137,7 @@ export const DocxToPdfPage: React.FC = () => {
                   onClick={() => setPageSize('a4')}
                   className={`py-2 rounded-lg font-bold border ${
                     pageSize === 'a4'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -147,7 +147,7 @@ export const DocxToPdfPage: React.FC = () => {
                   onClick={() => setPageSize('letter')}
                   className={`py-2 rounded-lg font-bold border ${
                     pageSize === 'letter'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -165,7 +165,7 @@ export const DocxToPdfPage: React.FC = () => {
                   onClick={() => setOrientation('portrait')}
                   className={`py-2 rounded-lg font-bold border ${
                     orientation === 'portrait'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -175,7 +175,7 @@ export const DocxToPdfPage: React.FC = () => {
                   onClick={() => setOrientation('landscape')}
                   className={`py-2 rounded-lg font-bold border ${
                     orientation === 'landscape'
-                      ? 'border-[#730000] bg-[#730000] text-white'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent)] text-white'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -193,7 +193,7 @@ export const DocxToPdfPage: React.FC = () => {
                   onClick={() => setMargin(30)}
                   className={`py-2 rounded-lg font-semibold border ${
                     margin === 30
-                      ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -203,7 +203,7 @@ export const DocxToPdfPage: React.FC = () => {
                   onClick={() => setMargin(50)}
                   className={`py-2 rounded-lg font-semibold border ${
                     margin === 50
-                      ? 'border-[#730000] bg-[#730000]/10 text-[#580000] dark:bg-[#580000] dark:text-[#730000]/30'
+                      ? 'border-[var(--accent-text)] bg-[var(--accent-text)]/10 text-[var(--accent-hover)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]'
                       : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -224,7 +224,7 @@ export const DocxToPdfPage: React.FC = () => {
             <button
               onClick={handleConvert}
               disabled={isProcessing}
-              className="flex-1 py-3 rounded-xl font-bold text-sm bg-[#730000] hover:bg-[#580000] text-white shadow-md shadow-[#730000]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
+              className="flex-1 py-3 rounded-xl font-bold text-sm bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-md shadow-[var(--accent-text)]/20 flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01] disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
               <span>Convert to PDF</span>
@@ -233,7 +233,7 @@ export const DocxToPdfPage: React.FC = () => {
             {pdfBlob && (
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-800 dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
+                className="flex-1 py-3 rounded-xl font-bold text-sm bg-[#09090B] hover:bg-[#27272A] text-white dark:bg-[#27272A] dark:hover:bg-slate-700 shadow-md flex items-center justify-center space-x-2 transition-transform hover:scale-[1.01]"
               >
                 <Download className="w-4 h-4" />
                 <span>Download PDF ({formatFileSize(pdfBlob.size)})</span>

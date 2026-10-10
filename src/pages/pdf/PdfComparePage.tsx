@@ -96,11 +96,11 @@ export const PdfComparePage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30 mb-2">
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)] mb-2">
           <GitCompare className="w-3.5 h-3.5" />
           <span>Pixel Diff Engine</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] dark:text-white tracking-tight">
           Compare Two PDF Documents
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -114,13 +114,13 @@ export const PdfComparePage: React.FC = () => {
       {(!fileA || !fileB) ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <span className="font-bold text-sm text-slate-800 dark:text-slate-200 block">
+            <span className="font-bold text-sm text-[#27272A] dark:text-slate-200 block">
               Document A (Original / Older Version)
             </span>
             {fileA ? (
-              <div className="p-4 rounded-xl border border-[#730000]/50 bg-[#730000]/10/50 dark:bg-[#580000]/30 text-xs font-semibold text-[#730000] dark:text-[#730000]/30 flex justify-between">
+              <div className="p-4 rounded-xl border border-[var(--accent-text)]/50 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] flex justify-between">
                 <span>{fileA.name}</span>
-                <button onClick={() => setFileA(null)} className="text-[#730000]">Change</button>
+                <button onClick={() => setFileA(null)} className="text-[var(--accent-text)]">Change</button>
               </div>
             ) : (
               <Dropzone
@@ -134,13 +134,13 @@ export const PdfComparePage: React.FC = () => {
           </div>
 
           <div className="space-y-2">
-            <span className="font-bold text-sm text-slate-800 dark:text-slate-200 block">
+            <span className="font-bold text-sm text-[#27272A] dark:text-slate-200 block">
               Document B (New / Modified Version)
             </span>
             {fileB ? (
-              <div className="p-4 rounded-xl border border-[#730000]/50 bg-[#730000]/10/50 dark:bg-[#580000]/30 text-xs font-semibold text-[#730000] dark:text-[#730000]/30 flex justify-between">
+              <div className="p-4 rounded-xl border border-[var(--accent-text)]/50 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] text-xs font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] flex justify-between">
                 <span>{fileB.name}</span>
-                <button onClick={() => setFileB(null)} className="text-[#730000]">Change</button>
+                <button onClick={() => setFileB(null)} className="text-[var(--accent-text)]">Change</button>
               </div>
             ) : (
               <Dropzone
@@ -154,23 +154,23 @@ export const PdfComparePage: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-[#09090B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-sm space-y-6">
           {/* Header controls */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-[#27272A]">
             <div className="text-xs">
-              <span className="font-bold text-slate-900 dark:text-white">
+              <span className="font-bold text-[#09090B] dark:text-white">
                 Comparing {fileA.name} vs {fileB.name}
               </span>
             </div>
 
             <div className="flex items-center space-x-3">
               {/* Mode switch */}
-              <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5 text-xs">
+              <div className="flex items-center bg-slate-100 dark:bg-[#27272A] rounded-lg p-0.5 text-xs">
                 <button
                   onClick={() => setViewMode('side')}
                   className={`px-3 py-1.5 rounded-md font-semibold flex items-center space-x-1 ${
                     viewMode === 'side'
-                      ? 'bg-[#730000] text-white shadow-sm'
+                      ? 'bg-[var(--accent)] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -181,7 +181,7 @@ export const PdfComparePage: React.FC = () => {
                   onClick={() => setViewMode('diff')}
                   className={`px-3 py-1.5 rounded-md font-semibold flex items-center space-x-1 ${
                     viewMode === 'diff'
-                      ? 'bg-[#730000] text-white shadow-sm'
+                      ? 'bg-[var(--accent)] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-400'
                   }`}
                 >
@@ -216,7 +216,7 @@ export const PdfComparePage: React.FC = () => {
                   setFileA(null);
                   setFileB(null);
                 }}
-                className="text-xs text-[#730000] hover:underline pl-2"
+                className="text-xs text-[var(--accent-text)] hover:underline pl-2"
               >
                 Reset
               </button>
@@ -226,11 +226,11 @@ export const PdfComparePage: React.FC = () => {
           {/* Views */}
           {viewMode === 'side' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-3 bg-slate-50 dark:bg-slate-950">
+              <div className="border border-slate-200 dark:border-[#27272A] rounded-xl p-3 bg-slate-50 dark:bg-[#000000]">
                 <span className="text-xs font-bold text-slate-500 block mb-2">
                   Document A (Page {page})
                 </span>
-                <div className="h-[440px] flex items-center justify-center overflow-auto p-2 bg-white dark:bg-slate-900 rounded border">
+                <div className="h-[440px] flex items-center justify-center overflow-auto p-2 bg-white dark:bg-[#09090B] rounded border">
                   {imgAUrl ? (
                     <img src={imgAUrl} alt="Doc A" className="max-w-full max-h-full object-contain" />
                   ) : (
@@ -239,11 +239,11 @@ export const PdfComparePage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-3 bg-slate-50 dark:bg-slate-950">
+              <div className="border border-slate-200 dark:border-[#27272A] rounded-xl p-3 bg-slate-50 dark:bg-[#000000]">
                 <span className="text-xs font-bold text-slate-500 block mb-2">
                   Document B (Page {page})
                 </span>
-                <div className="h-[440px] flex items-center justify-center overflow-auto p-2 bg-white dark:bg-slate-900 rounded border">
+                <div className="h-[440px] flex items-center justify-center overflow-auto p-2 bg-white dark:bg-[#09090B] rounded border">
                   {imgBUrl ? (
                     <img src={imgBUrl} alt="Doc B" className="max-w-full max-h-full object-contain" />
                   ) : (
@@ -253,11 +253,11 @@ export const PdfComparePage: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-slate-50 dark:bg-slate-950 text-center">
+            <div className="border border-slate-200 dark:border-[#27272A] rounded-xl p-4 bg-slate-50 dark:bg-[#000000] text-center">
               <span className="text-xs font-bold text-slate-600 dark:text-slate-400 block mb-2">
                 Red Discrepancies Highlighted on Gray Baseline
               </span>
-              <div className="h-[520px] flex items-center justify-center overflow-auto p-2 bg-white dark:bg-slate-900 rounded border">
+              <div className="h-[520px] flex items-center justify-center overflow-auto p-2 bg-white dark:bg-[#09090B] rounded border">
                 {diffUrl ? (
                   <img src={diffUrl} alt="Diff Highlight" className="max-w-full max-h-full object-contain shadow-md" />
                 ) : (

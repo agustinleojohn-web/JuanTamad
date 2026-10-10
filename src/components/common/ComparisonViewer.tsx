@@ -88,27 +88,27 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
   return (
     <div className="w-full flex flex-col space-y-4">
       {/* Top Header & Stats Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-100 dark:bg-[#27272A]/80 border border-slate-200 dark:border-slate-700">
         {/* Left: Size Comparison Badges */}
         <div className="flex items-center space-x-3 text-xs sm:text-sm">
           <div className="flex items-center space-x-1.5">
             <span className="text-slate-500 dark:text-slate-400">Original:</span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200">
+            <span className="font-semibold text-[#27272A] dark:text-slate-200">
               {formatFileSize(originalSize)}
             </span>
           </div>
           <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
           <div className="flex items-center space-x-1.5">
             <span className="text-slate-500 dark:text-slate-400">Optimized:</span>
-            <span className="font-bold text-slate-900 dark:text-white">
+            <span className="font-bold text-[#09090B] dark:text-white">
               {formatFileSize(optimizedSize)}
             </span>
           </div>
 
           {/* Savings indicator */}
           {stats.isSmaller && (
-            <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold bg-[#730000]/10 text-[#730000] dark:bg-[#580000] dark:text-[#730000]/30">
-              <CheckCircle2 className="w-3 h-3 text-[#730000] dark:text-[#730000]/40" />
+            <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold bg-[var(--accent-text)]/10 text-[var(--accent-text)] dark:bg-[var(--accent-text-tint)] dark:text-[var(--accent-text)]">
+              <CheckCircle2 className="w-3 h-3 text-[var(--accent-text)] dark:text-[var(--accent-text)]" />
               <span>
                 -{stats.percentageSaved}% ({formatFileSize(stats.differenceBytes)} saved)
               </span>
@@ -132,12 +132,12 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
         {/* Right: View & Zoom Controls */}
         <div className="flex items-center space-x-2">
           {/* Zoom controls */}
-          <div className="flex items-center bg-white dark:bg-slate-900 rounded-lg p-0.5 border border-slate-200 dark:border-slate-700">
+          <div className="flex items-center bg-white dark:bg-[#09090B] rounded-lg p-0.5 border border-slate-200 dark:border-slate-700">
             <button
               onClick={() => setZoomLevel((z) => Math.max(1, z - 0.5))}
               disabled={zoomLevel <= 1}
               aria-label="Zoom out"
-              className="p-1 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30"
+              className="p-1 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#27272A] disabled:opacity-30"
             >
               <ZoomOut className="w-4 h-4" />
             </button>
@@ -148,7 +148,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
               onClick={() => setZoomLevel((z) => Math.min(3, z + 0.5))}
               disabled={zoomLevel >= 3}
               aria-label="Zoom in"
-              className="p-1 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30"
+              className="p-1 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#27272A] disabled:opacity-30"
             >
               <ZoomIn className="w-4 h-4" />
             </button>
@@ -156,7 +156,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
               <button
                 onClick={() => setZoomLevel(1)}
                 aria-label="Reset zoom"
-                className="px-1.5 py-0.5 text-[10px] text-slate-500 hover:text-slate-800 dark:hover:text-white"
+                className="px-1.5 py-0.5 text-[10px] text-slate-500 hover:text-[#27272A] dark:hover:text-white"
               >
                 Reset
               </button>
@@ -164,14 +164,14 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
           </div>
 
           {/* Mode Switcher */}
-          <div className="flex items-center bg-white dark:bg-slate-900 rounded-lg p-0.5 border border-slate-200 dark:border-slate-700">
+          <div className="flex items-center bg-white dark:bg-[#09090B] rounded-lg p-0.5 border border-slate-200 dark:border-slate-700">
             <button
               onClick={() => setViewMode('slider')}
               title="Interactive Split Slider"
               className={`p-1.5 rounded text-xs font-medium flex items-center space-x-1 ${
                 viewMode === 'slider'
-                  ? 'bg-[#730000] text-white'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'bg-[var(--accent)] text-white'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#27272A]'
               }`}
             >
               <Split className="w-3.5 h-3.5" />
@@ -182,8 +182,8 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
               title="Side by Side"
               className={`p-1.5 rounded text-xs font-medium flex items-center space-x-1 ${
                 viewMode === 'side-by-side'
-                  ? 'bg-[#730000] text-white'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'bg-[var(--accent)] text-white'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#27272A]'
               }`}
             >
               <Columns className="w-3.5 h-3.5" />
@@ -197,7 +197,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
       {viewMode === 'slider' ? (
         <div
           ref={containerRef}
-          className="relative w-full h-[400px] sm:h-[520px] rounded-2xl overflow-hidden select-none bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-ew-resize flex items-center justify-center"
+          className="relative w-full h-[400px] sm:h-[520px] rounded-2xl overflow-hidden select-none bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] bg-slate-100 dark:bg-[#09090B] border border-slate-200 dark:border-[#27272A] cursor-ew-resize flex items-center justify-center"
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
         >
@@ -236,10 +236,10 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
             style={{ left: `${sliderPosition}%` }}
           >
             {/* Drag Handle Knob */}
-            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white dark:bg-slate-900 border-2 border-[#730000] shadow-lg flex items-center justify-center text-[#730000] pointer-events-auto cursor-ew-resize">
+            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white dark:bg-[#09090B] border-2 border-[var(--accent-text)] shadow-lg flex items-center justify-center text-[var(--accent-text)] pointer-events-auto cursor-ew-resize">
               <div className="flex space-x-0.5">
-                <div className="w-0.5 h-3 bg-[#730000] rounded-full" />
-                <div className="w-0.5 h-3 bg-[#730000] rounded-full" />
+                <div className="w-0.5 h-3 bg-[var(--accent)] rounded-full" />
+                <div className="w-0.5 h-3 bg-[var(--accent)] rounded-full" />
               </div>
             </div>
           </div>
@@ -251,7 +251,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
             </span>
           </div>
           <div className="absolute bottom-4 right-4 z-10 pointer-events-none">
-            <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-[#730000]/90 backdrop-blur-md text-white shadow">
+            <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-[var(--accent-text)]/90 backdrop-blur-md text-white shadow">
               Optimized ({optimizedWidth ? `${optimizedWidth}×${optimizedHeight}` : ''}{' '}
               {optimizedFormat ? `• ${optimizedFormat.toUpperCase()}` : ''})
             </span>
@@ -261,8 +261,8 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
         /* Side by Side Mode */
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Original Card */}
-          <div className="border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 overflow-hidden flex flex-col">
-            <div className="px-4 py-2.5 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center text-xs font-medium">
+          <div className="border border-slate-200 dark:border-[#27272A] rounded-2xl bg-slate-50 dark:bg-[#09090B] overflow-hidden flex flex-col">
+            <div className="px-4 py-2.5 bg-slate-100 dark:bg-[#27272A]/80 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center text-xs font-medium">
               <span className="font-semibold text-slate-700 dark:text-slate-300">Original</span>
               <span className="text-slate-500">
                 {formatFileSize(originalSize)}
@@ -280,13 +280,13 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
           </div>
 
           {/* Optimized Card */}
-          <div className="border border-[#730000]/50/30 rounded-2xl bg-slate-50 dark:bg-slate-900 overflow-hidden flex flex-col">
-            <div className="px-4 py-2.5 bg-[#730000]/10/80 dark:bg-[#580000]/40 border-b border-[#730000]/20 dark:border-[#730000]/50 flex justify-between items-center text-xs font-medium">
-              <span className="font-semibold text-[#730000] dark:text-[#730000]/30 flex items-center space-x-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#730000]/50" />
+          <div className="border border-[var(--accent-text)]/50 rounded-2xl bg-slate-50 dark:bg-[#09090B] overflow-hidden flex flex-col">
+            <div className="px-4 py-2.5 bg-[var(--accent-text)]/10 dark:bg-[var(--accent-text-tint)] border-b border-[var(--accent-text)]/20 dark:border-[var(--accent-text)]/40 flex justify-between items-center text-xs font-medium">
+              <span className="font-semibold text-[var(--accent-text)] dark:text-[var(--accent-text)] flex items-center space-x-1">
+                <Sparkles className="w-3.5 h-3.5 text-[var(--accent-text)]/50" />
                 <span>Optimized</span>
               </span>
-              <span className="text-[#580000] dark:text-[#730000]/40 font-semibold">
+              <span className="text-[var(--accent-hover)] dark:text-[var(--accent-text)] font-semibold">
                 {formatFileSize(optimizedSize)}
                 {optimizedWidth ? ` • ${optimizedWidth}×${optimizedHeight}px` : ''}
               </span>
