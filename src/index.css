@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import '@fontsource-variable/google-sans-flex';
+
+@layer base {
+  :root {
+    --accent: #730000;
+    --accent-hover: #580000;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0f172a;
+    font-family: "Google Sans Flex Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+  }
+  
+}

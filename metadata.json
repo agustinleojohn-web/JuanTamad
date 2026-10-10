@@ -1,0 +1,6 @@
+{
+  "name": "JuanTamad - Free All-in-One Image Optimizer & File Converter",
+  "description": "100% client-side, privacy-first image optimizer, file converter, and PDF toolkit directly in your browser. No sign-up, zero server uploads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
